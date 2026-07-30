@@ -1,7 +1,13 @@
 {
   "name": "motolex",
+  "displayName": "MotoLex",
   "private": true,
   "version": "0.0.0",
+  "author": {
+    "name": "Konrad Konik",
+    "email": "3k.nexgen@gmail.com",
+    "url": "https://twojastrona.pl"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
