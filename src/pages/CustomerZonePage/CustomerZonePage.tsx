@@ -1,6 +1,6 @@
 function CustomerZonePage() {
   return (
-    <article className="content-page">
+    <article>
       <h1>Załatw sprawę</h1>
       <p>
         W tym miejscu znajdą się informacje o dokumentach, terminach, opłatach,

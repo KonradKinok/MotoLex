@@ -2,7 +2,7 @@ import { NavLink } from "react-router";
 
 function NotFoundPage() {
   return (
-    <article className="content-page">
+    <article>
       <h1>Nie znaleziono strony</h1>
       <p>Podany adres jest nieprawidłowy lub strona została przeniesiona.</p>
       <p>

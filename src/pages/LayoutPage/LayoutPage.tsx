@@ -1,19 +1,23 @@
 import { Suspense, useState } from "react";
 import { NavLink, Outlet } from "react-router";
-import "./LayoutPage.css";
+import { ThemeSelector } from "../../components/ThemeSelector/ThemeSelector";
+import styles from "./LayoutPage.module.scss";
 
 export function LayoutPage() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const layoutClassName = isSidebarCollapsed
-    ? "content-layout content-layout--sidebar-collapsed"
-    : "content-layout";
+  const layoutClassName = [
+    styles.contentLayout,
+    isSidebarCollapsed ? styles.sidebarCollapsedLayout : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   const sidebarClassName = [
-    "sidebar",
-    isSidebarCollapsed ? "sidebar--collapsed" : "",
-    isMobileMenuOpen ? "sidebar--mobile-open" : "",
+    styles.sidebar,
+    isSidebarCollapsed ? styles.sidebarCollapsed : "",
+    isMobileMenuOpen ? styles.sidebarMobileOpen : "",
   ]
     .filter(Boolean)
     .join(" ");
@@ -23,15 +27,15 @@ export function LayoutPage() {
   };
 
   return (
-    <div className="site">
-      <a className="skip-link" href="#main-content">
+    <div className={styles.site}>
+      <a className={styles.skipLink} href="#main-content">
         Przejdź do głównej treści
       </a>
 
-      <header className="site-header">
-        <div className="page-container header-content">
+      <header className={styles.siteHeader}>
+        <div className={`${styles.pageContainer} ${styles.headerContent}`}>
           <NavLink
-            className="site-logo"
+            className={styles.siteLogo}
             to="/"
             end
             aria-label="MotoLex — strona główna"
@@ -39,15 +43,33 @@ export function LayoutPage() {
             MotoLex
           </NavLink>
 
-          <nav className="main-navigation" aria-label="Menu główne">
-            <NavLink to="/zalatw-sprawe">Załatw sprawę</NavLink>
-            <NavLink to="/dla-pracownikow">
+          <nav className={styles.mainNavigation} aria-label="Menu główne">
+            <NavLink
+              to="/zalatw-sprawe"
+              className={({ isActive }) =>
+                `${styles.navigationLink} ${
+                  isActive ? styles.navigationLinkActive : ""
+                }`
+              }
+            >
+              Załatw sprawę
+            </NavLink>
+            <NavLink
+              to="/dla-pracownikow"
+              className={({ isActive }) =>
+                `${styles.navigationLink} ${
+                  isActive ? styles.navigationLinkActive : ""
+                }`
+              }
+            >
               Baza wiedzy dla pracowników
             </NavLink>
           </nav>
 
+          <ThemeSelector />
+
           <button
-            className="mobile-menu-button"
+            className={styles.mobileMenuButton}
             type="button"
             aria-controls="sidebar"
             aria-expanded={isMobileMenuOpen}
@@ -58,14 +80,14 @@ export function LayoutPage() {
         </div>
       </header>
 
-      <div className={`page-container ${layoutClassName}`}>
+      <div className={`${styles.pageContainer} ${layoutClassName}`}>
         <aside
           id="sidebar"
           className={sidebarClassName}
           aria-label="Menu tematyczne"
         >
           <button
-            className="sidebar-collapse-button"
+            className={styles.sidebarCollapseButton}
             type="button"
             aria-label={
               isSidebarCollapsed ? "Rozwiń menu boczne" : "Zwiń menu boczne"
@@ -76,45 +98,77 @@ export function LayoutPage() {
             <span aria-hidden="true">
               {isSidebarCollapsed ? "›" : "‹"}
             </span>
-            <span className="sidebar__text">
+            <span className={styles.sidebarText}>
               {isSidebarCollapsed ? "Rozwiń" : "Zwiń"}
             </span>
           </button>
 
           <nav aria-label="Sprawy dotyczące pojazdów">
-            <ul className="sidebar-navigation">
+            <ul className={styles.sidebarNavigation}>
               <li>
-                <NavLink to="/zalatw-sprawe" onClick={closeMobileMenu}>
+                <NavLink
+                  to="/zalatw-sprawe"
+                  onClick={closeMobileMenu}
+                  className={({ isActive }) =>
+                    `${styles.sidebarLink} ${
+                      isActive ? styles.sidebarLinkActive : ""
+                    }`
+                  }
+                >
                   <span aria-hidden="true">●</span>
-                  <span className="sidebar__text">Załatw sprawę</span>
+                  <span className={styles.sidebarText}>Załatw sprawę</span>
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/kary" onClick={closeMobileMenu}>
+                <NavLink
+                  to="/kary"
+                  onClick={closeMobileMenu}
+                  className={({ isActive }) =>
+                    `${styles.sidebarLink} ${
+                      isActive ? styles.sidebarLinkActive : ""
+                    }`
+                  }
+                >
                   <span aria-hidden="true">●</span>
-                  <span className="sidebar__text">Terminy i kary</span>
+                  <span className={styles.sidebarText}>Terminy i kary</span>
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/przepisy-prawne" onClick={closeMobileMenu}>
+                <NavLink
+                  to="/przepisy-prawne"
+                  onClick={closeMobileMenu}
+                  className={({ isActive }) =>
+                    `${styles.sidebarLink} ${
+                      isActive ? styles.sidebarLinkActive : ""
+                    }`
+                  }
+                >
                   <span aria-hidden="true">●</span>
-                  <span className="sidebar__text">Przepisy prawne</span>
+                  <span className={styles.sidebarText}>Przepisy prawne</span>
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dla-pracownikow" onClick={closeMobileMenu}>
+                <NavLink
+                  to="/dla-pracownikow"
+                  onClick={closeMobileMenu}
+                  className={({ isActive }) =>
+                    `${styles.sidebarLink} ${
+                      isActive ? styles.sidebarLinkActive : ""
+                    }`
+                  }
+                >
                   <span aria-hidden="true">●</span>
-                  <span className="sidebar__text">Dla pracowników</span>
+                  <span className={styles.sidebarText}>Dla pracowników</span>
                 </NavLink>
               </li>
             </ul>
           </nav>
         </aside>
 
-        <main id="main-content" className="main-content">
+        <main id="main-content" className={styles.mainContent}>
           <Suspense
             fallback={
-              <p className="page-loading" role="status">
+              <p className={styles.pageLoading} role="status">
                 Ładowanie strony…
               </p>
             }
@@ -123,23 +177,23 @@ export function LayoutPage() {
           </Suspense>
         </main>
 
-        <aside className="advertising-column" aria-label="Reklamy">
-          <section className="advertisement">
-            <p className="advertisement-label">Reklama</p>
-            <div className="advertisement-placeholder">300 × 250</div>
+        <aside className={styles.advertisingColumn} aria-label="Reklamy">
+          <section className={styles.advertisement}>
+            <p className={styles.advertisementLabel}>Reklama</p>
+            <div className={styles.advertisementPlaceholder}>300 × 250</div>
           </section>
 
-          <section className="advertisement">
-            <p className="advertisement-label">Reklama</p>
-            <div className="advertisement-placeholder">
+          <section className={styles.advertisement}>
+            <p className={styles.advertisementLabel}>Reklama</p>
+            <div className={styles.advertisementPlaceholder}>
               Reklama responsywna
             </div>
           </section>
         </aside>
       </div>
 
-      <footer className="site-footer">
-        <div className="page-container footer-content">
+      <footer className={styles.siteFooter}>
+        <div className={`${styles.pageContainer} ${styles.footerContent}`}>
           <p>© {new Date().getFullYear()} MotoLex</p>
           <p>Informacje dotyczące rejestracji i spraw pojazdów</p>
         </div>

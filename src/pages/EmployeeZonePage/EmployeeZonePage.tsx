@@ -1,6 +1,6 @@
 function EmployeeZonePage() {
   return (
-    <article className="content-page">
+    <article>
       <h1>Baza wiedzy dla pracowników</h1>
       <p>
         W tym miejscu znajdą się komunikaty instytucji, orzeczenia oraz

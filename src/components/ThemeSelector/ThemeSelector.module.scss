@@ -1,0 +1,35 @@
+.selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-header-text);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.select {
+  min-height: 2.75rem;
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  border: 2px solid var(--color-header-border);
+  border-radius: var(--radius-small);
+  color: var(--color-header-text);
+  background-color: var(--color-header-background);
+  cursor: pointer;
+}
+
+@media (max-width: 47.999rem) {
+  .label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .select {
+    max-width: 9.5rem;
+  }
+}
