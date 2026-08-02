@@ -49,27 +49,6 @@
   }
 }
 
-.mainNavigation {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.navigationLink {
-  color: var(--color-header-text);
-  text-underline-offset: 0.3125rem;
-
-  &:hover {
-    color: var(--color-header-text);
-  }
-}
-
-.navigationLinkActive {
-  font-weight: 700;
-  text-decoration-thickness: 0.1875rem;
-}
-
 .mobileMenuButton {
   display: none;
   padding-inline: 0.75rem;
@@ -147,8 +126,8 @@
 .mainContent {
   min-width: 0;
 
-  > article,
-  > div {
+  >article,
+  >div {
     max-width: 75ch;
   }
 

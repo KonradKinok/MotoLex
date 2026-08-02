@@ -1,6 +1,8 @@
 import { Suspense, useState } from "react";
 import { NavLink, Outlet } from "react-router";
+import { Logo } from "../../components/Logo/Logo";
 import { ThemeSelector } from "../../components/ThemeSelector/ThemeSelector";
+import { NavigationTop } from "../../components/NavigationTop/NavigationTop";
 import styles from "./LayoutPage.module.scss";
 
 export function LayoutPage() {
@@ -34,37 +36,9 @@ export function LayoutPage() {
 
       <header className={styles.siteHeader}>
         <div className={`${styles.pageContainer} ${styles.headerContent}`}>
-          <NavLink
-            className={styles.siteLogo}
-            to="/"
-            end
-            aria-label="MotoLex — strona główna"
-          >
-            MotoLex
-          </NavLink>
+          <Logo />
 
-          <nav className={styles.mainNavigation} aria-label="Menu główne">
-            <NavLink
-              to="/zalatw-sprawe"
-              className={({ isActive }) =>
-                `${styles.navigationLink} ${
-                  isActive ? styles.navigationLinkActive : ""
-                }`
-              }
-            >
-              Załatw sprawę
-            </NavLink>
-            <NavLink
-              to="/dla-pracownikow"
-              className={({ isActive }) =>
-                `${styles.navigationLink} ${
-                  isActive ? styles.navigationLinkActive : ""
-                }`
-              }
-            >
-              Baza wiedzy dla pracowników
-            </NavLink>
-          </nav>
+          <NavigationTop />
 
           <ThemeSelector />
 
@@ -95,9 +69,7 @@ export function LayoutPage() {
             aria-expanded={!isSidebarCollapsed}
             onClick={() => setIsSidebarCollapsed((current) => !current)}
           >
-            <span aria-hidden="true">
-              {isSidebarCollapsed ? "›" : "‹"}
-            </span>
+            <span aria-hidden="true">{isSidebarCollapsed ? "›" : "‹"}</span>
             <span className={styles.sidebarText}>
               {isSidebarCollapsed ? "Rozwiń" : "Zwiń"}
             </span>

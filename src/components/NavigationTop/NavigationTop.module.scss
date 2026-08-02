@@ -1,0 +1,123 @@
+.mainNavigation {
+  margin-left: auto;
+}
+
+.navigationList,
+.submenu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navigationList {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navigationItem {
+  position: relative;
+
+  &:hover > .submenu,
+  &:focus-within > .submenu {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+.navigationLink {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-small);
+  color: var(--color-header-link-text);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+
+  &:hover {
+    color: var(--color-header-link-text-hover);
+    background-color: var(--color-header-link-background-active);
+  }
+}
+
+.navigationList > .navigationItem > .navigationLink {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+.navigationLinkActive {
+  color: var(--color-header-link-text-active);
+  background-color: var(--color-header-link-background-active);
+}
+
+.navigationIcon,
+.submenuIcon {
+  flex: 0 0 auto;
+}
+
+.navigationLabel {
+  white-space: nowrap;
+}
+
+.submenuIcon {
+  margin-left: auto;
+}
+
+.submenu {
+  position: absolute;
+  z-index: 100;
+  top: 100%;
+  left: 0;
+  min-width: 17rem;
+  padding: 0.25rem;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(0.25rem);
+  pointer-events: none;
+  background-color: var(--color-header-background);
+  border: 1px solid var(--color-header-border);
+  border-radius: var(--radius-small);
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 20%);
+  transition:
+    visibility 0.2s,
+    opacity 0.2s ease,
+    transform 0.2s ease;
+
+  .navigationItem {
+    width: 100%;
+  }
+
+  .navigationLink {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .submenu {
+    top: -0.25rem;
+    left: 100%;
+  }
+}
+
+.navigationList > .navigationItem:last-child > .submenu {
+  right: 0;
+  left: auto;
+
+  .submenu {
+    right: 100%;
+    left: auto;
+  }
+}
+
+@media (max-width: 59.999rem) {
+  .mainNavigation {
+    display: none;
+  }
+}

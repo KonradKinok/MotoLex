@@ -1,0 +1,45 @@
+.siteLogo {
+  color: var(--color-logo-text, #123f66);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  width: 210px;
+  min-width: 190px;
+  padding: 10px;
+
+  .logoImageContainer {
+    position: relative;
+
+    overflow: hidden;
+    transition-property: transform;
+    transition-duration: 1500ms;
+    transition-timing-function: cubic-bezier(0.34, 2.56, 0.64, 1);
+
+    &:hover {
+      transform: skewY(10deg);
+    }
+
+    .logoText {
+      position: absolute;
+      inset: 53% 3% 8% 15%;
+      display: grid;
+      place-items: center;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .siteLogo,
+  .siteLogo:hover {
+    color: var(--color-logo-text, #123f66);
+    transition: none;
+    transform: none;
+  }
+}
+
+@media (max-width: 47.999rem) {
+  .siteLogo {
+    margin-right: auto;
+  }
+}

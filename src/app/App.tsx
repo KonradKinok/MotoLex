@@ -15,16 +15,14 @@ const PenaltiesPage = lazy(
 const LegalRegulationsPage = lazy(
   () => import("../pages/LegalRegulationsPage/LegalRegulationsPage"),
 );
-const NotFoundPage = lazy(
-  () => import("../pages/NotFoundPage/NotFoundPage"),
-);
+const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<LayoutPage />}>
         <Route index element={<HomePage />} />
-        <Route path="zalatw-sprawe" element={<CustomerZonePage />} />
+        <Route path="dla-wlascicieli" element={<CustomerZonePage />} />
         <Route path="dla-pracownikow" element={<EmployeeZonePage />} />
         <Route path="kary" element={<PenaltiesPage />} />
         <Route path="przepisy-prawne" element={<LegalRegulationsPage />} />
