@@ -21,8 +21,8 @@
   @include themes.dark;
 }
 
-:root[data-theme="high-contrast"] {
-  @include themes.high-contrast;
+:root[data-theme="contrast"] {
+  @include themes.contrast;
 }
 
 @media (prefers-color-scheme: dark) {

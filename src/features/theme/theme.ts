@@ -1,4 +1,4 @@
-export const themes = ["light", "dark", "high-contrast"] as const;
+export const themes = ["light", "dark", "contrast"] as const;
 
 export type Theme = (typeof themes)[number];
 

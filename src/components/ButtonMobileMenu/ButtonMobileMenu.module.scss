@@ -1,0 +1,15 @@
+.mobileMenuButton {
+  display: none;
+  padding-inline: 0.75rem;
+  color: var(--color-header-text);
+  background: var(--color-header-background);
+  border-color: var(--color-header-border);
+}
+
+@media (max-width: 68rem) {
+  .mobileMenuButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

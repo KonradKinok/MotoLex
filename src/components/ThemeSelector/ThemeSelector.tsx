@@ -1,30 +1,50 @@
+import { Contrast, Moon, Sun, type LucideIcon } from "lucide-react";
 import { useTheme } from "../../features/theme/ThemeContext";
 import { themes, type Theme } from "../../features/theme/theme";
 import styles from "./ThemeSelector.module.scss";
 
-const themeLabels: Record<Theme, string> = {
-  light: "Jasny",
-  dark: "Ciemny",
-  "high-contrast": "Wysoki kontrast",
+type ThemeOption = {
+  label: string;
+  icon: LucideIcon;
+};
+
+const themeOptions: Record<Theme, ThemeOption> = {
+  light: {
+    label: "Jasny",
+    icon: Sun,
+  },
+  dark: {
+    label: "Ciemny",
+    icon: Moon,
+  },
+  contrast: {
+    label: "Wysoki kontrast",
+    icon: Contrast,
+  },
 };
 
 export function ThemeSelector() {
   const { theme, setTheme } = useTheme();
+  const currentThemeOption = themeOptions[theme];
+  const ThemeIcon = currentThemeOption.icon;
+
+  const handleThemeChange = () => {
+    const currentIndex = themes.indexOf(theme);
+    const nextIndex = (currentIndex + 1) % themes.length;
+    const nextTheme = themes[nextIndex];
+
+    setTheme(nextTheme);
+  };
 
   return (
-    <label className={styles.selector}>
-      <span className={styles.label}>Wygląd</span>
-      <select
-        className={styles.select}
-        value={theme}
-        onChange={(event) => setTheme(event.target.value as Theme)}
-      >
-        {themes.map((availableTheme) => (
-          <option key={availableTheme} value={availableTheme}>
-            {themeLabels[availableTheme]}
-          </option>
-        ))}
-      </select>
-    </label>
+    <button
+      type="button"
+      onClick={handleThemeChange}
+      className={styles.themeButton}
+      aria-label={`Zmień motyw. Aktualny motyw: ${currentThemeOption.label}`}
+      title={`Aktualny motyw: ${currentThemeOption.label}`}
+    >
+      <ThemeIcon size={24} aria-hidden="true" />
+    </button>
   );
 }

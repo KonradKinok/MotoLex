@@ -3,11 +3,17 @@ import { NavLink, Outlet } from "react-router";
 import { Logo } from "../../components/Logo/Logo";
 import { ThemeSelector } from "../../components/ThemeSelector/ThemeSelector";
 import { NavigationTop } from "../../components/NavigationTop/NavigationTop";
+import { useToggle } from "../../hooks/useToggle";
+import { ButtonMobileMenu } from "../../components/ButtonMobileMenu/ButtonMobileMenu";
 import styles from "./LayoutPage.module.scss";
 
 export function LayoutPage() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const {
+    value: isMobileMenuOpen,
+    disable: closeMobileMenu,
+    toggle: toggleMobileMenu,
+  } = useToggle();
 
   const layoutClassName = [
     styles.contentLayout,
@@ -24,10 +30,6 @@ export function LayoutPage() {
     .filter(Boolean)
     .join(" ");
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
-
   return (
     <div className={styles.site}>
       <a className={styles.skipLink} href="#main-content">
@@ -37,20 +39,12 @@ export function LayoutPage() {
       <header className={styles.siteHeader}>
         <div className={`${styles.pageContainer} ${styles.headerContent}`}>
           <Logo />
-
           <NavigationTop />
-
+          <ButtonMobileMenu
+            isMobileMenuOpen={isMobileMenuOpen}
+            toggleMobileMenu={toggleMobileMenu}
+          />
           <ThemeSelector />
-
-          <button
-            className={styles.mobileMenuButton}
-            type="button"
-            aria-controls="sidebar"
-            aria-expanded={isMobileMenuOpen}
-            onClick={() => setIsMobileMenuOpen((current) => !current)}
-          >
-            {isMobileMenuOpen ? "Zamknij menu" : "Otwórz menu"}
-          </button>
         </div>
       </header>
 

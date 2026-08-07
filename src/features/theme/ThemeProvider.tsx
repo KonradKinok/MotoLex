@@ -1,9 +1,4 @@
-import {
-  useEffect,
-  useMemo,
-  useState,
-  type PropsWithChildren,
-} from "react";
+import { useEffect, useMemo, useState, type PropsWithChildren } from "react";
 import { ThemeContext } from "./ThemeContext";
 import { getInitialTheme, themeStorageKey, type Theme } from "./theme";
 

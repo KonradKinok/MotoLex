@@ -46,12 +46,6 @@ export const navigationItems: NavigationItem[] = [
         to: "/dla-wlascicieli/dokumenty",
         icon: Files,
       },
-      {
-        label: "Kalkulator",
-        to: "/kalkulator",
-        icon: Calculator,
-        children: calculatorItems,
-      },
     ],
   },
   {
@@ -64,12 +58,12 @@ export const navigationItems: NavigationItem[] = [
         to: "/dla-pracownikow/homologacja",
         icon: BadgeCheck,
       },
-      {
-        label: "Kalkulator",
-        to: "/kalkulator",
-        icon: Calculator,
-        children: calculatorItems,
-      },
     ],
+  },
+  {
+    label: "Kalkulatory",
+    to: "/kalkulator",
+    icon: Calculator,
+    children: calculatorItems,
   },
 ];

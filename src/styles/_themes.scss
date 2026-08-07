@@ -46,7 +46,7 @@
   --color-focus-text: #101820;
 }
 
-@mixin high-contrast {
+@mixin contrast {
   color-scheme: dark;
   --color-background: #000000;
   --color-surface: #000000;
