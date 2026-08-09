@@ -1,0 +1,47 @@
+import { Link, useLocation } from "react-router";
+import { ChevronRight } from "lucide-react";
+import { getPathNames } from "../globalFunctions/globalFunctions";
+import styles from "./Breadcrumbs.module.scss";
+
+export function Breadcrumbs() {
+  const { pathname } = useLocation();
+  const pathNames = getPathNames(pathname);
+
+  if (!pathNames.length) {
+    return null;
+  }
+  return (
+    <nav className={styles.breadcrumbs} aria-label="Ścieżka nawigacyjna">
+      <ol className={styles.list}>
+        {pathNames.map((path, index) => {
+          const isLast = index === pathNames.length - 1;
+          const to = pathNames.slice(0, index + 1).join("");
+          const label = path.replace(/^\/+/, "").replaceAll("-", " ");
+
+          return (
+            <li className={styles.item} key={to}>
+              {isLast ? (
+                <span className={styles.current} aria-current="page" title={to}>
+                  {label}
+                </span>
+              ) : (
+                <>
+                  <Link className={styles.link} to={to} title={to}>
+                    {label}
+                  </Link>
+
+                  <ChevronRight
+                    className={styles.separator}
+                    size={20}
+                    strokeWidth={2}
+                    aria-hidden="true"
+                  />
+                </>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+    </nav>
+  );
+}

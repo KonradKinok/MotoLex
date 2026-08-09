@@ -7,6 +7,7 @@ import { useToggle } from "../../hooks/useToggle";
 import { ButtonMobileMenu } from "../../components/ButtonMobileMenu/ButtonMobileMenu";
 import styles from "./LayoutPage.module.scss";
 import { NavigationSide } from "../../components/NavigationSide/NavigationSide";
+import { Breadcrumbs } from "../../components/Breadcrumbs/Breadcrumbs";
 
 export function LayoutPage() {
   //Mobile menu state
@@ -60,6 +61,7 @@ export function LayoutPage() {
         />
 
         <main id="main-content" className={styles.mainContent}>
+          <Breadcrumbs />
           <Suspense
             fallback={
               <p className={styles.pageLoading} role="status">

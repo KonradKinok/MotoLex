@@ -2,7 +2,7 @@ import { navigationItems } from "../../config/navigationMain";
 import type { NavigationItem } from "../../config/navigationMain";
 import { logToConsole } from "./console";
 // Get the path names from a patch name
-export function getPatchnames(patchname: string): string[] {
+export function getPathNames(patchname: string): string[] {
   const pathParts = patchname
     .split("/")
     .filter(Boolean)
@@ -11,8 +11,11 @@ export function getPatchnames(patchname: string): string[] {
 }
 
 
+
+
+//not used
 export function conditionToDisplaySidebar(pathname: string): NavigationItem[] {
-  const patchnameTable = getPatchnames(pathname);
+  const patchnameTable = getPathNames(pathname);
   const allNavigationItems: NavigationItem[] = [];
   const mainNavigationPages = navigationItems.map((item) => ({
     to: item.to,
