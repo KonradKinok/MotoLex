@@ -17,6 +17,22 @@ export type NavigationItem = {
   children?: NavigationItem[];
 };
 
+const vehicleOwnersItems: NavigationItem[] = [
+  {
+    label: "Jak sprawdzić dokumenty?",
+    to: "/dla-wlascicieli/dokumenty",
+    icon: Files,
+  },
+];
+
+const workersItems: NavigationItem[] = [
+  {
+    label: "Homologacja",
+    to: "/dla-pracownikow/homologacja",
+    icon: BadgeCheck,
+  },
+];
+
 const calculatorItems: NavigationItem[] = [
   {
     label: "Kary",
@@ -40,25 +56,13 @@ export const navigationItems: NavigationItem[] = [
     label: "Dla właścicieli pojazdów",
     to: "/dla-wlascicieli",
     icon: Car,
-    children: [
-      {
-        label: "Jak sprawdzić dokumenty?",
-        to: "/dla-wlascicieli/dokumenty",
-        icon: Files,
-      },
-    ],
+    children: vehicleOwnersItems,
   },
   {
     label: "Dla pracowników wydziału",
     to: "/dla-pracownikow",
     icon: Users,
-    children: [
-      {
-        label: "Homologacja",
-        to: "/dla-pracownikow/homologacja",
-        icon: BadgeCheck,
-      },
-    ],
+    children: workersItems,
   },
   {
     label: "Kalkulatory",

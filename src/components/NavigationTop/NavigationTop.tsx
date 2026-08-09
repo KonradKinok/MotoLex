@@ -17,7 +17,10 @@ function getNavigationLinkClassName(isActive: boolean) {
     .join(" ");
 }
 
-function NavigationMenuItem({ item, level = 0 }: NavigationMenuItemProps) {
+export function NavigationMenuItem({
+  item,
+  level = 0,
+}: NavigationMenuItemProps) {
   const hasChildren = Boolean(item.children?.length);
   const ItemIcon = item.icon;
   const SubmenuIcon = level === 0 ? ChevronDown : ChevronRight;

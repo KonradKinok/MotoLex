@@ -1,31 +1,28 @@
-import { Suspense, useState } from "react";
-import { NavLink, Outlet } from "react-router";
+import { Suspense } from "react";
+import { Outlet } from "react-router";
 import { Logo } from "../../components/Logo/Logo";
 import { ThemeSelector } from "../../components/ThemeSelector/ThemeSelector";
 import { NavigationTop } from "../../components/NavigationTop/NavigationTop";
 import { useToggle } from "../../hooks/useToggle";
 import { ButtonMobileMenu } from "../../components/ButtonMobileMenu/ButtonMobileMenu";
 import styles from "./LayoutPage.module.scss";
+import { NavigationSide } from "../../components/NavigationSide/NavigationSide";
 
 export function LayoutPage() {
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  //Mobile menu state
   const {
     value: isMobileMenuOpen,
     disable: closeMobileMenu,
     toggle: toggleMobileMenu,
   } = useToggle();
 
+  //Sidebar collapse state
+  const { value: isSidebarCollapsed, toggle: toggleSidebarCollapsed } =
+    useToggle();
+
   const layoutClassName = [
     styles.contentLayout,
     isSidebarCollapsed ? styles.sidebarCollapsedLayout : "",
-  ]
-    .filter(Boolean)
-    .join(" ");
-
-  const sidebarClassName = [
-    styles.sidebar,
-    isSidebarCollapsed ? styles.sidebarCollapsed : "",
-    isMobileMenuOpen ? styles.sidebarMobileOpen : "",
   ]
     .filter(Boolean)
     .join(" ");
@@ -38,98 +35,29 @@ export function LayoutPage() {
 
       <header className={styles.siteHeader}>
         <div className={`${styles.pageContainer} ${styles.headerContent}`}>
-          <Logo />
-          <NavigationTop />
-          <ButtonMobileMenu
-            isMobileMenuOpen={isMobileMenuOpen}
-            toggleMobileMenu={toggleMobileMenu}
-          />
-          <ThemeSelector />
+          <div className={`${styles.logoContainer}`}>
+            <Logo />
+          </div>
+          <div>
+            <NavigationTop />
+            <ButtonMobileMenu
+              isMobileMenuOpen={isMobileMenuOpen}
+              toggleMobileMenu={toggleMobileMenu}
+            />
+          </div>
+          <div>
+            <ThemeSelector />
+          </div>
         </div>
       </header>
 
       <div className={`${styles.pageContainer} ${layoutClassName}`}>
-        <aside
-          id="sidebar"
-          className={sidebarClassName}
-          aria-label="Menu tematyczne"
-        >
-          <button
-            className={styles.sidebarCollapseButton}
-            type="button"
-            aria-label={
-              isSidebarCollapsed ? "Rozwiń menu boczne" : "Zwiń menu boczne"
-            }
-            aria-expanded={!isSidebarCollapsed}
-            onClick={() => setIsSidebarCollapsed((current) => !current)}
-          >
-            <span aria-hidden="true">{isSidebarCollapsed ? "›" : "‹"}</span>
-            <span className={styles.sidebarText}>
-              {isSidebarCollapsed ? "Rozwiń" : "Zwiń"}
-            </span>
-          </button>
-
-          <nav aria-label="Sprawy dotyczące pojazdów">
-            <ul className={styles.sidebarNavigation}>
-              <li>
-                <NavLink
-                  to="/zalatw-sprawe"
-                  onClick={closeMobileMenu}
-                  className={({ isActive }) =>
-                    `${styles.sidebarLink} ${
-                      isActive ? styles.sidebarLinkActive : ""
-                    }`
-                  }
-                >
-                  <span aria-hidden="true">●</span>
-                  <span className={styles.sidebarText}>Załatw sprawę</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/kary"
-                  onClick={closeMobileMenu}
-                  className={({ isActive }) =>
-                    `${styles.sidebarLink} ${
-                      isActive ? styles.sidebarLinkActive : ""
-                    }`
-                  }
-                >
-                  <span aria-hidden="true">●</span>
-                  <span className={styles.sidebarText}>Terminy i kary</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/przepisy-prawne"
-                  onClick={closeMobileMenu}
-                  className={({ isActive }) =>
-                    `${styles.sidebarLink} ${
-                      isActive ? styles.sidebarLinkActive : ""
-                    }`
-                  }
-                >
-                  <span aria-hidden="true">●</span>
-                  <span className={styles.sidebarText}>Przepisy prawne</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dla-pracownikow"
-                  onClick={closeMobileMenu}
-                  className={({ isActive }) =>
-                    `${styles.sidebarLink} ${
-                      isActive ? styles.sidebarLinkActive : ""
-                    }`
-                  }
-                >
-                  <span aria-hidden="true">●</span>
-                  <span className={styles.sidebarText}>Dla pracowników</span>
-                </NavLink>
-              </li>
-            </ul>
-          </nav>
-        </aside>
+        <NavigationSide
+          isSidebarCollapsed={isSidebarCollapsed}
+          toggleSidebarCollapsed={toggleSidebarCollapsed}
+          isMobileMenuOpen={isMobileMenuOpen}
+          closeMobileMenu={closeMobileMenu}
+        />
 
         <main id="main-content" className={styles.mainContent}>
           <Suspense
@@ -142,7 +70,6 @@ export function LayoutPage() {
             <Outlet />
           </Suspense>
         </main>
-
         <aside className={styles.advertisingColumn} aria-label="Reklamy">
           <section className={styles.advertisement}>
             <p className={styles.advertisementLabel}>Reklama</p>

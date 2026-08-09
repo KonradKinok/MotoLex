@@ -34,18 +34,11 @@
   min-height: 4.5rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 2rem;
-}
 
-.siteLogo {
-  color: var(--color-header-text);
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-decoration: none;
-
-  &:hover {
-    color: var(--color-header-text);
-    text-decoration: underline;
+  .logoContainer {
+    display: flex;
   }
 }
 
@@ -58,63 +51,11 @@
   align-items: start;
   gap: 1.5rem;
   padding-block: 1.5rem 3rem;
+  transition: grid-template-columns 220ms ease;
 }
 
 .sidebarCollapsedLayout {
   grid-template-columns: 4.5rem minmax(0, 1fr) 18.75rem;
-}
-
-.sidebar {
-  min-width: 0;
-  padding: 0.75rem;
-  background: var(--color-surface-muted);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-medium);
-}
-
-.sidebarCollapseButton {
-  width: 100%;
-  margin-bottom: 0.75rem;
-}
-
-.sidebarNavigation {
-  display: grid;
-  gap: 0.25rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.sidebarLink {
-  min-height: 2.75rem;
-  display: flex;
-  align-items: center;
-  gap: 0.625rem;
-  padding-inline: 0.625rem;
-  color: var(--color-text);
-  text-decoration: none;
-  border-radius: var(--radius-small);
-
-  &:hover {
-    color: var(--color-active-text);
-    background: var(--color-active-background);
-  }
-}
-
-.sidebarLinkActive {
-  color: var(--color-active-text);
-  background: var(--color-active-background);
-  font-weight: 700;
-}
-
-.sidebarCollapsed {
-  .sidebarText {
-    display: none;
-  }
-
-  .sidebarLink {
-    justify-content: center;
-  }
 }
 
 .mainContent {
@@ -213,29 +154,6 @@
     display: block;
   }
 
-  .sidebar {
-    display: none;
-    margin-bottom: 1.5rem;
-  }
-
-  .sidebarMobileOpen {
-    display: block;
-  }
-
-  .sidebarCollapseButton {
-    display: none;
-  }
-
-  .sidebarCollapsed {
-    .sidebarText {
-      display: inline;
-    }
-
-    .sidebarLink {
-      justify-content: flex-start;
-    }
-  }
-
   .advertisingColumn {
     display: grid;
     grid-template-columns: 1fr;
@@ -257,5 +175,11 @@
 
   .footerContent {
     display: grid;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contentLayout {
+    transition: none;
   }
 }
