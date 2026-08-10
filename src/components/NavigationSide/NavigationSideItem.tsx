@@ -26,6 +26,7 @@ export function NavigationSideItem({
     <li className={styles.navigationItem}>
       <NavLink
         to={item.to}
+        end
         onClick={closeMobileMenu}
         title={`${item.label}`}
         className={({ isActive }) => getNavigationLinkClassName(isActive)}
