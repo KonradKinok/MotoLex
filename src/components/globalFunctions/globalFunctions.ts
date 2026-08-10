@@ -10,9 +10,6 @@ export function getPathNames(patchname: string): string[] {
   return pathParts;
 }
 
-
-
-
 //not used
 export function conditionToDisplaySidebar(pathname: string): NavigationItem[] {
   const patchnameTable = getPathNames(pathname);
@@ -41,3 +38,24 @@ export function conditionToDisplaySidebar(pathname: string): NavigationItem[] {
   return mainNavigationPages;
 }
 
+// Find a navigation item by its path in a nested structure
+export function findNavigationItem(
+  items: NavigationItem[],
+  searchedPath: string,
+): NavigationItem | undefined {
+  for (const item of items) {
+    if (item.to === searchedPath) {
+      return item;
+    }
+
+    if (item.children) {
+      const foundItem = findNavigationItem(item.children, searchedPath);
+
+      if (foundItem) {
+        return foundItem;
+      }
+    }
+  }
+
+  return undefined;
+}

@@ -1,7 +1,12 @@
 import { Link, useLocation } from "react-router";
 import { ChevronRight } from "lucide-react";
-import { getPathNames } from "../globalFunctions/globalFunctions";
+import {
+  findNavigationItem,
+  getPathNames,
+} from "../globalFunctions/globalFunctions";
+import { navigationItems } from "../../config/navigationMain";
 import styles from "./Breadcrumbs.module.scss";
+import { logToConsole } from "../globalFunctions/console";
 
 export function Breadcrumbs() {
   const { pathname } = useLocation();
@@ -16,8 +21,13 @@ export function Breadcrumbs() {
         {pathNames.map((path, index) => {
           const isLast = index === pathNames.length - 1;
           const to = pathNames.slice(0, index + 1).join("");
-          const label = path.replace(/^\/+/, "").replaceAll("-", " ");
-
+          const item = findNavigationItem(navigationItems, to);
+          const label = item?.label ?? to;
+          logToConsole("table", `[Breadcrumbs.tsx] [Breadcrumbs]-item`, [
+            path,
+            to,
+            label,
+          ]);
           return (
             <li className={styles.item} key={to}>
               {isLast ? (
