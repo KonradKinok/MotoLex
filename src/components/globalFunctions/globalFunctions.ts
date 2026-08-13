@@ -2,8 +2,8 @@ import { navigationItems } from "../../config/navigationMain";
 import type { NavigationItem } from "../../config/navigationMain";
 import { logToConsole } from "./console";
 // Get the path names from a patch name
-export function getPathNames(patchname: string): string[] {
-  const pathParts = patchname
+export function getPathNames(pathname: string): string[] {
+  const pathParts = pathname
     .split("/")
     .filter(Boolean)
     .map((part) => `/${part}`);

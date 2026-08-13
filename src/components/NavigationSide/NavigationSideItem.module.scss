@@ -3,7 +3,16 @@
   list-style: none;
 }
 
+.navigationItemHeader {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: stretch;
+  gap: 0.25rem;
+}
+
 .sidebarLink {
+  min-width: 0;
   min-height: 2.75rem;
   display: flex;
   align-items: center;
@@ -42,7 +51,56 @@
     opacity 140ms ease;
 }
 
+.submenuToggleButton {
+  width: 2.75rem;
+  min-height: 2.75rem;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: var(--color-text);
+  background: transparent;
+  border-color: transparent;
+  border-radius: var(--radius-small);
+  opacity: 1;
+  transition:
+    width 220ms ease,
+    opacity 140ms ease,
+    border-width 220ms ease;
+
+  &:hover {
+    color: var(--color-active-text);
+    background: var(--color-active-background);
+  }
+}
+
+.submenuToggleIcon {
+  transition: transform 220ms ease;
+}
+
+.submenuToggleIconOpen {
+  transform: rotate(180deg);
+}
+
+.submenuContainer {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition:
+    grid-template-rows 220ms ease,
+    visibility 0s linear 220ms;
+}
+
+.submenuContainerOpen {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition:
+    grid-template-rows 220ms ease,
+    visibility 0s;
+}
+
 .submenu {
+  min-height: 0;
+  overflow: hidden;
   display: grid;
   gap: 0.25rem;
   margin: 0.25rem 0 0;
@@ -62,6 +120,25 @@
   .submenu {
     padding-left: 0;
   }
+
+  .navigationItemHeader {
+    grid-template-columns: minmax(0, 1fr) 0;
+    gap: 0;
+  }
+
+  .submenuToggleButton {
+    width: 0;
+    overflow: hidden;
+    border-width: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .submenuContainer,
+  .submenuContainerOpen {
+    grid-template-rows: 0fr;
+    visibility: hidden;
+  }
 }
 
 @media (max-width: 68rem) {
@@ -75,12 +152,33 @@
     .submenu {
       padding-left: 1rem;
     }
+
+    .navigationItemHeader {
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.25rem;
+    }
+
+    .submenuToggleButton {
+      width: 2.75rem;
+      border-width: 1px;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .submenuContainerOpen {
+      grid-template-rows: 1fr;
+      visibility: visible;
+    }
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .sidebarText,
-  .submenu {
+  .submenu,
+  .submenuToggleButton,
+  .submenuToggleIcon,
+  .submenuContainer,
+  .submenuContainerOpen {
     transition: none;
   }
 }

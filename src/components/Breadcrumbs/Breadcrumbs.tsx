@@ -6,7 +6,6 @@ import {
 } from "../globalFunctions/globalFunctions";
 import { navigationItems } from "../../config/navigationMain";
 import styles from "./Breadcrumbs.module.scss";
-import { logToConsole } from "../globalFunctions/console";
 
 export function Breadcrumbs() {
   const { pathname } = useLocation();
@@ -18,16 +17,12 @@ export function Breadcrumbs() {
   return (
     <nav className={styles.breadcrumbs} aria-label="Ścieżka nawigacyjna">
       <ol className={styles.list}>
-        {pathNames.map((path, index) => {
+        {pathNames.map((_, index) => {
           const isLast = index === pathNames.length - 1;
           const to = pathNames.slice(0, index + 1).join("");
           const item = findNavigationItem(navigationItems, to);
           const label = item?.label ?? to;
-          logToConsole("table", `[Breadcrumbs.tsx] [Breadcrumbs]-item`, [
-            path,
-            to,
-            label,
-          ]);
+
           return (
             <li className={styles.item} key={to}>
               {isLast ? (
