@@ -1,0 +1,44 @@
+.advertisingColumn {
+  display: grid;
+  gap: 1.5rem;
+
+  .advertisement {
+    min-width: 0;
+  }
+
+  .advertisementLabel {
+    margin: 0 0 0.375rem;
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+  .advertisementPlaceholder {
+    min-height: 15.625rem;
+    display: grid;
+    place-items: center;
+    padding: 0.75rem;
+    color: var(--color-text-muted);
+    background: var(--color-surface-muted);
+    border: 1px solid var(--color-border);
+    text-align: center;
+  }
+}
+
+@media (max-width: 79.999rem) {
+  .advertisingColumn {
+    grid-column: 2;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    .advertisementPlaceholder {
+      min-height: 10rem;
+    }
+  }
+}
+
+@media (max-width: 68rem) {
+  .advertisingColumn {
+    grid-template-columns: 1fr;
+    margin-top: 2rem;
+  }
+}

@@ -8,6 +8,7 @@ import { ButtonMobileMenu } from "../../components/ButtonMobileMenu/ButtonMobile
 import styles from "./LayoutPage.module.scss";
 import { NavigationSide } from "../../components/NavigationSide/NavigationSide";
 import { Breadcrumbs } from "../../components/Breadcrumbs/Breadcrumbs";
+import { Advertisement } from "../../components/Advertisement/Advertisement";
 
 export function LayoutPage() {
   //Mobile menu state
@@ -72,19 +73,7 @@ export function LayoutPage() {
             <Outlet />
           </Suspense>
         </main>
-        <aside className={styles.advertisingColumn} aria-label="Reklamy">
-          <section className={styles.advertisement}>
-            <p className={styles.advertisementLabel}>Reklama</p>
-            <div className={styles.advertisementPlaceholder}>300 × 250</div>
-          </section>
-
-          <section className={styles.advertisement}>
-            <p className={styles.advertisementLabel}>Reklama</p>
-            <div className={styles.advertisementPlaceholder}>
-              Reklama responsywna
-            </div>
-          </section>
-        </aside>
+        <Advertisement />
       </div>
 
       <footer className={styles.siteFooter}>

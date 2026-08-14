@@ -2,12 +2,18 @@ import styles from "./Advertisement.module.scss";
 
 export function Advertisement() {
   return (
-    <div className={styles.advertisement}>
-      <p className={styles.advertisementText}>
-        Reklama: Zarejestruj swój pojazd w PojazdLex i skorzystaj z naszych
-        usług rejestracyjnych online!
-      </p>
-      <div className={styles.advertisementPlaceholder}>300 × 250</div>
-    </div>
+    <aside className={styles.advertisingColumn} aria-label="Reklamy">
+      <section className={styles.advertisement}>
+        <p className={styles.advertisementLabel}>Reklama</p>
+        <div className={styles.advertisementPlaceholder}>300 × 250</div>
+      </section>
+
+      <section className={styles.advertisement}>
+        <p className={styles.advertisementLabel}>Reklama</p>
+        <div className={styles.advertisementPlaceholder}>
+          Reklama responsywna
+        </div>
+      </section>
+    </aside>
   );
 }
