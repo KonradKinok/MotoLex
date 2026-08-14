@@ -7,9 +7,12 @@
   min-width: 190px;
   padding: 10px;
 
+  &:hover {
+    color: var(--color-logo-text, #123f66);
+  }
+
   .logoImageContainer {
     position: relative;
-
     overflow: hidden;
     transition-property: transform;
     transition-duration: 1500ms;
@@ -29,12 +32,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-
-  .siteLogo,
-  .siteLogo:hover {
-    color: var(--color-logo-text, #123f66);
+  .logoImageContainer {
     transition: none;
-    transform: none;
+
+    &:hover {
+      transform: none;
+    }
   }
 }
 

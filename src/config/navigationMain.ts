@@ -9,6 +9,7 @@ import {
   Users,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { ROUTES } from "./routes";
 
 export type NavigationItem = {
   label: string;
@@ -20,7 +21,7 @@ export type NavigationItem = {
 const vehicleOwnersItems: NavigationItem[] = [
   {
     label: "Jak sprawdzić dokumenty?",
-    to: "/dla-wlascicieli/dokumenty",
+    to: ROUTES.documents,
     icon: Files,
   },
 ];
@@ -28,7 +29,7 @@ const vehicleOwnersItems: NavigationItem[] = [
 const workersItems: NavigationItem[] = [
   {
     label: "Homologacja",
-    to: "/dla-pracownikow/homologacja",
+    to: ROUTES.homologation,
     icon: BadgeCheck,
   },
 ];
@@ -36,17 +37,17 @@ const workersItems: NavigationItem[] = [
 const calculatorItems: NavigationItem[] = [
   {
     label: "Kary",
-    to: "/kalkulator/kary",
+    to: ROUTES.penaltiesCalculator,
     icon: CircleDollarSign,
   },
   {
     label: "VIN",
-    to: "/kalkulator/vin",
+    to: ROUTES.vinCalculator,
     icon: ScanLine,
   },
   {
     label: "Trwała utrata",
-    to: "/kalkulator/trwala-utrata",
+    to: ROUTES.permanentLossCalculator,
     icon: FileX,
   },
 ];
@@ -54,19 +55,19 @@ const calculatorItems: NavigationItem[] = [
 export const navigationItems: NavigationItem[] = [
   {
     label: "Dla właścicieli pojazdów",
-    to: "/dla-wlascicieli",
+    to: ROUTES.vehicleOwners,
     icon: Car,
     children: vehicleOwnersItems,
   },
   {
     label: "Dla pracowników wydziału",
-    to: "/dla-pracownikow",
+    to: ROUTES.employees,
     icon: Users,
     children: workersItems,
   },
   {
     label: "Kalkulatory",
-    to: "/kalkulator",
+    to: ROUTES.calculator,
     icon: Calculator,
     children: calculatorItems,
   },

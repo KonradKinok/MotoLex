@@ -1,7 +1,7 @@
 import { lazy } from "react";
 import { Route, Routes } from "react-router";
 import { LayoutPage } from "../pages/LayoutPage/LayoutPage";
-
+import { ROUTES } from "../config/routes";
 //HomePage
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 
@@ -52,15 +52,15 @@ function App() {
     <Routes>
       <Route path="/" element={<LayoutPage />}>
         <Route index element={<HomePage />} />
-        <Route path="dla-wlascicieli">
+        <Route path={ROUTES.vehicleOwners}>
           <Route index element={<CustomerZonePage />} />
           <Route path="dokumenty" element={<DocumentsPage />} />
         </Route>
-        <Route path="dla-pracownikow">
+        <Route path={ROUTES.employees}>
           <Route index element={<EmployeeZonePage />} />
           <Route path="homologacja" element={<HomologationPage />} />
         </Route>
-        <Route path="kalkulator">
+        <Route path={ROUTES.calculator}>
           <Route index element={<CalculatorPage />} />
           <Route path="kary" element={<PenaltiesCalculatorPage />} />
           <Route path="vin" element={<VinCalculatorPage />} />
