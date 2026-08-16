@@ -1,15 +1,16 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router";
+import { useToggle } from "../../hooks/useToggle";
 import { Logo } from "../../components/Logo/Logo";
 import { ThemeSelector } from "../../components/ThemeSelector/ThemeSelector";
 import { NavigationTop } from "../../components/NavigationTop/NavigationTop";
-import { useToggle } from "../../hooks/useToggle";
 import { ButtonMobileMenu } from "../../components/ButtonMobileMenu/ButtonMobileMenu";
-import styles from "./LayoutPage.module.scss";
 import { NavigationSide } from "../../components/NavigationSide/NavigationSide";
 import { Breadcrumbs } from "../../components/Breadcrumbs/Breadcrumbs";
 import { Advertisement } from "../../components/Advertisement/Advertisement";
 import { Footer } from "../../components/Footer/Footer";
+import { Loader } from "../../components/Loader/Loader";
+import styles from "./LayoutPage.module.scss";
 
 export function LayoutPage() {
   //Mobile menu state
@@ -64,13 +65,7 @@ export function LayoutPage() {
 
         <main id="main-content" className={styles.mainContent}>
           <Breadcrumbs />
-          <Suspense
-            fallback={
-              <p className={styles.pageLoading} role="status">
-                Ładowanie strony…
-              </p>
-            }
-          >
+          <Suspense fallback={<Loader />}>
             <Outlet />
           </Suspense>
         </main>
