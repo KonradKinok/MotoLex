@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import logoPojazdLex from "../../assets/logoPojazdLex190.png";
+import logoPojazdLex from "../../assets/images/logo/logoPojazdLex190.png";
 import styles from "./Logo.module.scss";
 
 export function Logo() {

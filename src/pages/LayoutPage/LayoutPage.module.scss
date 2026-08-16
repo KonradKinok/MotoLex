@@ -73,24 +73,6 @@
   padding-block: 3rem;
 }
 
-.siteFooter {
-  margin-top: auto;
-  padding-block: 2rem;
-  color: var(--color-header-text);
-  background: var(--color-header-background);
-  border-top: 2px solid var(--color-header-border);
-}
-
-.footerContent {
-  display: flex;
-  justify-content: space-between;
-  gap: 1.5rem;
-
-  p {
-    margin: 0;
-  }
-}
-
 @media (max-width: 79.999rem) {
   .contentLayout {
     grid-template-columns: 13.75rem minmax(0, 1fr);
@@ -127,10 +109,6 @@
 @media (max-width: 29.999rem) {
   .pageContainer {
     width: min(calc(100% - 1.5rem), var(--page-max-width));
-  }
-
-  .footerContent {
-    display: grid;
   }
 }
 

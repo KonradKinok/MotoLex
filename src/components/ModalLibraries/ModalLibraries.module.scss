@@ -1,0 +1,100 @@
+.modalLibrariesOverlay {
+    /* modal-libraries */
+    --modal-backdrop-hidden: rgba(0, 0, 0, 0);
+    --modal-backdrop-visible: rgba(0, 0, 0, 0.8);
+    --modal-libraries-link-text-color: rgb(135, 206, 235);
+    --modal-libraries-link-text-color-hover: rgb(0, 191, 255);
+
+    width: min(32rem, calc(100% - 3rem));
+    max-height: calc(100dvh - 3rem);
+
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-medium);
+
+    background: transparent;
+
+    opacity: 0;
+    transform: translateY(1rem) scale(0.97);
+
+    transition: opacity 350ms ease-in-out,
+        transform 350ms ease-in-out,
+        display 350ms ease-in-out allow-discrete,
+        overlay 350ms ease-in-out allow-discrete;
+
+    &[open] {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    &::backdrop {
+        background-color: var(--modal-backdrop-hidden);
+
+        transition:
+            background-color 350ms ease-in-out,
+            display 350ms ease-in-out allow-discrete,
+            overlay 350ms ease-in-out allow-discrete;
+    }
+
+    &[open]::backdrop {
+        background-color: var(--modal-backdrop-visible);
+    }
+
+    .modal {
+        max-height: calc(100dvh - 3rem);
+        overflow-y: auto;
+    }
+
+    .modalLibrariesTitle {
+        font-weight: 800;
+        font-size: 24px;
+        color: var(--modal-libraries-link-text-color);
+        margin: 0 0 1.25rem;
+    }
+
+    .containerUnnumberedList {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 10px;
+        align-items: flex-start;
+        list-style: none;
+
+        li::before {
+            content: "";
+            display: inline-block;
+            vertical-align: middle;
+            width: 32px;
+            height: 32px;
+            background-image: url("../../assets/images/modalLibraries/list-item-library.svg");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    }
+
+    a {
+        color: var(--modal-libraries-link-text-color);
+        padding: 8px 16px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 800;
+        transition: color .75s cubic-bezier(.4, 0, .2, 1);
+        user-select: none;
+    }
+
+    a:hover {
+        color: var(--modal-libraries-link-text-color-hover);
+        cursor: pointer;
+    }
+}
+
+/* Stan początkowy podczas otwierania */
+@starting-style {
+    .modalLibrariesOverlay[open] {
+        opacity: 0;
+        transform: translateY(1rem) scale(0.97);
+    }
+
+    .modalLibrariesOverlay[open]::backdrop {
+        background-color: var(--modal-backdrop-hidden);
+    }
+}

@@ -9,6 +9,7 @@ import styles from "./LayoutPage.module.scss";
 import { NavigationSide } from "../../components/NavigationSide/NavigationSide";
 import { Breadcrumbs } from "../../components/Breadcrumbs/Breadcrumbs";
 import { Advertisement } from "../../components/Advertisement/Advertisement";
+import { Footer } from "../../components/Footer/Footer";
 
 export function LayoutPage() {
   //Mobile menu state
@@ -75,13 +76,7 @@ export function LayoutPage() {
         </main>
         <Advertisement />
       </div>
-
-      <footer className={styles.siteFooter}>
-        <div className={`${styles.pageContainer} ${styles.footerContent}`}>
-          <p>© {new Date().getFullYear()} MotoLex</p>
-          <p>Informacje dotyczące rejestracji i spraw pojazdów</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
