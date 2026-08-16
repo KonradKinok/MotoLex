@@ -4,11 +4,6 @@
   flex-direction: column;
 }
 
-.pageContainer {
-  width: min(calc(100% - 3rem), var(--page-max-width));
-  margin-inline: auto;
-}
-
 .skipLink {
   position: absolute;
   top: 0.5rem;
@@ -23,6 +18,13 @@
     transform: translateY(0);
   }
 }
+
+.pageContainer {
+  width: min(calc(100% - 3rem), var(--page-max-width));
+  margin-inline: auto;
+}
+
+
 
 .siteHeader {
   color: var(--color-header-text);
