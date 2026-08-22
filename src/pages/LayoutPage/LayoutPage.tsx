@@ -63,7 +63,7 @@ export function LayoutPage() {
           closeMobileMenu={closeMobileMenu}
         />
 
-        <main id="main-content" className={styles.mainContent}>
+        <main id="main-content" tabIndex={-1} className={styles.mainContent}>
           <Breadcrumbs />
           <Suspense fallback={<Loader />}>
             <Outlet />
