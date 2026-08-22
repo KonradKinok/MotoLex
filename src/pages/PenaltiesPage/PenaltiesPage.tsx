@@ -1,6 +1,8 @@
 import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
 
 function PenaltiesPage() {
+  // const tablica = obiektDoKary["rejestracja"]["osobaPrawna"];
+
   return (
     <>
       <PageMetadata

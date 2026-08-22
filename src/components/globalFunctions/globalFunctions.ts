@@ -59,3 +59,40 @@ export function findNavigationItem(
 
   return undefined;
 }
+
+export function zmianaFormatow(currentDay: Date) {
+  const dateOptions: Intl.DateTimeFormatOptions = {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  };
+  const currentDayString = currentDay.toLocaleDateString(
+    "pl-PL",
+    dateOptions,
+  );
+  const notificationOfSaleAmount = new Intl.NumberFormat("pl-PL", {
+    style: "currency",
+    currency: "PLN",
+  }).format(250);
+  const dayOfWeekString = currentDay.toLocaleString("pl-PL", {
+    weekday: "short",
+  });
+  return `${currentDayString}${notificationOfSaleAmount}${dayOfWeekString}`;
+}
+
+export function formatCurrency(amount: number): string {
+  return new Intl.NumberFormat("pl-PL", {
+    style: "currency",
+    currency: "PLN",
+  }).format(amount);
+}
+
+const dateOptions: Intl.DateTimeFormatOptions = {
+  day: "2-digit",
+  month: "2-digit",
+  year: "numeric",
+};
+
+export function formatDate(date: Date | null): string {
+  return date?.toLocaleDateString("pl-PL", dateOptions) ?? "- - -";
+}
