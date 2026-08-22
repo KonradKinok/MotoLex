@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router";
-import { ChevronRight } from "lucide-react";
+import { House, ChevronRight } from "lucide-react";
 import {
   findNavigationItem,
   getPathNames,
@@ -17,6 +17,17 @@ export function Breadcrumbs() {
   return (
     <nav className={styles.breadcrumbs} aria-label="Ścieżka nawigacyjna">
       <ol className={styles.list}>
+        <li className={styles.item}>
+          <Link className={styles.link} to="/" aria-label="Strona główna">
+            <House size={20} strokeWidth={2} aria-hidden="true" />
+          </Link>
+          <ChevronRight
+            className={styles.separator}
+            size={20}
+            strokeWidth={2}
+            aria-hidden="true"
+          />
+        </li>
         {pathNames.map((_, index) => {
           const isLast = index === pathNames.length - 1;
           const to = pathNames.slice(0, index + 1).join("");
