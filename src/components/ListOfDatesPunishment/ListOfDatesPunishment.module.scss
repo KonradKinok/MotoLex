@@ -1,0 +1,84 @@
+.container-list-of-days {
+    --day-of-agreement-icon-color: rgb(0, 128, 0); // green
+    --day-of-punish-icon-color: rgb(255, 0, 0); //red
+    --day-before-punish-icon-color: rgb(255, 165, 0); //orange
+    display: flex;
+    flex-flow: column wrap;
+    width: 90%;
+    font-size: 14px;
+
+    .item-list-of-days {
+        display: grid;
+        max-width: calc(100vw);
+        grid-template-columns: 15% 40% 10% 35%;
+        column-gap: 5px;
+        list-style: none;
+        align-items: center;
+        border-bottom: 1px solid #070707;
+        padding-bottom: 5px;
+    }
+
+    .container-icon {
+        position: relative;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        .icon-day-of-agreement {
+            color: var(--day-of-agreement-icon-color);
+        }
+
+        .icon-day-before-punish {
+            color: var(--day-before-punish-icon-color);
+        }
+
+        .icon-day-of-punish {
+            color: var(--day-of-punish-icon-color);
+        }
+
+        .text-overlay {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* Wycentrowanie tekstu w środku ikony */
+            font-size: 12px;
+            color: rgb(10, 10, 10);
+            font-weight: bold;
+        }
+    }
+}
+
+@media print {
+
+    //Drukowane elementy
+    .container-list-of-days {
+        display: block;
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    //Stopka 
+    @page {
+        margin: 1cm;
+    }
+
+    body::after {
+        content: "3K.nexgen@gmail.com";
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        text-align: start;
+        font-size: 12px;
+        color: #555;
+    }
+}

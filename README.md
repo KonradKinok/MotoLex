@@ -1,7 +1,7 @@
-WebSite: <https://pojazdlex.netlify.app/>
 
 # React + TypeScript + Vite
 
+WebSite: <https://pojazdlex.netlify.app/>
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
@@ -74,4 +74,24 @@ export default defineConfig([
   },
 ])
 
-```
+
+Button
+TextField
+Radio
+RadioGroup
+Checkbox
+Switch
+Select
+Autocomplete
+FormControl
+FormLabel
+FormControlLabel
+FormHelperText
+Paper
+Card
+Stack
+Grid
+Dialog
+Snackbar
+Alert
+Tooltip
