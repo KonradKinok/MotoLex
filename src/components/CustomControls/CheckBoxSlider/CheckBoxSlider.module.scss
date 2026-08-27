@@ -1,4 +1,4 @@
- .labelRadio {
+ .labelCheckBoxSlider {
    --radio-checked-background: var(--color-link);
    --radio-checked-hover-background: var(--color-link-hover);
    --radio-unchecked-background: var(--color-surface-muted);
@@ -9,7 +9,6 @@
    display: flex;
    align-items: center;
    gap: 8px;
-
 
    &.vertical {
      flex-direction: column-reverse;
@@ -73,13 +72,13 @@
  }
 
  @media (forced-colors: active) {
-   .labelRadio .toggleSwitch {
+   .labelCheckBoxSlider .toggleSwitch {
      width: 1.5rem;
      appearance: auto;
      accent-color: Highlight;
    }
 
-   .labelRadio .toggleSwitch::before {
+   .labelCheckBoxSlider .toggleSwitch::before {
      display: none;
    }
  }

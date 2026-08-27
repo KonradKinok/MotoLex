@@ -3,17 +3,12 @@ import {
   // type CalculationResult,
   type PenaltiesFormData,
 } from "../../pages/PenaltiesCalculatorPage/PenaltiesCalculatorPage";
-// import * as calculator from "../../globalFunctions/calculator";
-// import { DateTimePicker } from "../CustomControls/DateTimePicker/DateTimePicker";
-
-// import { FormValues } from "../../pages/PenaltiesPage/PenaltiesPage";
-// import { CalculatedData } from "../ListOfDates/ListOfDays";
-// import { CheckboxRegular } from "../CheckboxRegular/CheckboxRegular";
 import { DateTimePicker } from "../CustomControls/DateTimePicker/DateTimePicker";
 import styles from "./FormPenalties.module.scss";
 import { logToConsole } from "../globalFunctions/console";
 import { formatDate } from "../globalFunctions/globalFunctions";
 import { RadioButton } from "../CustomControls/RadioButton/RadioButton";
+import { CheckBoxSlider } from "../CustomControls/CheckBoxSlider/CheckBoxSlider";
 
 export interface FormPenaltiesProps {
   formData: PenaltiesFormData;
@@ -184,7 +179,7 @@ export function FormPenalties({
             label="Jestem osobą fizyczną:"
             checked={formData.typeOfPerson === "otherOwner"}
             onChange={handleChange}
-            layout="horizontal"
+            layout="vertical"
           />
           <RadioButton
             id="legal-person"
@@ -211,7 +206,15 @@ export function FormPenalties({
           </label> */}
         </div>
         <div className={`${styles.containerRadio} ${styles.containerButton}`}>
-          <label htmlFor="detailed-data">
+          <CheckBoxSlider
+            id="detailed-data"
+            name="detailedData"
+            label="Pokaż szczegółowe dane:"
+            checked={formData.detailedData}
+            onChange={handleChange}
+            layout="vertical"
+          />
+          {/* <label htmlFor="detailed-data">
             <p className={styles.customTitle}>Pokaż szczegółowe dane:</p>
           </label>
           <input
@@ -221,7 +224,7 @@ export function FormPenalties({
             checked={formData.detailedData}
             onChange={handleChange}
             className={styles.toggleSwitch}
-          />
+          /> */}
           <button type="submit">Pokaż</button>
         </div>
       </form>

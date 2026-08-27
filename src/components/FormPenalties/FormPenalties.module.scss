@@ -37,10 +37,12 @@
     .containerRadio {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
         gap: 1rem;
         width: 100%;
         border: solid 1px rgb(138, 43, 226);
-        padding: 5px;
+        padding: 1rem;
         border-radius: 5px;
     }
 
