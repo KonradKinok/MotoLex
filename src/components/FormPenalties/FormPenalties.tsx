@@ -132,29 +132,29 @@ export function FormPenalties({
             isClearable={false}
           />
         </div>
-        <div className={styles.containerRadio}>
+        <fieldset className={styles.fieldsetRadio}>
+          <legend className={styles.legend}>Rodzaj zdarzenia</legend>
           {getRbData.rbTypeOfEventsTable.map((radioButton) => (
             <RadioButton
               {...radioButton}
               key={radioButton.id}
               checked={formData.typeOfEvent === radioButton.value}
               onChange={handleChange}
-              layout="vertical"
             />
           ))}
-        </div>
-        <div className={styles.containerRadio}>
+        </fieldset>
+        <fieldset className={styles.fieldsetRadio}>
+          <legend className={styles.legend}>Rodzaj osoby</legend>
           {getRbData.rbTypeOfPersonTable.map((radioButton) => (
             <RadioButton
               {...radioButton}
               key={radioButton.id}
               checked={formData.typeOfPerson === radioButton.value}
               onChange={handleChange}
-              layout="vertical"
             />
           ))}
-        </div>
-        <div className={`${styles.containerRadio} ${styles.containerButton}`}>
+        </fieldset>
+        <div className={`${styles.fieldsetRadio} ${styles.containerButton}`}>
           <CheckBoxSlider
             id="detailed-data"
             name="detailedData"

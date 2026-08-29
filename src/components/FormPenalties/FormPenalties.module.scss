@@ -1,9 +1,6 @@
 .containerForm {
     --form-color: rgb(0, 100, 255);
     --form-field-background: rgb(255, 255, 255);
-    --form-radiobutton-checked-background: rgb(75, 0, 130);
-    --form-radiobutton-unchecked-background: rgba(75, 0, 130, 0.2);
-    --form-radiobutton-unchecked-hover-background: rgba(75, 0, 130, 0.5);
 
     .form {
         display: flex;
@@ -34,7 +31,7 @@
         }
     }
 
-    .containerRadio {
+    .fieldsetRadio {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -44,45 +41,14 @@
         border: solid 1px rgb(138, 43, 226);
         padding: 1rem;
         border-radius: 5px;
+
+        .legend {
+            font-size: xx-small;
+        }
     }
 
     .customTitle {
         display: block;
-    }
-
-    .toggleSwitch {
-        width: 2.75rem;
-        height: 1.5rem;
-        appearance: none;
-        position: relative;
-        background-color: var(--form-radiobutton-unchecked-background);
-        border-radius: 100px;
-        cursor: pointer;
-        transition: background-color .2s ease-in-out;
-    }
-
-    .toggleSwitch::before {
-        content: '';
-        width: 1.25rem;
-        height: 1.25rem;
-        border-radius: 50%;
-        background-color: #fff;
-        position: absolute;
-        transform: translate3d(2px, 2px, 0);
-        box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.12);
-        transition: transform .2s ease-in-out;
-    }
-
-    .toggleSwitch:checked {
-        background-color: var(--form-radiobutton-checked-background);
-    }
-
-    .toggleSwitch:hover:not(:checked) {
-        background-color: var(--form-radiobutton-unchecked-hover-background);
-    }
-
-    .toggleSwitch:checked::before {
-        transform: translate3d(calc(1.25rem + 2px), 2px, 0);
     }
 
     .containerButton {
@@ -132,7 +98,7 @@
 @media print {
 
     //Ukrywamy element
-    .container-form {
+    .containerForm {
         display: none;
     }
 }

@@ -10,7 +10,7 @@ type RadioButtonType = {
   id: string;
   effectiveFrom: Date;
   name: string;
-  value: string;
+  value: EventType | OwnerType;
   label: string;
   layout: "vertical" | "horizontal";
 }[];
@@ -32,7 +32,10 @@ const radioButtonLabels = {
   },
 } satisfies RadioButtonLabels;
 
-function getMainKeysFromPunishmentRules(punishmentRules: PunishmentRules) {
+function getMainKeysFromPunishmentRules(punishmentRules: PunishmentRules): {
+  typeOfEvent: EventType[];
+  typeOfPerson: OwnerType[];
+} {
   const typeOfEvents = typedKeys(punishmentRules);
 
   const typeOfPerson = [

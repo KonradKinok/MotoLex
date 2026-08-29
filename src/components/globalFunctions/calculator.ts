@@ -60,10 +60,6 @@ export type InputData = {
   typeOfPerson: OwnerType;
 };
 
-type CalculationResult = {
-  listOfDays: DayEntry[];
-};
-
 export const punishmentRules = {
   bought: [
     {
@@ -167,7 +163,7 @@ function getPunishmentRules(
 
 export function calculationNumberOfDays(
   inputData: InputData,
-): CalculationResult {
+): { listOfDays: DayEntry[] } {
 
   const listOfDays: DayEntry[] = []
 

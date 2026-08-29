@@ -72,6 +72,9 @@ function PenaltiesCalculatorPage() {
   return (
     <section>
       <article>
+        <h1>Kalkulator kar</h1>
+      </article>
+      <article>
         <FormPenalties
           formData={formData}
           setFormData={setFormData}
@@ -80,8 +83,6 @@ function PenaltiesCalculatorPage() {
         />
       </article>
       <article>
-        <h1>Kalkulator kar</h1>
-        <p>Treści dotyczące kalkulatorów kar.</p>
         {calculationError && <p role="alert">{calculationError}</p>}
         {calculationResults?.listOfDays.map((calculationResult, index) => {
           return (
