@@ -60,6 +60,13 @@ export function findNavigationItem(
   return undefined;
 }
 
+//Pobierz nazwy pól obiektów
+export function typedKeys<T extends object>(object: T): Array<keyof T> {
+  return Object.keys(object) as Array<keyof T>;
+}
+
+
+
 export function zmianaFormatow(currentDay: Date) {
   const dateOptions: Intl.DateTimeFormatOptions = {
     day: "2-digit",

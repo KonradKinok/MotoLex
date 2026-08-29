@@ -17,7 +17,7 @@ export type PenaltiesFormData = InputData & {
 function PenaltiesCalculatorPage() {
   const [formData, setFormData] = useState<PenaltiesFormData>({
     selectedDate: new Date(),
-    typeOfEvent: "registration",
+    typeOfEvent: "bought",
     typeOfPerson: "otherOwner",
     detailedData: false,
   });

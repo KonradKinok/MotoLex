@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { formatDate } from "../globalFunctions/globalFunctions";
 import {
   // type CalculationResult,
   type PenaltiesFormData,
 } from "../../pages/PenaltiesCalculatorPage/PenaltiesCalculatorPage";
+import { getRbData } from "./formPenaltiesDataToRb";
 import { DateTimePicker } from "../CustomControls/DateTimePicker/DateTimePicker";
-import styles from "./FormPenalties.module.scss";
-import { logToConsole } from "../globalFunctions/console";
-import { formatDate } from "../globalFunctions/globalFunctions";
 import { RadioButton } from "../CustomControls/RadioButton/RadioButton";
 import { CheckBoxSlider } from "../CustomControls/CheckBoxSlider/CheckBoxSlider";
+import { logToConsole } from "../globalFunctions/console";
+import styles from "./FormPenalties.module.scss";
 
 export interface FormPenaltiesProps {
   formData: PenaltiesFormData;
@@ -132,78 +133,26 @@ export function FormPenalties({
           />
         </div>
         <div className={styles.containerRadio}>
-          <label htmlFor="radio-sold">
-            <p className={styles.customTitle}>Sprzedałem pojazd:</p>
-          </label>
-          <input
-            type="radio"
-            name="typeOfEvent"
-            id="radio-sold"
-            className={styles.toggleSwitch}
-            value="sold"
-            checked={formData.typeOfEvent === "sold"}
-            onChange={handleChange}
-          />
-          <label htmlFor="radio-bought">
-            <p className={styles.customTitle}>Kupiłem/sprowadziłem pojazd:</p>
-          </label>
-          <input
-            type="radio"
-            name="typeOfEvent"
-            id="radio-bought"
-            value="registration"
-            checked={formData.typeOfEvent === "registration"}
-            onChange={handleChange}
-            className={styles.toggleSwitch}
-          />
-          <label htmlFor="radio-inheritance">
-            <p className={styles.customTitle}>
-              Odziedziczyłem pojazd w Polsce:
-            </p>
-          </label>
-          <input
-            type="radio"
-            name="typeOfEvent"
-            id="radio-inheritance"
-            value="inheritance"
-            checked={formData.typeOfEvent === "inheritance"}
-            onChange={handleChange}
-            className={styles.toggleSwitch}
-          />
+          {getRbData.rbTypeOfEventsTable.map((radioButton) => (
+            <RadioButton
+              {...radioButton}
+              key={radioButton.id}
+              checked={formData.typeOfEvent === radioButton.value}
+              onChange={handleChange}
+              layout="vertical"
+            />
+          ))}
         </div>
         <div className={styles.containerRadio}>
-          <RadioButton
-            id="natural-person"
-            name="typeOfPerson"
-            value="otherOwner"
-            label="Jestem osobą fizyczną:"
-            checked={formData.typeOfPerson === "otherOwner"}
-            onChange={handleChange}
-            layout="vertical"
-          />
-          <RadioButton
-            id="legal-person"
-            name="typeOfPerson"
-            value="vehicleTrader"
-            label="Jestem przedsiębiorcą prowadzącym obrót pojazdami:"
-            checked={formData.typeOfPerson === "vehicleTrader"}
-            onChange={handleChange}
-            layout="vertical"
-          />
-          {/* <label htmlFor="legal-person">
-            <span className={styles.customTitle}>
-              Jestem przedsiębiorcą prowadzącym obrót pojazdami:
-            </span>
-            <input
-              type="radio"
-              name="typeOfPerson"
-              id="legal-person"
-              value="vehicleTrader"
-              checked={formData.typeOfPerson === "vehicleTrader"}
+          {getRbData.rbTypeOfPersonTable.map((radioButton) => (
+            <RadioButton
+              {...radioButton}
+              key={radioButton.id}
+              checked={formData.typeOfPerson === radioButton.value}
               onChange={handleChange}
-              className={styles.toggleSwitch}
+              layout="vertical"
             />
-          </label> */}
+          ))}
         </div>
         <div className={`${styles.containerRadio} ${styles.containerButton}`}>
           <CheckBoxSlider
@@ -214,17 +163,6 @@ export function FormPenalties({
             onChange={handleChange}
             layout="vertical"
           />
-          {/* <label htmlFor="detailed-data">
-            <p className={styles.customTitle}>Pokaż szczegółowe dane:</p>
-          </label>
-          <input
-            type="checkbox"
-            name="detailedData"
-            id="detailed-data"
-            checked={formData.detailedData}
-            onChange={handleChange}
-            className={styles.toggleSwitch}
-          /> */}
           <button type="submit">Pokaż</button>
         </div>
       </form>

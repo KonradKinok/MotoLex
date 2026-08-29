@@ -29,12 +29,12 @@ type PunishmentRuleSet = readonly [
   },
 ];
 
-type EventType =
-  | "registration"
+export type EventType =
+  | "bought"
   | "inheritance"
   | "sold";
 
-type OwnerType =
+export type OwnerType =
   | "vehicleTrader"
   | "otherOwner";
 
@@ -46,7 +46,7 @@ type RuleVersion = {
   >;
 };
 
-type PunishmentRules = Record<
+export type PunishmentRules = Record<
   EventType,
   readonly [
     RuleVersion,
@@ -64,18 +64,18 @@ type CalculationResult = {
   listOfDays: DayEntry[];
 };
 
-const punishmentRules = {
-  registration: [
+export const punishmentRules = {
+  bought: [
     {
       effectiveFrom: new Date(2024, 0, 1),
       rules: {
-        vehicleTrader: [
-          { stage: "first", deadline: 90, amount: 1000 },
-          { stage: "second", deadline: 180, amount: 2000 },
-        ],
         otherOwner: [
           { stage: "first", deadline: 30, amount: 500 },
           { stage: "second", deadline: 180, amount: 1000 },
+        ],
+        vehicleTrader: [
+          { stage: "first", deadline: 90, amount: 1000 },
+          { stage: "second", deadline: 180, amount: 2000 },
         ],
       },
     },
@@ -85,11 +85,11 @@ const punishmentRules = {
     {
       effectiveFrom: new Date(2024, 0, 1),
       rules: {
-        vehicleTrader: [
+        otherOwner: [
           { stage: "first", deadline: 30, amount: 500 },
           { stage: "second", deadline: 180, amount: 1000 },
         ],
-        otherOwner: [
+        vehicleTrader: [
           { stage: "first", deadline: 30, amount: 500 },
           { stage: "second", deadline: 180, amount: 1000 },
         ],
@@ -98,11 +98,11 @@ const punishmentRules = {
     {
       effectiveFrom: new Date(2025, 11, 25),
       rules: {
-        vehicleTrader: [
+        otherOwner: [
           { stage: "first", deadline: 60, amount: 500 },
           { stage: "second", deadline: 180, amount: 1000 },
         ],
-        otherOwner: [
+        vehicleTrader: [
           { stage: "first", deadline: 60, amount: 500 },
           { stage: "second", deadline: 180, amount: 1000 },
         ],
@@ -114,10 +114,10 @@ const punishmentRules = {
     {
       effectiveFrom: new Date(2024, 0, 1),
       rules: {
-        vehicleTrader: [
+        otherOwner: [
           { stage: "first", deadline: 30, amount: 250 },
         ],
-        otherOwner: [
+        vehicleTrader: [
           { stage: "first", deadline: 30, amount: 250 },
         ],
       },
@@ -125,10 +125,10 @@ const punishmentRules = {
     {
       effectiveFrom: new Date(2026, 11, 1),
       rules: {
-        vehicleTrader: [
+        otherOwner: [
           { stage: "first", deadline: 30, amount: 500 },
         ],
-        otherOwner: [
+        vehicleTrader: [
           { stage: "first", deadline: 30, amount: 500 },
         ],
       },
