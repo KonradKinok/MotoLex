@@ -1,15 +1,15 @@
 .containerForm {
-    --form-color: rgb(0, 100, 255);
-    --form-field-background: rgb(255, 255, 255);
-
     .form {
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
         gap: 15px;
         padding: 10px;
-        box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-            0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-medium);
+        color: var(--color-text);
+        background: var(--color-surface);
+        box-shadow: 0 0.125rem 0.5rem color-mix(in srgb, var(--color-text) 14%, transparent);
     }
 
     .containerDateTimePicker {
@@ -18,9 +18,10 @@
         gap: .5rem;
         align-items: center;
         width: 100%;
-        border: solid 1px rgb(138, 43, 226);
+        border: 1px solid var(--color-border);
         padding: 5px;
-        border-radius: 5px;
+        border-radius: var(--radius-small);
+        background: var(--color-surface-muted);
         z-index: 1;
 
         .labelDateTimePicker {
@@ -38,12 +39,16 @@
         align-items: center;
         gap: 1rem;
         width: 100%;
-        border: solid 1px rgb(138, 43, 226);
+        border: 1px solid var(--color-border);
         padding: 1rem;
-        border-radius: 5px;
+        border-radius: var(--radius-small);
+        background: var(--color-surface-muted);
 
         .legend {
+            padding-inline: 0.5rem;
+            color: var(--color-text);
             font-size: xx-small;
+            font-weight: 600;
         }
     }
 
@@ -64,31 +69,40 @@
             font-size: 18px;
             line-height: 50px;
             font-weight: 600;
-            color: var(--form-button-color);
+            color: var(--color-active-text);
             border-radius: 25px;
-            border: none;
-            outline: none;
+            border: 2px solid var(--color-link);
             cursor: pointer;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; // Dodano transition do box-shadow
-            background-image: linear-gradient(to right, var(--form-button-background-first), var(--form-button-background-second));
+            transition:
+                transform 0.3s ease-in-out,
+                box-shadow 0.3s ease-in-out,
+                background-color 0.2s ease-in-out;
+            background: var(--color-active-background);
             position: relative;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); // Cień domyślny
+            box-shadow: 0 0.25rem 0.625rem color-mix(in srgb, var(--color-text) 20%, transparent);
         }
 
-        button:not(:disabled):focus,
         button:not(:disabled):hover {
-            background-image: linear-gradient(to left, var(--form-button-background-first), var(--form-button-background-second));
+            background: color-mix(in srgb, var(--color-active-background) 80%, var(--color-link));
             transform: scale(1.01);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); // Cień przy najechaniu
+            box-shadow: 0 0.5rem 1.25rem color-mix(in srgb, var(--color-text) 30%, transparent);
+        }
+
+        button:not(:disabled):focus-visible {
+            outline: 0.1875rem solid var(--color-focus);
+            outline-offset: 0.1875rem;
         }
 
         button:not(:disabled):active {
             transform: scale(0.98);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); // Przywrócenie cienia
+            box-shadow: 0 0.25rem 0.625rem color-mix(in srgb, var(--color-text) 20%, transparent);
         }
 
         button:disabled {
             opacity: 0.5;
+            color: var(--color-text-muted);
+            border-color: var(--color-border);
+            background: var(--color-surface-muted);
             cursor: not-allowed;
         }
     }

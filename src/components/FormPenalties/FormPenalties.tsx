@@ -1,35 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { formatDate } from "../globalFunctions/globalFunctions";
-import {
-  // type CalculationResult,
-  type PenaltiesFormData,
-} from "../../pages/PenaltiesCalculatorPage/PenaltiesCalculatorPage";
+import { type CalculationResult } from "../../components/globalFunctions/calculator";
+import { type PenaltiesFormData } from "../../pages/PenaltiesCalculatorPage/PenaltiesCalculatorPage";
 import { getRbData } from "./formPenaltiesDataToRb";
 import { DateTimePicker } from "../CustomControls/DateTimePicker/DateTimePicker";
 import { RadioButton } from "../CustomControls/RadioButton/RadioButton";
 import { CheckBoxSlider } from "../CustomControls/CheckBoxSlider/CheckBoxSlider";
-import { logToConsole } from "../globalFunctions/console";
 import styles from "./FormPenalties.module.scss";
 
 export interface FormPenaltiesProps {
   formData: PenaltiesFormData;
   setFormData: React.Dispatch<React.SetStateAction<PenaltiesFormData>>;
   handleSubmit: React.SubmitEventHandler<HTMLFormElement>;
-  // setCalculationResults: React.Dispatch<
-  //   React.SetStateAction<CalculationResult | null>
-  // >;
+  setCalculationResults: React.Dispatch<
+    React.SetStateAction<CalculationResult | null>
+  >;
 }
-// {
-//   setCalculatedData,
-//   calculatedData,
-//   formValues,
-//   setFormValues,
-// }
+
 export function FormPenalties({
   formData,
   setFormData,
   handleSubmit,
-  // setCalculationResults,
+  setCalculationResults,
 }: FormPenaltiesProps) {
   const [dateTimePickerDate, setDateTimePickerDate] = useState<Date | null>(
     new Date(),
@@ -41,49 +32,11 @@ export function FormPenalties({
         ...prevData,
         selectedDate: dateTimePickerDate,
       }));
-    logToConsole(
-      "log",
-      "FormPenalties [dateTimePickerDate]:",
-      dateTimePickerDate,
-    );
-    logToConsole(
-      "log",
-      "FormPenalties [dateTimePickerDate formated]:",
-      formatDate(dateTimePickerDate),
-    );
-    // setCalculatedData(null);
+
+    setCalculationResults(null);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dateTimePickerDate]);
 
-  // const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
-  //   setFormValues((prevData) => ({
-  //     ...prevData,
-  //     selectedDate: dateTimePickerDate,
-  //   }));
-  //   const {
-  //     selectedDate,
-  //     sold,
-  //     bought,
-  //     inheritance,
-  //     isNaturalPerson,
-  //     isLegalPerson,
-  //     detailedData,
-  //   } = formValues;
-
-  //   const calculatedDataFunction = calculator.calculationNumberOfDays(
-  //     selectedDate,
-  //     sold,
-  //     bought,
-  //     inheritance,
-  //     isNaturalPerson,
-  //     isLegalPerson,
-  //     detailedData,
-  //     currentLanguage,
-  //   );
-
-  //   setCalculatedData(calculatedDataFunction);
-  // };
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, checked } = event.target;
 
@@ -111,6 +64,7 @@ export function FormPenalties({
           return previousData;
       }
     });
+    if (name !== "detailedData") setCalculationResults(null);
   };
 
   return (
@@ -134,14 +88,17 @@ export function FormPenalties({
         </div>
         <fieldset className={styles.fieldsetRadio}>
           <legend className={styles.legend}>Rodzaj zdarzenia</legend>
-          {getRbData.rbTypeOfEventsTable.map((radioButton) => (
-            <RadioButton
-              {...radioButton}
-              key={radioButton.id}
-              checked={formData.typeOfEvent === radioButton.value}
-              onChange={handleChange}
-            />
-          ))}
+
+          {getRbData.rbTypeOfEventsTable.map((radioButton) => {
+            return (
+              <RadioButton
+                {...radioButton}
+                key={radioButton.id}
+                checked={formData.typeOfEvent === radioButton.value}
+                onChange={handleChange}
+              />
+            );
+          })}
         </fieldset>
         <fieldset className={styles.fieldsetRadio}>
           <legend className={styles.legend}>Rodzaj osoby</legend>

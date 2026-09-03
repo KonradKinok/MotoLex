@@ -1,5 +1,6 @@
+import { formatCurrency } from "./globalFunctions";
 
-type DayKind =
+export type DayKind =
   | "start"
   | "regularDay"
   | "nonWorkingDay"
@@ -9,6 +10,7 @@ type DayKind =
 
 export interface DayEntry {
   kind: DayKind;
+  nextDayNumber: number;
   nextDayDate: Date;
   nextDayOfTheDeadlineNumber: number | null;
   punishmentNextDate: Date | null;
@@ -58,6 +60,10 @@ export type InputData = {
   selectedDate: Date;
   typeOfEvent: EventType;
   typeOfPerson: OwnerType;
+};
+
+export type CalculationResult = {
+  listOfDays: DayEntry[];
 };
 
 export const punishmentRules = {
@@ -163,7 +169,7 @@ function getPunishmentRules(
 
 export function calculationNumberOfDays(
   inputData: InputData,
-): { listOfDays: DayEntry[] } {
+): CalculationResult {
 
   const listOfDays: DayEntry[] = []
 
@@ -198,6 +204,7 @@ export function calculationNumberOfDays(
 
         listOfDays.push({
           kind: "nonWorkingDay",
+          nextDayNumber: nextDay,
           nextDayDate: currentDay,
           nextDayOfTheDeadlineNumber: null, // Numerowanie dni
           punishmentNextDate: null,
@@ -211,6 +218,7 @@ export function calculationNumberOfDays(
 
       listOfDays.push({
         kind: "lastDay",
+        nextDayNumber: nextDay,
         nextDayDate: currentDay,
         nextDayOfTheDeadlineNumber: nextDayOfTheDeadlineNumber, // Numerowanie dni
         punishmentNextDate: currentDay,
@@ -223,15 +231,16 @@ export function calculationNumberOfDays(
     }
     if (nextDayOfTheDeadlineNumber === firstPenaltyTerm + 1 || secondPenaltyTerm && nextDayOfTheDeadlineNumber === secondPenaltyTerm + 1) {
       const amount = nextDayOfTheDeadlineNumber === firstPenaltyTerm + 1 ? firstPenaltyAmount : secondPenaltyAmount
-      const description = amount?.toString() ?? "";
+      const description = formatCurrency(amount);
 
       listOfDays.push({
         kind: "penalty",
+        nextDayNumber: nextDay,
         nextDayDate: currentDay,
         nextDayOfTheDeadlineNumber: nextDayOfTheDeadlineNumber, // Numerowanie dni
         punishmentNextDate: currentDay,
         description: description,
-        iconName: "Banknote",
+        iconName: "Calendar",
       });
 
       secondPenalty = true;
@@ -256,6 +265,7 @@ export function calculationNumberOfDays(
 
     listOfDays.push({
       kind: kind,
+      nextDayNumber: nextDay,
       nextDayDate: currentDay,
       nextDayOfTheDeadlineNumber: nextDayOfTheDeadlineNumber, // Numerowanie dni
       punishmentNextDate: currentDay,

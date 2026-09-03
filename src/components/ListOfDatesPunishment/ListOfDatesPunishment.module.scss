@@ -1,56 +1,63 @@
-.container-list-of-days {
-    --day-of-agreement-icon-color: rgb(0, 128, 0); // green
-    --day-of-punish-icon-color: rgb(255, 0, 0); //red
-    --day-before-punish-icon-color: rgb(255, 165, 0); //orange
+.containerListOfDays {
+    --color-bottom-border: rgb(7, 7, 7);
+
+    width: 90%;
     display: flex;
     flex-flow: column wrap;
-    width: 90%;
     font-size: 14px;
+    color: var(--color-text);
+    margin: 0 auto;
 
-    .item-list-of-days {
+    .itemListOfDays {
         display: grid;
         max-width: calc(100vw);
-        grid-template-columns: 15% 40% 10% 35%;
-        column-gap: 5px;
+        grid-template-columns: 15% 30% 20% 35%;
         list-style: none;
         align-items: center;
-        border-bottom: 1px solid #070707;
-        padding-bottom: 5px;
+        border-bottom: 1px solid var(--color-bottom-border);
+
+        &.header {
+            align-items: flex-end;
+            font-weight: bold;
+            border-bottom: 2px solid var(--color-bottom-border);
+        }
     }
 
-    .container-icon {
+    .containerIcon {
         position: relative;
         width: 32px;
         height: 32px;
         display: flex;
-        justify-content: center;
-        align-items: center;
 
         .icon {
             width: 32px;
             height: 32px;
         }
 
-        .icon-day-of-agreement {
+        .iconDayOfAgreement {
             color: var(--day-of-agreement-icon-color);
         }
 
-        .icon-day-before-punish {
+        .iconDayBeforePunish {
             color: var(--day-before-punish-icon-color);
         }
 
-        .icon-day-of-punish {
+        .iconDayOfPunish {
             color: var(--day-of-punish-icon-color);
         }
 
-        .text-overlay {
+        .iconRegularDay,
+        .iconNonWorkingDay {
+            color: inherit;
+        }
+
+        .textOverlay {
             position: absolute;
-            top: 55%;
+            top: 60%;
             left: 50%;
             transform: translate(-50%, -50%);
             /* Wycentrowanie tekstu w środku ikony */
-            font-size: 12px;
-            color: rgb(10, 10, 10);
+            font-size: 10px;
             font-weight: bold;
         }
     }
@@ -59,7 +66,7 @@
 @media print {
 
     //Drukowane elementy
-    .container-list-of-days {
+    .containerListOfDays {
         display: block;
         position: relative;
         top: 0;

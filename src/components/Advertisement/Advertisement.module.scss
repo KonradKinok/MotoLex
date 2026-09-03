@@ -42,3 +42,9 @@
     margin-top: 2rem;
   }
 }
+
+@media print {
+  .advertisingColumn {
+    display: none;
+  }
+}

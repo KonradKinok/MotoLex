@@ -1,92 +1,91 @@
-// import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
+import { Calendar, Banknote } from "lucide-react";
+import { formatDate } from "../globalFunctions/globalFunctions";
+import { type DayEntry, type DayKind } from "../globalFunctions/calculator";
+import { type CalculationResult } from "../globalFunctions/calculator";
+import styles from "./ListOfDatesPunishment.module.scss";
 
-// import { ListEntry } from "../../globalFunctions/calculator";
-// import { FormValues } from "../../pages/PenaltiesPage/PenaltiesPage";
-// import scss from "./ListOfDays.module.scss";
+const dayKindClassNames: Record<DayKind, string> = {
+  start: styles.iconDayOfAgreement,
+  regularDay: styles.iconRegularDay,
+  nonWorkingDay: styles.iconNonWorkingDay,
+  lastDay: styles.iconDayBeforePunish,
+  penalty: styles.iconDayOfPunish,
+};
 
-// export interface CalculatedData {
-//   listOfDates: ListEntry[];
-//   startDate: string | Date;
-// }
+interface ListOfDaysProps {
+  calculationResults: CalculationResult | null;
+  detailedData: boolean;
+}
 
-// interface ListOfDaysProps {
-//   calculatedData: CalculatedData | null;
-//   formValues: FormValues;
-// }
+export default function ListOfDays({
+  calculationResults,
+  detailedData,
+}: ListOfDaysProps) {
+  const currentList = useMemo(() => {
+    const list = calculationResults?.listOfDays ?? [];
 
-// export default function ListOfDays({
-//   calculatedData,
-//   formValues,
-// }: ListOfDaysProps) {
-//   const currentLanguage = useSelector(selectLanguage);
-//   const [currentList, setCurrentList] = useState<ListEntry[]>([]);
+    if (detailedData) {
+      return list;
+    }
 
-//   useEffect(() => {
-//     if (formValues.detailedData) {
-//       setCurrentList(calculatedData?.listOfDates || []);
-//     } else {
-//       const filteredItems = calculatedData?.listOfDates.filter((item) => {
-//         const description = item.description.toLowerCase(); // Konwersja na małe litery dla porównania
-//         return (
-//           description.includes(
-//             langDictionary.calculationNumberOfDays_FirstDate[currentLanguage],
-//           ) ||
-//           description.includes(
-//             langDictionary.calculationNumberOfDays_Penalty[currentLanguage],
-//           ) ||
-//           description.includes(
-//             langDictionary.calculationNumberOfDays_LastDeadline[
-//               currentLanguage
-//             ],
-//           )
-//         );
-//       });
-//       setCurrentList(filteredItems || []);
-//     }
-//   }, [formValues.detailedData, calculatedData?.listOfDates]);
+    return list.filter(({ kind }) =>
+      ["start", "lastDay", "penalty"].includes(kind),
+    );
+  }, [detailedData, calculationResults?.listOfDays]);
 
-//   useEffect(() => {
-//     window.scrollTo({
-//       top: 730,
-//       left: 0,
-//       behavior: "smooth",
-//     });
-//   }, [currentList]);
+  useEffect(() => {
+    window.scrollTo({
+      top: 900,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, [currentList]);
 
-//   return (
-//     <ul className={scss["container-list-of-days"]}>
-//       {calculatedData && (
-//         <li className={scss["item-list-of-days"]} key={"column-title"}>
-//           <div>{langDictionary.listOfDaysNextDay[currentLanguage]}</div>
-//           <div>{langDictionary.listOfDaysDate[currentLanguage]}</div>
-//           <div className={scss["container-icon"]}>
-//             {langDictionary.listOfDaysDeadlineDay[currentLanguage]}
-//           </div>
-//           <div>{langDictionary.listOfDaysDescription[currentLanguage]}</div>
-//         </li>
-//       )}
+  return (
+    <ul className={styles.containerListOfDays}>
+      {calculationResults && (
+        <li
+          className={`${styles.itemListOfDays} ${styles.header}`}
+          key={"column-title"}
+        >
+          <div>Kolejny dzień</div>
+          <div>Data</div>
+          <div className={styles.containerIcon1}>Dzień terminu</div>
+          <div>Opis</div>
+        </li>
+      )}
 
-//       {currentList.map((listOfDates: ListEntry, index: number) => {
-//         const IconComponent = listOfDates.iconName;
+      {currentList.map((listOfDates: DayEntry) => {
+        const IconComponent =
+          listOfDates.iconName === "Calendar" ? Calendar : Banknote;
 
-//         return (
-//           <li className={scss["item-list-of-days"]} key={index}>
-//             <div>{listOfDates.nextDay}.</div>
-//             <div>
-//               {listOfDates.nextData} {listOfDates.nameDayOfWeek}
-//             </div>
-//             <div className={scss["container-icon"]}>
-//               <IconComponent
-//                 className={`${scss["icon"]} ${scss[listOfDates.iconClass]}`}
-//               />
-//               <span className={scss["text-overlay"]}>
-//                 {listOfDates.nextDayOfTheDeadline}
-//               </span>
-//             </div>
-//             <div>{listOfDates.description}</div>
-//           </li>
-//         );
-//       })}
-//     </ul>
-//   );
-// }
+        const nextDayOfTheDeadline =
+          listOfDates.nextDayOfTheDeadlineNumber?.toString().padStart(3, "0") ??
+          "---";
+
+        return (
+          <li
+            className={styles.itemListOfDays}
+            key={`${listOfDates.kind}-${listOfDates.nextDayDate.getTime()}`}
+          >
+            <div>{`${listOfDates.nextDayNumber.toString().padStart(3, "0")}.`}</div>
+            <div>{`${formatDate(listOfDates.nextDayDate)} ${listOfDates.nextDayDate.toLocaleString(
+              "pl-PL",
+              {
+                weekday: "short",
+              },
+            )}`}</div>
+            <div className={styles.containerIcon}>
+              <IconComponent
+                className={`${styles.icon} ${dayKindClassNames[listOfDates.kind]}`}
+              />
+              <span className={styles.textOverlay}>{nextDayOfTheDeadline}</span>
+            </div>
+            <div>{listOfDates.description}</div>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}

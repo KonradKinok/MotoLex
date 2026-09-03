@@ -67,38 +67,39 @@ export function typedKeys<T extends object>(object: T): Array<keyof T> {
 
 
 
-export function zmianaFormatow(currentDay: Date) {
-  const dateOptions: Intl.DateTimeFormatOptions = {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  };
-  const currentDayString = currentDay.toLocaleDateString(
-    "pl-PL",
-    dateOptions,
-  );
-  const notificationOfSaleAmount = new Intl.NumberFormat("pl-PL", {
-    style: "currency",
-    currency: "PLN",
-  }).format(250);
-  const dayOfWeekString = currentDay.toLocaleString("pl-PL", {
-    weekday: "short",
-  });
-  return `${currentDayString}${notificationOfSaleAmount}${dayOfWeekString}`;
-}
-
-export function formatCurrency(amount: number): string {
-  return new Intl.NumberFormat("pl-PL", {
-    style: "currency",
-    currency: "PLN",
-  }).format(amount);
-}
+const plnCurrencyFormatter = new Intl.NumberFormat("pl-PL", {
+  style: "currency",
+  currency: "PLN",
+});
 
 const dateOptions: Intl.DateTimeFormatOptions = {
   day: "2-digit",
   month: "2-digit",
   year: "numeric",
 };
+
+
+export function isNumberString(
+  value: string | null | undefined,
+): boolean {
+  return (
+    value != null &&
+    value.trim() !== "" &&
+    Number.isFinite(Number(value))
+  );
+}
+
+export function formatCurrency(
+  amount: number | null | undefined,
+): string {
+  if (amount == null || !Number.isFinite(amount)) {
+    return "";
+  }
+
+  return plnCurrencyFormatter.format(amount);
+}
+
+
 
 export function formatDate(date: Date | null): string {
   return date?.toLocaleDateString("pl-PL", dateOptions) ?? "- - -";

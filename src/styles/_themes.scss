@@ -20,6 +20,9 @@
   --color-active-text: #073b63;
   --color-focus: #ffbf47;
   --color-focus-text: #0b0c0c;
+  --day-of-agreement-icon-color: #008000;
+  --day-before-punish-icon-color: #ffa500;
+  --day-of-punish-icon-color: #ff0000;
 }
 
 @mixin dark {
@@ -44,6 +47,9 @@
   --color-active-text: #ffffff;
   --color-focus: #ffd166;
   --color-focus-text: #101820;
+  --day-of-agreement-icon-color: #4ade80;
+  --day-before-punish-icon-color: #fbbf24;
+  --day-of-punish-icon-color: #fb7185;
 }
 
 @mixin contrast {
@@ -68,4 +74,7 @@
   --color-active-text: #000000;
   --color-focus: #00ffff;
   --color-focus-text: #000000;
+  --day-of-agreement-icon-color: #00ff00;
+  --day-before-punish-icon-color: #ffff00;
+  --day-of-punish-icon-color: #ff6b6b;
 }
