@@ -11,6 +11,7 @@ import { Advertisement } from "../../components/Advertisement/Advertisement";
 import { Footer } from "../../components/Footer/Footer";
 import { Loader } from "../../components/Loader/Loader";
 import styles from "./LayoutPage.module.scss";
+import { ButtonUp } from "../../components/CustomControls/ButtonUp/ButtonUp";
 
 export function LayoutPage() {
   //Mobile menu state
@@ -72,6 +73,7 @@ export function LayoutPage() {
         <Advertisement />
       </div>
       <Footer />
+      <ButtonUp />
     </div>
   );
 }
