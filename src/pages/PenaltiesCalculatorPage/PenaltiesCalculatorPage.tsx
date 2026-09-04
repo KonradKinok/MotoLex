@@ -5,7 +5,7 @@ import {
   type InputData,
   type CalculationResult,
 } from "../../components/globalFunctions/calculator";
-import ListOfDatesPunishment from "../../components/ListOfDatesPunishment/ListOfDatesPunishment";
+import { ListOfDatesPunishment } from "../../components/ListOfDatesPunishment/ListOfDatesPunishment";
 // import styles from "./PenaltiesCalculatorPage.module.scss";
 
 export type PenaltiesFormData = InputData & {

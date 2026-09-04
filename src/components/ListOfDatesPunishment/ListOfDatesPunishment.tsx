@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { Calendar, Banknote } from "lucide-react";
 import { formatDate } from "../globalFunctions/globalFunctions";
 import { type DayEntry, type DayKind } from "../globalFunctions/calculator";
@@ -13,15 +13,16 @@ const dayKindClassNames: Record<DayKind, string> = {
   penalty: styles.iconDayOfPunish,
 };
 
-interface ListOfDaysProps {
+interface ListOfDatesPunishmentProps {
   calculationResults: CalculationResult | null;
   detailedData: boolean;
 }
 
-export default function ListOfDays({
+export function ListOfDatesPunishment({
   calculationResults,
   detailedData,
-}: ListOfDaysProps) {
+}: ListOfDatesPunishmentProps) {
+  const listRef = useRef<HTMLUListElement>(null);
   const currentList = useMemo(() => {
     const list = calculationResults?.listOfDays ?? [];
 
@@ -35,15 +36,18 @@ export default function ListOfDays({
   }, [detailedData, calculationResults?.listOfDays]);
 
   useEffect(() => {
-    window.scrollTo({
-      top: 900,
-      left: 0,
+    if (!calculationResults?.listOfDays.length) {
+      return;
+    }
+
+    listRef.current?.scrollIntoView({
       behavior: "smooth",
+      block: "start",
     });
-  }, [currentList]);
+  }, [calculationResults, detailedData]);
 
   return (
-    <ul className={styles.containerListOfDays}>
+    <ul ref={listRef} className={styles.containerListOfDays}>
       {calculationResults && (
         <li
           className={`${styles.itemListOfDays} ${styles.header}`}
@@ -51,7 +55,7 @@ export default function ListOfDays({
         >
           <div>Kolejny dzień</div>
           <div>Data</div>
-          <div className={styles.containerIcon1}>Dzień terminu</div>
+          <div>Dzień terminu</div>
           <div>Opis</div>
         </li>
       )}
