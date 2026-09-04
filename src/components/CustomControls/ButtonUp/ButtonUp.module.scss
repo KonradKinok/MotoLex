@@ -1,7 +1,9 @@
 .upButton {
     /* button-up */
-    --button-up-first-gradient: rgb(17, 145, 15);
-    --button-up-second-gradient: rgb(17, 207, 11);
+    --button-up-first-gradient: var(--color-header-background);
+    --button-up-second-gradient: var(--color-header-link-background-active);
+    --button-up-text: var(--color-header-text);
+    --button-up-border: var(--color-header-border);
 
     position: fixed;
     bottom: 10px;
@@ -15,11 +17,12 @@
     text-align: center;
     text-transform: uppercase;
     background-size: 200% auto;
-    color: rgb(255, 255, 255);
+    background-position: left center;
+    color: var(--button-up-text);
     border-radius: 10px;
-    border: 0px;
+    border: 1px solid var(--button-up-border);
     font-weight: 700;
-    box-shadow: 0px 0px 14px -7px var(--button-up-second-gradient);
+    box-shadow: 0 0 14px -7px var(--color-header-link-text-hover);
     background-image: linear-gradient(45deg, var(--button-up-first-gradient) 0%, var(--button-up-second-gradient) 51%, var(--button-up-first-gradient) 100%);
     cursor: pointer;
     user-select: none;
@@ -43,7 +46,7 @@
 
     &:hover {
         background-position: right center;
-        color: rgb(255, 255, 255);
+        color: var(--button-up-text);
     }
 
     &:focus {

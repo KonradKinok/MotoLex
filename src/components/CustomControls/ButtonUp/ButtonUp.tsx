@@ -37,7 +37,7 @@ export function ButtonUp() {
 
   return (
     <button
-      className={`${styles.upButton} ${isVisible ? styles.visible : ""}`} // Zmienia klasę na visible, gdy przycisk ma się wyświetlać
+      className={`${styles.upButton} ${isVisible ? styles.visible : ""}`} // Zmienia klasę na visible
       type="button"
       onClick={handleOnClick}
       aria-label="Przewiń na górę strony"
