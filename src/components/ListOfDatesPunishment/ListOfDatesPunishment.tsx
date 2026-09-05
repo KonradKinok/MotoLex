@@ -1,8 +1,11 @@
 import { useEffect, useMemo, useRef } from "react";
 import { Calendar, Banknote } from "lucide-react";
 import { formatDate } from "../globalFunctions/globalFunctions";
-import { type DayEntry, type DayKind } from "../globalFunctions/calculator";
-import { type CalculationResult } from "../globalFunctions/calculator";
+import type {
+  CalculationResult,
+  DayEntry,
+  DayKind,
+} from "../../types/globalTypes";
 import styles from "./ListOfDatesPunishment.module.scss";
 
 const dayKindClassNames: Record<DayKind, string> = {

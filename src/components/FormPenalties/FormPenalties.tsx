@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { type CalculationResult } from "../../components/globalFunctions/calculator";
-import { type PenaltiesFormData } from "../../pages/PenaltiesCalculatorPage/PenaltiesCalculatorPage";
+import React from "react";
+import type {
+  CalculationResult,
+  PenaltiesFormData,
+} from "../../types/globalTypes";
 import { getRbData } from "./formPenaltiesDataToRb";
 import { DateTimePicker } from "../CustomControls/DateTimePicker/DateTimePicker";
 import { RadioButton } from "../CustomControls/RadioButton/RadioButton";
 import { CheckBoxSlider } from "../CustomControls/CheckBoxSlider/CheckBoxSlider";
+import { PENALTIES_MAX_DATE } from "./penaltiesDateRange";
+import { PENALTIES_MIN_DATE } from "./penaltiesDateRange";
 import styles from "./FormPenalties.module.scss";
 
 export interface FormPenaltiesProps {
@@ -22,20 +26,14 @@ export function FormPenalties({
   handleSubmit,
   setCalculationResults,
 }: FormPenaltiesProps) {
-  const [dateTimePickerDate, setDateTimePickerDate] = useState<Date | null>(
-    new Date(),
-  );
-
-  useEffect(() => {
-    if (dateTimePickerDate)
-      setFormData((prevData) => ({
-        ...prevData,
-        selectedDate: dateTimePickerDate,
-      }));
+  const handleDateChange = (selectedDate: Date | null) => {
+    setFormData((previousData) => ({
+      ...previousData,
+      selectedDate,
+    }));
 
     setCalculationResults(null);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dateTimePickerDate]);
+  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, checked } = event.target;
@@ -79,10 +77,10 @@ export function FormPenalties({
             dziedziczenia:
           </label>
           <DateTimePicker
-            dateTimePickerDate={dateTimePickerDate}
-            setDateTimePickerDate={setDateTimePickerDate}
-            minDate={new Date(2024, 0, 1)}
-            maxDate={new Date(2099, 11, 31)}
+            dateTimePickerDate={formData.selectedDate}
+            onChange={handleDateChange}
+            minDate={PENALTIES_MIN_DATE}
+            maxDate={PENALTIES_MAX_DATE}
             isClearable={false}
           />
         </div>

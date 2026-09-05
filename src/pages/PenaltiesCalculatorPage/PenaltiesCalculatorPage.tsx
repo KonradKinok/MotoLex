@@ -1,16 +1,18 @@
 import { useState, type SubmitEvent } from "react";
 import { FormPenalties } from "../../components/FormPenalties/FormPenalties";
-import {
-  calculationNumberOfDays,
-  type InputData,
-  type CalculationResult,
-} from "../../components/globalFunctions/calculator";
+import { calculationNumberOfDays } from "../../components/globalFunctions/calculator";
 import { ListOfDatesPunishment } from "../../components/ListOfDatesPunishment/ListOfDatesPunishment";
+import {
+  isDateInPenaltiesRange,
+  PENALTIES_MAX_DATE,
+  PENALTIES_MIN_DATE,
+} from "../../components/FormPenalties/penaltiesDateRange";
+import type {
+  CalculationResult,
+  InputData,
+  PenaltiesFormData,
+} from "../../types/globalTypes";
 // import styles from "./PenaltiesCalculatorPage.module.scss";
-
-export type PenaltiesFormData = InputData & {
-  detailedData: boolean;
-};
 
 function PenaltiesCalculatorPage() {
   const [formData, setFormData] = useState<PenaltiesFormData>({
@@ -28,11 +30,19 @@ function PenaltiesCalculatorPage() {
     event.preventDefault();
 
     if (
-      formData.selectedDate === null ||
+      !(formData.selectedDate instanceof Date) ||
       Number.isNaN(formData.selectedDate.getTime())
     ) {
       setCalculationResults(null);
-      setCalculationError("");
+      setCalculationError("Wybierz prawidłową datę.");
+      return;
+    }
+
+    if (!isDateInPenaltiesRange(formData.selectedDate)) {
+      setCalculationResults(null);
+      setCalculationError(
+        `Data musi mieścić się w zakresie od ${PENALTIES_MIN_DATE} do ${PENALTIES_MAX_DATE}.`,
+      );
       return;
     }
 
@@ -57,24 +67,24 @@ function PenaltiesCalculatorPage() {
 
   return (
     <section>
-      <article>
+      <div>
         <h1>Kalkulator kar</h1>
-      </article>
-      <article>
+      </div>
+      <div>
         <FormPenalties
           formData={formData}
           setFormData={setFormData}
           handleSubmit={handleSubmit}
           setCalculationResults={setCalculationResults}
         />
-      </article>
-      <article>
+      </div>
+      <div>
         {calculationError && <p role="alert">{calculationError}</p>}
         <ListOfDatesPunishment
           calculationResults={calculationResults}
           detailedData={formData.detailedData}
         />
-      </article>
+      </div>
     </section>
   );
 }

@@ -1,10 +1,5 @@
 // https://reactdatepicker.com/
-import {
-  forwardRef,
-  type ButtonHTMLAttributes,
-  type Dispatch,
-  type SetStateAction,
-} from "react";
+import { forwardRef, type ButtonHTMLAttributes } from "react";
 import DatePicker from "react-datepicker";
 import { pl } from "date-fns/locale/pl";
 import "react-datepicker/dist/react-datepicker.css";
@@ -13,7 +8,7 @@ import scss from "./DateTimePicker.module.scss";
 
 interface DateTimePickerProps {
   dateTimePickerDate: Date | null;
-  setDateTimePickerDate: Dispatch<SetStateAction<Date | null>>;
+  onChange: (date: Date | null) => void;
   isClearable?: boolean;
   name?: string;
   id?: string;
@@ -49,7 +44,7 @@ CustomDateInput.displayName = "CustomDateInput";
 
 export function DateTimePicker({
   dateTimePickerDate,
-  setDateTimePickerDate,
+  onChange,
   isClearable = true,
   name = "dateTimePicker",
   id = "dateTimePicker",
@@ -69,7 +64,7 @@ export function DateTimePicker({
       }
       dateFormat="dd.MM.yyyy"
       selected={dateTimePickerDate}
-      onChange={(date: Date | null) => setDateTimePickerDate(date)}
+      onChange={(date: Date | null) => onChange(date)}
       openToDate={dateTimePickerDate ?? undefined}
       minDate={minDate}
       maxDate={maxDate}
