@@ -25,6 +25,8 @@
 }
 
 .siteHeader {
+  --color-focus: var(--color-focus-on-dark);
+
   color: var(--color-header-text);
   background: var(--color-header-background);
   border-bottom: 2px solid var(--color-header-border);
