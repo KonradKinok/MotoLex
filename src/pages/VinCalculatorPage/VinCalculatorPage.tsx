@@ -12,6 +12,7 @@ import { SearchCheck, X } from "lucide-react";
 import { ButtonUniversal } from "../../components/CustomControls/ButtonUniversal/ButtonUniversal";
 import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
 import { APPLICATION_NAME, ROUTES } from "../../config/routes";
+import { FieldsetCustom } from "../../components/CustomControls/FieldsetCustom/FieldsetCustom";
 // WVWZZZ1KZ5P093939
 const VIN_LENGTH = 17;
 
@@ -167,10 +168,8 @@ function VinCalculatorPage() {
       />
       <article className={styles.page}>
         <h1>Kalkulator VIN</h1>
-
         <form className={styles.form} onSubmit={handleSubmit} noValidate>
-          <fieldset className={styles.fieldset}>
-            <legend>Wpisz numer VIN</legend>
+          <FieldsetCustom legend="Numer VIN">
             <p id="vin-help">
               Numer VIN składa się z 17 znaków i nie zawiera liter I, O ani Q.
             </p>
@@ -228,7 +227,7 @@ function VinCalculatorPage() {
                 {validationResult.message}
               </p>
             )}
-          </fieldset>
+          </FieldsetCustom>
         </form>
       </article>
     </>

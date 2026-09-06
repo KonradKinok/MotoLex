@@ -12,6 +12,7 @@ import { PENALTIES_MIN_DATE } from "./penaltiesDateRange";
 import styles from "./FormPenalties.module.scss";
 import { ButtonUniversal } from "../CustomControls/ButtonUniversal/ButtonUniversal";
 import { SearchCheck } from "lucide-react";
+import { FieldsetCustom } from "../CustomControls/FieldsetCustom/FieldsetCustom";
 
 export interface FormPenaltiesProps {
   formData: PenaltiesFormData;
@@ -70,25 +71,25 @@ export function FormPenalties({
   return (
     <div className={styles.containerForm}>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.containerDateTimePicker}>
-          <label
-            className={styles.labelDateTimePicker}
-            htmlFor="dateTimePicker"
-          >
-            Wybierz datę sporządzenia umowy, sprowadzenia pojazdu do Polski,
-            dziedziczenia:
-          </label>
-          <DateTimePicker
-            dateTimePickerDate={formData.selectedDate}
-            onChange={handleDateChange}
-            minDate={PENALTIES_MIN_DATE}
-            maxDate={PENALTIES_MAX_DATE}
-            isClearable={false}
-          />
-        </div>
-        <fieldset className={styles.fieldsetRadio}>
-          <legend className={styles.legend}>Rodzaj zdarzenia</legend>
-
+        <FieldsetCustom legend="Wybierz datę">
+          <div className={styles.containerDateTimePicker}>
+            <label
+              className={styles.labelDateTimePicker}
+              htmlFor="dateTimePicker"
+            >
+              Wybierz datę sporządzenia umowy, sprowadzenia pojazdu do Polski,
+              dziedziczenia:
+            </label>
+            <DateTimePicker
+              dateTimePickerDate={formData.selectedDate}
+              onChange={handleDateChange}
+              minDate={PENALTIES_MIN_DATE}
+              maxDate={PENALTIES_MAX_DATE}
+              isClearable={false}
+            />
+          </div>
+        </FieldsetCustom>
+        <FieldsetCustom legend="Rodzaj zdarzenia">
           {getRbData.rbTypeOfEventsTable.map((radioButton) => {
             return (
               <RadioButton
@@ -99,9 +100,8 @@ export function FormPenalties({
               />
             );
           })}
-        </fieldset>
-        <fieldset className={styles.fieldsetRadio}>
-          <legend className={styles.legend}>Rodzaj osoby</legend>
+        </FieldsetCustom>
+        <FieldsetCustom legend="Rodzaj osoby">
           {getRbData.rbTypeOfPersonTable.map((radioButton) => (
             <RadioButton
               {...radioButton}
@@ -110,8 +110,8 @@ export function FormPenalties({
               onChange={handleChange}
             />
           ))}
-        </fieldset>
-        <div className={`${styles.fieldsetRadio} ${styles.containerButton}`}>
+        </FieldsetCustom>
+        <FieldsetCustom legend="Pokaż dane">
           <CheckBoxSlider
             id="detailed-data"
             name="detailedData"
@@ -123,7 +123,7 @@ export function FormPenalties({
           <ButtonUniversal type="submit" icon={<SearchCheck />} fullWidth>
             Pokaż
           </ButtonUniversal>
-        </div>
+        </FieldsetCustom>
       </form>
     </div>
   );
