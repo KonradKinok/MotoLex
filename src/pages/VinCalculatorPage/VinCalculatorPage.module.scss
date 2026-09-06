@@ -1,0 +1,83 @@
+.page {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.form {
+  width: 100%;
+  max-width: 58rem;
+}
+
+.fieldset {
+  display: grid;
+
+  justify-content: center;
+  gap: 1rem;
+  margin: 0;
+  padding: 1.25rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-medium);
+  background: var(--color-surface-muted);
+}
+
+.inputs {
+  display: flex;
+  gap: 0.35rem;
+  overflow-x: auto;
+  padding: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.characterField {
+  display: flex;
+  flex: 0 0 2.5rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.input {
+  width: 2.5rem;
+  height: 3rem;
+  padding: 0;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-small);
+  color: var(--color-text);
+  background: var(--color-background);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.input:focus {
+  border-color: var(--color-link);
+}
+
+.characterNumber {
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  line-height: 1;
+  user-select: none;
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.result {
+  padding: 0.75rem 1rem;
+  border-left: 0.25rem solid currentColor;
+  background: var(--color-background);
+}
+
+.error {
+  color: #b42318;
+}
+
+.success {
+  color: #16784b;
+}

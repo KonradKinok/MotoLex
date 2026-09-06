@@ -70,3 +70,12 @@ export type PenaltiesFormData = Omit<InputData, "selectedDate"> & {
   selectedDate: Date | null;
   detailedData: boolean;
 };
+
+//PermanentLossCalculatorPage
+export type PermanentLossFormData = {
+  selectedDate: Date | null;
+  O: number;
+  W: number;
+  S: number;
+  M: number;
+};

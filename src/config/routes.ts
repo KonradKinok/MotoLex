@@ -1,3 +1,4 @@
+export const APPLICATION_NAME = "PojazdLex";
 export const ROUTES = {
   home: "/",
 

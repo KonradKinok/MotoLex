@@ -1,86 +1,88 @@
-import { Tooltip } from "react-tooltip";
-import { Trash2 } from "lucide-react";
-import scss from "./ButtonUniversal.module.scss";
+import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
+import { LoaderCircle } from "lucide-react";
+import styles from "./ButtonUniversal.module.scss";
 
-type ButtonType = "button" | "submit" | "reset" | undefined;
+export type ButtonUniversalVariant =
+  | "primary"
+  | "secondary"
+  | "danger"
+  | "ghost";
+export type ButtonUniversalSize = "small" | "medium" | "large";
 
-interface ButtonUniversalProps {
-  buttonType?: ButtonType;
-  buttonName: string;
-  buttonText: string;
-  buttonIcon?: React.ReactNode;
-  buttonDisabled?: boolean;
-  buttonClick?: React.MouseEventHandler<HTMLButtonElement>;
-  classNameButtonContainer?: string;
-  toolTipId?: string;
-  toolTipContent?: string;
-  toolTipClassName?: string;
+export interface ButtonUniversalProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
+  icon: ReactNode;
+  iconPosition?: "start" | "end";
+  variant?: ButtonUniversalVariant;
+  size?: ButtonUniversalSize;
+  fullWidth?: boolean;
+  isLoading?: boolean;
+  loadingText?: ReactNode;
 }
 
-export const ButtonUniversal: React.FC<ButtonUniversalProps> = ({
-  buttonType = "button",
-  buttonName,
-  buttonText,
-  buttonIcon = <Trash2 />,
-  buttonDisabled = false,
-  buttonClick,
-  classNameButtonContainer = "",
-  toolTipId,
-  toolTipContent,
-  toolTipClassName,
-}) => {
-  const containerClassName =
-    `${classNameButtonContainer} ${scss["button-universal-container"]}`.trim();
+export const ButtonUniversal = forwardRef<
+  HTMLButtonElement,
+  ButtonUniversalProps
+>(function ButtonUniversal(
+  {
+    children,
+    icon,
+    iconPosition = "end",
+    variant = "primary",
+    size = "medium",
+    fullWidth = false,
+    isLoading = false,
+    loadingText = "Proszę czekać…",
+    className = "",
+    disabled = false,
+    type = "button",
+    ...buttonProps
+  },
+  ref,
+) {
+  const classNames = [
+    styles.button,
+    styles[variant],
+    styles[size],
+    fullWidth ? styles.fullWidth : "",
+    isLoading ? styles.loading : "",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const displayedIcon = isLoading ? (
+    <LoaderCircle className={styles.spinner} />
+  ) : (
+    icon
+  );
 
   return (
     <button
-      className={containerClassName}
-      name={buttonName}
-      id={buttonName}
-      type={buttonType}
-      onClick={buttonClick}
-      disabled={buttonDisabled}
-      data-tooltip-id={toolTipId}
-      data-tooltip-html={toolTipContent ? toolTipContent : undefined}
+      {...buttonProps}
+      ref={ref}
+      className={classNames}
+      type={type}
+      disabled={disabled || isLoading}
+      aria-busy={isLoading || undefined}
     >
-      <span className={scss["text"]}>{buttonText}</span>
-      <span className={scss["icon-container"]}>{buttonIcon}</span>
-      <Tooltip
-        id={toolTipId}
-        // className={`${scss["tooltip"]} ${scss["tooltip-error"]}`}
-        className={toolTipClassName}
-      />
+      <span className={styles.content}>
+        {iconPosition === "start" && (
+          <span className={styles.icon} aria-hidden="true">
+            {displayedIcon}
+          </span>
+        )}
+
+        <span className={styles.label}>
+          {isLoading ? loadingText : children}
+        </span>
+
+        {iconPosition === "end" && (
+          <span className={styles.icon} aria-hidden="true">
+            {displayedIcon}
+          </span>
+        )}
+      </span>
     </button>
   );
-};
-
-{
-  /* <ButtonUniversal
-              buttonName="saveInvoice"
-              buttonText={isEditMode ? "Zapisz zmiany" : "Zapisz fakturę"}
-              buttonClick={openModalConfirmationSave}
-              buttonDisabled={!isSaveButtonEnabled}
-              buttonIcon={<RiSave3Fill />}
-              classNameButtonContainer={scss["button-save-document"]}
-              toolTipId="tooltipButtonSaveInvoiceFormAddInvoice"
-              toolTipContent={
-                !isSaveButtonEnabled
-                  ? tooltipButtonSaveInvoiceFormAddInvoice(isEditMode)
-                  : undefined
-              }
-              toolTipClassName={`${scss["tooltip"]} `}
-            />
-            <ButtonUniversal
-              buttonName="closeInvoice"
-              buttonText="Zamknij okno"
-              buttonClick={handleCloseModalAddInvoice}
-              buttonIcon={<ImExit />}
-              classNameButtonContainer={scss[""]}
-            /> */
-}
-
-{/* <ButtonUniversal
-  buttonType="submit"
-  buttonName="closeInvoice"
-  buttonText="Pokaż"
-/>; */}
+});

@@ -10,6 +10,8 @@ import { CheckBoxSlider } from "../CustomControls/CheckBoxSlider/CheckBoxSlider"
 import { PENALTIES_MAX_DATE } from "./penaltiesDateRange";
 import { PENALTIES_MIN_DATE } from "./penaltiesDateRange";
 import styles from "./FormPenalties.module.scss";
+import { ButtonUniversal } from "../CustomControls/ButtonUniversal/ButtonUniversal";
+import { SearchCheck } from "lucide-react";
 
 export interface FormPenaltiesProps {
   formData: PenaltiesFormData;
@@ -118,7 +120,9 @@ export function FormPenalties({
             onChange={handleChange}
             layout="vertical"
           />
-          <button type="submit">Pokaż</button>
+          <ButtonUniversal type="submit" icon={<SearchCheck />} fullWidth>
+            Pokaż
+          </ButtonUniversal>
         </div>
       </form>
     </div>

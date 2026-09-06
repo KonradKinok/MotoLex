@@ -12,6 +12,8 @@ import type {
   InputData,
   PenaltiesFormData,
 } from "../../types/globalTypes";
+import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
+import { APPLICATION_NAME, ROUTES } from "../../config/routes";
 // import styles from "./PenaltiesCalculatorPage.module.scss";
 
 function PenaltiesCalculatorPage() {
@@ -66,26 +68,33 @@ function PenaltiesCalculatorPage() {
   }
 
   return (
-    <section>
-      <div>
-        <h1>Kalkulator kar</h1>
-      </div>
-      <div>
-        <FormPenalties
-          formData={formData}
-          setFormData={setFormData}
-          handleSubmit={handleSubmit}
-          setCalculationResults={setCalculationResults}
-        />
-      </div>
-      <div>
-        {calculationError && <p role="alert">{calculationError}</p>}
-        <ListOfDatesPunishment
-          calculationResults={calculationResults}
-          detailedData={formData.detailedData}
-        />
-      </div>
-    </section>
+    <>
+      <PageMetadata
+        title={`Kalkulator kar za brak rejestracji lub zgłoszenia zbycia | ${APPLICATION_NAME}`}
+        description="Sprawdź terminy i wysokość kar za brak złożenia wniosku o rejestrację pojazdu lub zgłoszenia zbycia pojazdu."
+        path={ROUTES.penaltiesCalculator}
+      />
+      <section>
+        <div>
+          <h1>Kalkulator kar</h1>
+        </div>
+        <div>
+          <FormPenalties
+            formData={formData}
+            setFormData={setFormData}
+            handleSubmit={handleSubmit}
+            setCalculationResults={setCalculationResults}
+          />
+        </div>
+        <div>
+          {calculationError && <p role="alert">{calculationError}</p>}
+          <ListOfDatesPunishment
+            calculationResults={calculationResults}
+            detailedData={formData.detailedData}
+          />
+        </div>
+      </section>
+    </>
   );
 }
 
