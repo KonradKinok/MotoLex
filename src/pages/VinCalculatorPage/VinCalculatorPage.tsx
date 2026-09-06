@@ -169,7 +169,10 @@ function VinCalculatorPage() {
       <article className={styles.page}>
         <h1>Kalkulator VIN</h1>
         <form className={styles.form} onSubmit={handleSubmit} noValidate>
-          <FieldsetCustom legend="Numer VIN">
+          <FieldsetCustom
+            legend="Sprawdź VIN dla nowych pojazdów rejestrowanych
+              od 07.07.2026 roku"
+          >
             <p id="vin-help">
               Numer VIN składa się z 17 znaków i nie zawiera liter I, O ani Q.
             </p>

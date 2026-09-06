@@ -12,6 +12,7 @@ import { Footer } from "../../components/Footer/Footer";
 import { Loader } from "../../components/Loader/Loader";
 import styles from "./LayoutPage.module.scss";
 import { ButtonUp } from "../../components/CustomControls/ButtonUp/ButtonUp";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 export function LayoutPage() {
   //Mobile menu state
@@ -22,8 +23,14 @@ export function LayoutPage() {
   } = useToggle();
 
   //Sidebar collapse state
-  const { value: isSidebarCollapsed, toggle: toggleSidebarCollapsed } =
-    useToggle();
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useLocalStorage(
+    false,
+    "pojazdlex-sidebar-collapsed",
+  );
+
+  const toggleSidebarCollapsed = () => {
+    setIsSidebarCollapsed((previousValue) => !previousValue);
+  };
 
   const layoutClassName = [
     styles.contentLayout,
