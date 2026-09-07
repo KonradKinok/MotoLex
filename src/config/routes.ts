@@ -7,6 +7,11 @@ export const ROUTES = {
 
   employees: "/dla-pracownikow",
   homologation: "/dla-pracownikow/homologacja",
+  vehicleCategories: "/dla-pracownikow/homologacja/kategorie-pojazdow",
+  vehicleCategoryM1: "/dla-pracownikow/homologacja/kategorie-pojazdow/m1",
+  vehicleCategoryM2: "/dla-pracownikow/homologacja/kategorie-pojazdow/m2",
+  vehicleCategoryM3: "/dla-pracownikow/homologacja/kategorie-pojazdow/m3",
+
 
   calculator: "/kalkulator",
   penaltiesCalculator: "/kalkulator/kary",

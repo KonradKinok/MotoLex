@@ -1,0 +1,28 @@
+.page {
+  display: grid;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+.navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+  background: var(--color-surface);
+
+  &[aria-current="page"] {
+    color: var(--color-active-text);
+    background: var(--color-active-background);
+    font-weight: 700;
+  }
+}

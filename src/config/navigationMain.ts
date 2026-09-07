@@ -7,6 +7,8 @@ import {
   FileX,
   ScanLine,
   Users,
+  // Van,
+  // Caravan,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { ROUTES } from "./routes";
@@ -17,6 +19,36 @@ export type NavigationItem = {
   icon: LucideIcon;
   children?: NavigationItem[];
 };
+
+const homologationVehicleCategoriesItems: NavigationItem[] = [
+  {
+    label: "M1",
+    to: ROUTES.vehicleCategoryM1,
+    icon: Car,
+  },
+  {
+    label: "M2",
+    to: ROUTES.vehicleCategoryM2,
+    icon: Car,
+  },
+  {
+    label: "M3",
+    to: ROUTES.vehicleCategoryM3,
+    icon: Car,
+  },
+];
+
+
+
+
+const homologationVehicleCategories: NavigationItem[] = [
+  {
+    label: "Kategorie pojazdów",
+    to: ROUTES.vehicleCategories,
+    icon: BadgeCheck,
+    children: homologationVehicleCategoriesItems,
+  },
+];
 
 const vehicleOwnersItems: NavigationItem[] = [
   {
@@ -31,6 +63,7 @@ const workersItems: NavigationItem[] = [
     label: "Homologacja",
     to: ROUTES.homologation,
     icon: BadgeCheck,
+    children: homologationVehicleCategories,
   },
 ];
 
