@@ -1,18 +1,17 @@
 import React from "react";
+import { Calculator } from "lucide-react";
 import type {
   CalculationResult,
   PenaltiesFormData,
 } from "../../../types/globalTypes";
-import { getRbData } from "./formPenaltiesDataToRb";
 import { DateTimePicker } from "../../CustomControls/DateTimePicker/DateTimePicker";
 import { RadioButton } from "../../CustomControls/RadioButton/RadioButton";
 import { CheckBoxSlider } from "../../CustomControls/CheckBoxSlider/CheckBoxSlider";
-import { PENALTIES_MAX_DATE } from "./penaltiesDateRange";
-import { PENALTIES_MIN_DATE } from "./penaltiesDateRange";
-import styles from "./FormPenalties.module.scss";
 import { ButtonUniversal } from "../../CustomControls/ButtonUniversal/ButtonUniversal";
-import { Calculator } from "lucide-react";
 import { FieldsetCustom } from "../../CustomControls/FieldsetCustom/FieldsetCustom";
+import { PENALTIES_MAX_DATE, PENALTIES_MIN_DATE } from "./penaltiesDateRange";
+import { getRbData } from "./formPenaltiesDataToRb";
+import styles from "./FormPenalties.module.scss";
 
 export interface FormPenaltiesProps {
   formData: PenaltiesFormData;

@@ -1,0 +1,21 @@
+.permanentLossTheoryForCalculatorContainer {
+  margin: 1rem auto;
+
+  .legalList {
+    list-style: decimal inside;
+  }
+
+  .legalSublist {
+    list-style: none;
+    counter-reset: legal-letter;
+    padding-left: 1rem;
+  }
+
+  .legalSublistItem {
+    counter-increment: legal-letter;
+  }
+
+  .legalSublistItem::before {
+    content: counter(legal-letter, lower-alpha) ") ";
+  }
+}

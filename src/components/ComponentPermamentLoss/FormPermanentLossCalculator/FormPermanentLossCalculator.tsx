@@ -8,15 +8,15 @@ import {
   CalendarCheck,
   Calculator,
 } from "lucide-react";
-import { formatCurrency } from "../globalFunctions/globalFunctions";
-import { FieldsetCustom } from "../CustomControls/FieldsetCustom/FieldsetCustom";
-import { SingleInput } from "../CustomControls/SingleInput/SingleInput";
-import { ButtonUniversal } from "../CustomControls/ButtonUniversal/ButtonUniversal";
+import { formatCurrency } from "../../globalFunctions/globalFunctions";
+import { FieldsetCustom } from "../../CustomControls/FieldsetCustom/FieldsetCustom";
+import { SingleInput } from "../../CustomControls/SingleInput/SingleInput";
+import { ButtonUniversal } from "../../CustomControls/ButtonUniversal/ButtonUniversal";
 import {
   createComboBoxStyles,
   formatComboBoxOption,
   type ComboBoxOption,
-} from "../CustomControls/ComboBox/ComboBox";
+} from "../../CustomControls/ComboBox/ComboBox";
 import {
   calculateLoss,
   parametersByYear,
@@ -24,7 +24,7 @@ import {
   type LossFormValues,
   type VehicleFactor,
 } from "./permanentLossForm";
-import styles from "./FormPermamentLossCalculator.module.scss";
+import styles from "./FormPermanentLossCalculator.module.scss";
 
 const comboBoxStylesW = createComboBoxStyles<VehicleFactor>();
 const comboBoxOptionsW: ComboBoxOption<VehicleFactor>[] = [
@@ -60,7 +60,7 @@ type FieldChange = {
   };
 }[keyof LossFormValues];
 
-export function FormPermamentLossCalculator() {
+export function FormPermanentLossCalculator() {
   const id = useId();
   const [values, setValues] = useState<LossFormValues>({
     year: null,
