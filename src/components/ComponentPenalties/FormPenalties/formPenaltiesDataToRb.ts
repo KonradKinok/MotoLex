@@ -1,9 +1,9 @@
 
 import {
   punishmentRules,
-} from "../globalFunctions/calculator";
-import { typedKeys } from "../globalFunctions/globalFunctions";
-import type { EventType, OwnerType, PunishmentRules } from "../../types/globalTypes";
+} from "../../globalFunctions/calculator";
+import { typedKeys } from "../../globalFunctions/globalFunctions";
+import type { EventType, OwnerType, PunishmentRules } from "../../../types/globalTypes";
 
 type RadioButtonType = {
   id: string;
