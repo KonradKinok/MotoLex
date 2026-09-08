@@ -13,6 +13,7 @@ import { Loader } from "../../components/Loader/Loader";
 import styles from "./LayoutPage.module.scss";
 import { ButtonUp } from "../../components/CustomControls/ButtonUp/ButtonUp";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { Tooltip } from "react-tooltip";
 
 export function LayoutPage() {
   //Mobile menu state
@@ -81,6 +82,11 @@ export function LayoutPage() {
       </div>
       <Footer />
       <ButtonUp />
+      <Tooltip
+        id="app-tooltip"
+        className={styles.tooltip}
+        border="1px solid var(--color-border)"
+      />
     </div>
   );
 }

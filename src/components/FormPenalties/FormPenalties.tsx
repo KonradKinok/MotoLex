@@ -11,7 +11,7 @@ import { PENALTIES_MAX_DATE } from "./penaltiesDateRange";
 import { PENALTIES_MIN_DATE } from "./penaltiesDateRange";
 import styles from "./FormPenalties.module.scss";
 import { ButtonUniversal } from "../CustomControls/ButtonUniversal/ButtonUniversal";
-import { SearchCheck } from "lucide-react";
+import { Calculator } from "lucide-react";
 import { FieldsetCustom } from "../CustomControls/FieldsetCustom/FieldsetCustom";
 
 export interface FormPenaltiesProps {
@@ -120,8 +120,8 @@ export function FormPenalties({
             onChange={handleChange}
             layout="vertical"
           />
-          <ButtonUniversal type="submit" icon={<SearchCheck />} fullWidth>
-            Pokaż
+          <ButtonUniversal type="submit" icon={<Calculator />} fullWidth>
+            Oblicz
           </ButtonUniversal>
         </FieldsetCustom>
       </form>

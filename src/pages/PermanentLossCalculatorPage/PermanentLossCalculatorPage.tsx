@@ -1,13 +1,9 @@
-import { type SubmitEvent } from "react";
 import { FormPermamentLossCalculator } from "../../components/FormPermamentLossCalculator/FormPermamentLossCalculator";
 import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
 import { APPLICATION_NAME, ROUTES } from "../../config/routes";
 import styles from "./PermanentLossCalculatorPage.module.scss";
 
 function PermanentLossCalculatorPage() {
-  function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
-    event.preventDefault();
-  }
   return (
     <>
       <PageMetadata
@@ -16,19 +12,19 @@ function PermanentLossCalculatorPage() {
         path={ROUTES.permanentLossCalculator}
       />
       <section className={styles.permanentLossCalculatorPageMainContainer}>
-        <h1>Kalkulator trwalej utraty</h1>
+        <h1 className={styles.headerH1}>Kalkulator trwałej utraty</h1>
         <article>
           <p>Wzór:</p>
           <p>O = W x R + 2 x S + 0,5 x M</p>
           <p>Opis:</p>
           <ol className={styles.legalList}>
-            <li className={styles.legalListItem}>
-              O - łączna kwota opłaty będąca warunkiem wyrejestrowania pojazdu w
-              przypadku udokumentowanej trwałej i zupełnej utraty pojazdu bez
-              zmiany w zakresie prawa własności,
+            <li>
+              <b>O</b> - łączna kwota opłaty będąca warunkiem wyrejestrowania
+              pojazdu w przypadku udokumentowanej trwałej i zupełnej utraty
+              pojazdu bez zmiany w zakresie prawa własności,
             </li>
-            <li className={styles.legalListItem}>
-              W - współczynnik będący mnożnikiem opłaty za wydanie dowodu
+            <li>
+              <b>W</b> - współczynnik będący mnożnikiem opłaty za wydanie dowodu
               rejestracyjnego, uzależniony od rodzaju pojazdu i wynoszący:
               <ol className={styles.legalSublist}>
                 <li className={styles.legalSublistItem}>
@@ -47,23 +43,26 @@ function PermanentLossCalculatorPage() {
                 </li>
               </ol>
             </li>
-            <li className={styles.legalListItem}>
-              R - równowartość opłaty pobieranej za wydanie dowodu
+            <li>
+              <b>R</b> - równowartość opłaty pobieranej za wydanie dowodu
               rejestracyjnego pojazdu, określonej na podstawie odrębnych
               przepisów,
             </li>
-            <li className={styles.legalListItem}>
-              S - stawka opłaty za umieszczenie zużytego lub nienadającego się
-              do użytkowania pojazdu na składowisku odpadów, określona na
-              podstawie odrębnych przepisów,
+            <li>
+              <b>
+                S (jednostkowa stawka opłaty x masa własna pojazdu w kg/1000)
+              </b>{" "}
+              - stawka opłaty za umieszczenie zużytego lub nienadającego się do
+              użytkowania pojazdu na składowisku odpadów, określona na podstawie
+              odrębnych przepisów,
             </li>
-            <li className={styles.legalListItem}>
-              M - maksymalna stawka grzywny w postępowaniu mandatowym, określona
-              na podstawie odrębnych przepisów.
+            <li>
+              <b>M</b> - maksymalna stawka grzywny w postępowaniu mandatowym,
+              określona na podstawie odrębnych przepisów.
             </li>
           </ol>
         </article>
-        <FormPermamentLossCalculator handleSubmit={handleSubmit} />
+        <FormPermamentLossCalculator />
       </section>
     </>
   );

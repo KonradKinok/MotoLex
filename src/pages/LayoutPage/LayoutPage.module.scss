@@ -4,6 +4,26 @@
   flex-direction: column;
 }
 
+.tooltip:global(.react-tooltip) {
+  --rt-color-dark: var(--color-tooltip-background);
+  --rt-color-white: var(--color-tooltip-text);
+  --rt-color-success: var(--color-tooltip-success);
+  --rt-color-error: var(--color-tooltip-error);
+  --rt-color-warning: var(--color-tooltip-warning);
+  --rt-color-info: var(--color-tooltip-info);
+  --rt-opacity: 1;
+
+  z-index: 100;
+  max-width: min(22rem, calc(100vw - 2rem));
+  box-sizing: border-box;
+  border-radius: var(--radius-medium);
+  font-family: inherit;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
 .skipLink {
   position: absolute;
   top: 0.5rem;
@@ -112,6 +132,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .tooltip:global(.react-tooltip) {
+    --rt-transition-show-delay: 0s;
+    --rt-transition-closing-delay: 0s;
+  }
+
   .contentLayout {
     transition: none;
   }

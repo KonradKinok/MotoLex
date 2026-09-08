@@ -99,8 +99,28 @@ export function formatCurrency(
   return plnCurrencyFormatter.format(amount);
 }
 
+export function currencyFormater(value: string | number | null | undefined, maximumFractionDigits: number = 4): string {
+  const currencyFormatter = new Intl.NumberFormat("pl-PL", {
+    style: "currency",
+    currency: "PLN",
+    maximumFractionDigits: maximumFractionDigits, // Maksymalna liczba cyfr po przecinku
+  });
 
+  if (value === null || value === undefined) {
+    return currencyFormatter.format(0);
+  }
+
+  const num =
+    typeof value === "number" ? value : parseFloat(value.replace(",", "."));
+
+  if (isNaN(num)) {
+    return currencyFormatter.format(0);
+  }
+
+  return currencyFormatter.format(num);
+}
 
 export function formatDate(date: Date | null): string {
   return date?.toLocaleDateString("pl-PL", dateOptions) ?? "- - -";
 }
+
