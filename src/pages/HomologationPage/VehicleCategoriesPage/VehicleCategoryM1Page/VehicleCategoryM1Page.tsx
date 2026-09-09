@@ -1,9 +1,26 @@
+import { legalRegulationsTable } from "../../../../LegalRegulations/legalRegulationsTable";
+
 function VehicleCategoryM1Page() {
+  const regulations = legalRegulationsTable
+    .filter((record) => record.categories.includes("M1"))
+    .sort((a, b) => b.startDate.localeCompare(a.startDate));
   return (
-    <article>
-      <h1>Kategoria M1</h1>
-      <p>W tym miejscu znajdą się informacje o kategorii M1.</p>
-    </article>
+    <>
+      {regulations.map((record) => {
+        const Content = record.Content;
+
+        return (
+          <Content
+            key={record.id}
+            id={record.id}
+            title={record.title}
+            startDate={record.startDate}
+            endDate={record.endDate}
+            legalActs={record.legalActs}
+          />
+        );
+      })}
+    </>
   );
 }
 

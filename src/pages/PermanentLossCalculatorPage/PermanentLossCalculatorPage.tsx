@@ -1,8 +1,8 @@
-import { FormPermanentLossCalculator } from "../../components/ComponentPermamentLoss/FormPermanentLossCalculator/FormPermanentLossCalculator";
+import { FormPermanentLossCalculator } from "../../components/ComponentPermanentLoss/FormPermanentLossCalculator/FormPermanentLossCalculator";
 import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
 import { APPLICATION_NAME, ROUTES } from "../../config/routes";
 import styles from "./PermanentLossCalculatorPage.module.scss";
-import PermanentLossTheoryForCalculator from "../../components/ComponentPermamentLoss/PermanentLossTheoryForCalculator/PermanentLossTheoryForCalculator";
+import PermanentLossTheoryForCalculator from "../../components/ComponentPermanentLoss/PermanentLossTheoryForCalculator/PermanentLossTheoryForCalculator";
 
 function PermanentLossCalculatorPage() {
   return (

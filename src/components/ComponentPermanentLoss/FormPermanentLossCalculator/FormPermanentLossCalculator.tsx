@@ -250,7 +250,7 @@ export function FormPermanentLossCalculator() {
           </div>
         </FieldsetCustom>
         <FieldsetCustom legend="Obliczenia:">
-          <p>O = W x R + (2 x S x masa własna pojazdu w kg / 1000) + 0,5 x M</p>
+          <p>O = W x R + (2 x S x masa własna pojazdu w kg / 1000) + 0.5 x M</p>
           {(() => {
             // const displayedW = values?.W ?? "W";
             const displayedW = values?.W == null ? "W" : values?.W;
@@ -270,7 +270,7 @@ export function FormPermanentLossCalculator() {
               <>
                 <p>
                   O = {displayedW} x {displayedR} + (2 x {displayedS} x{" "}
-                  {displayedWeight} / 1000) + 0,5 x {displayedM}
+                  {displayedWeight} / 1000) + 0.5 x {displayedM}
                 </p>
                 <p role="status">O = {displayedO}</p>
               </>
