@@ -47,7 +47,7 @@ export const legalRegulationsTable = [
         references: [
           "Preambuła(10)",
           "art. 1 pkt 1",
-          "art.12 pkt 2",
+          "rozdział V art.12 pkt 2",
           "załącznik II część 2 pkt 2.4",
         ],
       },

@@ -1,51 +1,92 @@
-.article {
-
-  a {
-    color: #005ea8;
-    transition: color .75s cubic-bezier(.4, 0, .2, 1);
-
-    &:hover {
-      color: #0058ff;
-    }
-  }
-
+.articleMainContainer {
   --article-background: var(--color-surface);
-
+  display: flex;
+  flex-flow: column wrap;
+  gap: 1rem;
   margin-block: 2rem;
   padding: 0 1.5rem 1.5rem;
   border: 1px solid var(--color-border);
   border-radius: 0.5rem;
   background: var(--article-background);
 
-
-  .period {
+  .borderTopText {
     position: relative;
     top: -0.75em;
-
     width: fit-content;
     max-width: 100%;
     margin: 0;
     padding-inline: 0.5rem;
-
     background: var(--article-background);
     color: var(--color-text-muted);
     font-size: 0.875rem;
     line-height: 1.5;
   }
 
-  .content {
-    margin-top: 1rem;
-  }
-
-  .paragraph {
-    transition-property: color, transform;
-    transition: .75s cubic-bezier(.4, 0, .2, 1);
-
-    &:hover {
-      color: rgb(168, 168, 255); //black
-      color: #8fd3ff; //white
-      color: #0058ff;
+  .legislationActNameContainer {
+    .legislationActName {
+      margin: auto 1rem;
     }
   }
 
+  .legalProvisionsMainContainer {
+    .legalProvisionsContainer {
+      display: flex;
+      flex-flow: column wrap;
+      gap: 1rem;
+
+      .blockquoteHeader {
+        &:hover~.paragraph {
+          color: var(--color-link-text-hover);
+        }
+      }
+    }
+  }
+
+  .paragraph {
+    transition: color .75s cubic-bezier(.4, 0, .2, 1);
+    margin: 0 1rem;
+
+    &:hover {
+      color: var(--color-link-text-hover);
+    }
+  }
+
+  .table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin: 1rem auto;
+
+    .tableCell {
+      border: 1px solid var(--color-border);
+      padding: 0.5rem;
+      text-align: center;
+      overflow-wrap: anywhere;
+
+      &:hover {
+        border: 1px solid var(--color-link-text-hover);
+        color: var(--color-link-text-hover);
+      }
+    }
+  }
+
+  .link {
+    transition: color .75s cubic-bezier(.4, 0, .2, 1);
+    text-decoration-line: none;
+    color: var(--color-link);
+
+    &:hover {
+      color: var(--color-link-text-hover);
+    }
+  }
+
+  .footer {
+    .listFooter {
+      display: flex;
+      flex-flow: column wrap;
+      gap: 1rem;
+      font-size: .75rem;
+      margin: 0 1rem;
+    }
+  }
 }
