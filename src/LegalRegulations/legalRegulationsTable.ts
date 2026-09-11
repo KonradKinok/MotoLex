@@ -45,10 +45,10 @@ export const legalRegulationsTable = [
       {
         act: legalActsSourceLink.celex02021R0535,
         references: [
-          "Preambuła(10)",
-          "art. 1 pkt 1",
+          "rozdział I art. 1 pkt 1",
           "rozdział V art.12 pkt 2",
-          "załącznik II część 2 pkt 2.4",
+          "załącznik II część 2 sekcja A pkt 2",
+          "załącznik II część 2 sekcja C pkt 2",
         ],
       },
       {

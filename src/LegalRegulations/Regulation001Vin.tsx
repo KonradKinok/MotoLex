@@ -61,6 +61,16 @@ export default function Regulation001Vin({
   const CELEX_02021R0535 = legalActs.find(
     ({ act }) => act.celexNumber === "02021R0535",
   );
+
+  if (!CELEX_02021R0535) {
+    return (
+      <article id={id} aria-labelledby={titleId}>
+        <h2 id={titleId}>{title}</h2>
+        <p>Treść artykułu jest chwilowo niedostępna.</p>
+      </article>
+    );
+  }
+
   return (
     <article
       id={id}
@@ -85,38 +95,47 @@ export default function Regulation001Vin({
         <h3>
           Akt prawny: [CELEX:{" "}
           <a
-            href={CELEX_02021R0535?.act?.sourceUrl}
+            href={CELEX_02021R0535.act.sourceUrl}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.link}
           >
-            {CELEX_02021R0535?.act?.celexNumber}
+            {CELEX_02021R0535.act.celexNumber}
           </a>
           ]
         </h3>
-        <p>{CELEX_02021R0535?.act?.title}</p>
-        <p>[{CELEX_02021R0535?.references.join("; ")}]</p>
+        <div className={styles.legislationActTitleContainer}>
+          <p>{CELEX_02021R0535.act.title}</p>
+          <p>[{CELEX_02021R0535.references.join("; ")}]</p>
+        </div>
       </div>
 
       <div className={styles.legalProvisionsMainContainer}>
         <h3>Przepisy:</h3>
         <div className={styles.legalProvisionsContainer}>
-          <blockquote
-            cite={CELEX_02021R0535?.act?.sourceUrl}
-            className={styles.blockquoteTag}
-          >
-            <h4 className={styles.blockquoteHeader}>art.2 pkt 4:</h4>
+          <blockquote cite={CELEX_02021R0535.act.sourceUrl}>
+            <h4 className={styles.blockquoteHeader}>rozdział I art.1 pkt 1:</h4>
+            <p className={styles.paragraph}>
+              W niniejszym rozporządzeniu ustanawia się przepisy dotyczące
+              jednolitych procedur i specyfikacji technicznych w zakresie
+              homologacji typu UE pojazdów kategorii M, N i O oraz układów,
+              komponentów i oddzielnych zespołów technicznych zgodnie z art. 4
+              ust. 7, art. 8 ust. 3 oraz art. 10 ust. 3 rozporządzenia
+              Parlamentu Europejskiego i Rady (UE) 2019/2144.
+            </p>
+          </blockquote>
+          <blockquote cite={CELEX_02021R0535.act.sourceUrl}>
+            <h4 className={styles.blockquoteHeader}>rozdział I art.2 pkt 4:</h4>
             <p className={styles.paragraph}>
               "numer identyfikacyjny pojazdu" (VIN) oznacza alfanumeryczny kod
               przypisany pojazdowi przez producenta w celu zapewnienia właściwej
               identyfikacji każdego pojazdu;
             </p>
           </blockquote>
-          <blockquote
-            cite={CELEX_02021R0535?.act?.sourceUrl}
-            className={styles.blockquoteTag}
-          >
-            <h4 className={styles.blockquoteHeader}>art.12 pkt 2:</h4>
+          <blockquote cite={CELEX_02021R0535.act.sourceUrl}>
+            <h4 className={styles.blockquoteHeader}>
+              rozdział V art.12 pkt 2:
+            </h4>
             <p className={styles.paragraph}>
               Ze skutkiem od dnia 7 lipca 2026 r. organy krajowe odmawiają, z
               przyczyn związanych z cyfrą kontrolną numeru identyfikacyjnego
@@ -127,10 +146,7 @@ export default function Regulation001Vin({
               rozporządzenia (UE) 2019/2144.
             </p>
           </blockquote>
-          <blockquote
-            cite={CELEX_02021R0535?.act?.sourceUrl}
-            className={styles.blockquoteTag}
-          >
+          <blockquote cite={CELEX_02021R0535.act.sourceUrl}>
             <h4 className={styles.blockquoteHeader}>
               załącznik II część 2 sekcja A pkt 2. Numer identyfikacyjny pojazdu
               (VIN)
@@ -209,23 +225,23 @@ export default function Regulation001Vin({
               2.8. Wykorzystywanie liter "I", "O" lub "Q" jest zabronione.
             </p>
           </blockquote>
-          <blockquote
-            cite={CELEX_02021R0535?.act?.sourceUrl}
-            className={styles.blockquoteTag}
-          >
+          <blockquote cite={CELEX_02021R0535.act.sourceUrl}>
             <h4 className={styles.blockquoteHeader}>
-              załącznik II część 2 sekcja C: pkt 2. Cyfra kontrolna:
+              załącznik II część 2 sekcja C pkt 2. Cyfra kontrolna:
             </h4>
             <p className={styles.paragraph}>
               1. Cyfrę kontrolną określa się poprzez przeprowadzenie obliczeń
               matematycznych określonych w pkt 1.1-1.4.
             </p>
-            <p className={styles.paragraph}>
+            <p id={`${id}-vin-values-description`} className={styles.paragraph}>
               1.1. Do każdej liczby w VIN należy przypisać jej rzeczywistą
               wartość matematyczną, a do każdej litery przypisać określoną
               poniżej wartość:
             </p>
-            <table className={`${styles.table} ${styles.paragraph}`}>
+            <table
+              aria-labelledby={`${id}-vin-values-description`}
+              className={`${styles.table} ${styles.paragraph}`}
+            >
               <tbody>
                 {assignValueVinTable.map((row, index) => {
                   return (
@@ -245,11 +261,17 @@ export default function Regulation001Vin({
                 })}
               </tbody>
             </table>
-            <p className={styles.paragraph}>
+            <p
+              id={`${id}-vin-weights-description`}
+              className={styles.paragraph}
+            >
               1.2. Należy pomnożyć przypisaną wartość dla każdego znaku w VIN
               przez wagę pozycji określoną poniżej:
             </p>
-            <table className={`${styles.table} ${styles.paragraph}`}>
+            <table
+              aria-labelledby={`${id}-vin-weights-description`}
+              className={`${styles.table} ${styles.paragraph}`}
+            >
               <tbody>
                 {itemWeightVinTable.map((row, index) => {
                   return (
@@ -272,18 +294,25 @@ export default function Regulation001Vin({
             <p className={styles.paragraph}>
               1.3. Należy dodać otrzymane iloczyny i podzielić sumę przez 11.
             </p>
-            <p className={styles.paragraph}>
+            <p
+              id={`${id}-vin-check-digit-description`}
+              className={styles.paragraph}
+            >
               1.4. Cyfra kontrolna (cyfra od 0 do 9 lub litera X) wynika z
               reszty ułamkowej albo z równoważności dziesiętnej reszty
               (zaokrąglonej do najbliższej części tysięcznej), zgodnie z
               poniższą tabelą.
             </p>
-            <table className={`${styles.table} ${styles.paragraph}`}>
-              <tbody>
+            <table
+              aria-labelledby={`${id}-vin-check-digit-description`}
+              className={`${styles.table} ${styles.paragraph}`}
+            >
+              <thead>
                 <tr key={`-1-row-th-1.4`}>
                   {checkDigitVinTable.header.map((cell, index) => {
                     return (
                       <th
+                        scope="col"
                         key={`${index}-cell-th-1.4`}
                         className={styles.tableCell}
                       >
@@ -292,6 +321,8 @@ export default function Regulation001Vin({
                     );
                   })}
                 </tr>
+              </thead>
+              <tbody>
                 {checkDigitVinTable.table.map((row, index) => {
                   return (
                     <tr key={`${index}-row-td-1.4`}>
@@ -335,7 +366,7 @@ export default function Regulation001Vin({
           {legalActs.map(({ act, references }) => (
             <li key={act.celexNumber}>
               <p>{act.title}</p>
-              <p>{references.join("; ")}</p>
+              <p>[{references.join("; ")}]</p>
               <p>
                 EUR-Lex{" "}
                 <a
