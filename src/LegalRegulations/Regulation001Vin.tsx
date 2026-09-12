@@ -1,11 +1,14 @@
-import type { RegulationProps } from "./legalRegulationsTable";
+import { useRef } from "react";
+import { ButtonClipboard } from "../components/CustomControls/ButtonClipboard/ButtonClipboard";
+import type { LegalRegulationTable } from "./legalRegulationsTable";
 import styles from "./RegulationsStyle.module.scss";
+import { useToggle } from "../hooks/useToggle";
+import { ButtonExpand } from "../components/CustomControls/ButtonExpand/ButtonExpand";
 
 function formatDate(date: string) {
   // Daty z tabeli mają format YYYY-MM-DD.
   return date.split("-").reverse().join(".");
 }
-
 //Tablica: załącznik II część 2 sekcja C: pkt 2. Cyfra kontrolna: art.1.1
 const assignValueVinTable = [
   ["A = 1", "J = 1", "S = 2"],
@@ -53,15 +56,20 @@ const checkDigitVinTable = {
 export default function Regulation001Vin({
   id,
   title,
+  shortContent,
   startDate,
   endDate,
   legalActs,
-}: RegulationProps) {
+}: LegalRegulationTable) {
+  const articleRef = useRef<HTMLElement>(null);
+  const { value: isExpandedArticle, toggle: toggleExpandArticle } = useToggle();
+
   const titleId = `${id}-title`;
+  const contentId = `${id}-full-content`;
+
   const CELEX_02021R0535 = legalActs.find(
     ({ act }) => act.celexNumber === "02021R0535",
   );
-
   if (!CELEX_02021R0535) {
     return (
       <article id={id} aria-labelledby={titleId}>
@@ -73,6 +81,7 @@ export default function Regulation001Vin({
 
   return (
     <article
+      ref={articleRef}
       id={id}
       aria-labelledby={titleId}
       className={styles.articleMainContainer}
@@ -88,7 +97,17 @@ export default function Regulation001Vin({
             </>
           )}
         </p>
+        <div className={styles.copyButtonPosition}>
+          <ButtonClipboard articleRef={articleRef} />
+          <ButtonExpand
+            isExpanded={isExpandedArticle}
+            contentId={titleId}
+            toggle={toggleExpandArticle}
+          />
+        </div>
+
         <h2 id={titleId}>{title}</h2>
+        <p className={styles.paragraph}>{shortContent}</p>
       </header>
 
       <div className={styles.legislationActNameContainer}>
@@ -104,9 +123,11 @@ export default function Regulation001Vin({
           </a>
           ]
         </h3>
-        <div className={styles.legislationActTitleContainer}>
-          <p>{CELEX_02021R0535.act.title}</p>
-          <p>[{CELEX_02021R0535.references.join("; ")}]</p>
+        <div>
+          <p className={styles.paragraph}>{CELEX_02021R0535.act.title}</p>
+          <p className={styles.paragraph}>
+            [{CELEX_02021R0535.references.join("; ")}]
+          </p>
         </div>
       </div>
 
@@ -359,9 +380,9 @@ export default function Regulation001Vin({
           </p>
         </div>
       </div>
+
       <footer className={styles.footer}>
         <h3>Podstawa prawna:</h3>
-
         <ul className={styles.listFooter}>
           {legalActs.map(({ act, references }) => (
             <li key={act.celexNumber}>

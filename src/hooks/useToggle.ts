@@ -9,3 +9,11 @@ export const useToggle = (initialState = false) => {
   const toggle = () => setIsValue((prev) => !prev);
   return { value, enable, disable, toggle };
 };
+
+//Example:
+// const {
+//   value: isExpandedArticle,
+//   enable: expandArticle,
+//   disable: collpseArticle,
+//   toggle: toggleExpand,
+// } = useToggle();

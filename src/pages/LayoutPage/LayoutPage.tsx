@@ -1,19 +1,20 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router";
+import { Tooltip } from "react-tooltip";
+import { Toaster } from "react-hot-toast";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { useToggle } from "../../hooks/useToggle";
+import { Loader } from "../../components/Loader/Loader";
+import { Breadcrumbs } from "../../components/Breadcrumbs/Breadcrumbs";
+import { ButtonUp } from "../../components/CustomControls/ButtonUp/ButtonUp";
 import { Logo } from "../../components/Logo/Logo";
 import { ThemeSelector } from "../../components/ThemeSelector/ThemeSelector";
 import { NavigationTop } from "../../components/NavigationTop/NavigationTop";
 import { ButtonMobileMenu } from "../../components/ButtonMobileMenu/ButtonMobileMenu";
 import { NavigationSide } from "../../components/NavigationSide/NavigationSide";
-import { Breadcrumbs } from "../../components/Breadcrumbs/Breadcrumbs";
 import { Advertisement } from "../../components/Advertisement/Advertisement";
 import { Footer } from "../../components/Footer/Footer";
-import { Loader } from "../../components/Loader/Loader";
 import styles from "./LayoutPage.module.scss";
-import { ButtonUp } from "../../components/CustomControls/ButtonUp/ButtonUp";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { Tooltip } from "react-tooltip";
 
 export function LayoutPage() {
   //Mobile menu state
@@ -86,6 +87,38 @@ export function LayoutPage() {
         id="app-tooltip"
         className={styles.tooltip}
         border="1px solid var(--color-border)"
+      />
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+        toastOptions={{
+          style: {
+            background: "var(--color-surface)",
+            color: "var(--color-text)",
+            border: "1px solid var(--color-border)",
+          },
+          success: {
+            duration: 4000,
+            iconTheme: {
+              primary: "var(--color-success)",
+              secondary: "var(--color-surface)",
+            },
+          },
+          error: {
+            duration: 6000,
+            iconTheme: {
+              primary: "var(--color-error)",
+              secondary: "var(--color-surface)",
+            },
+          },
+          loading: {
+            duration: Infinity,
+            iconTheme: {
+              primary: "var(--color-link)",
+              secondary: "var(--color-border)",
+            },
+          },
+        }}
       />
     </div>
   );

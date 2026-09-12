@@ -1,17 +1,38 @@
+import type { ComponentType } from "react";
 import Regulation001Vin from "./Regulation001Vin"
 
-export type RegulationProps = {
+
+export type VehicleCategory =
+  | "M1"
+  | "M2"
+  | "M3"
+  | "N1"
+  | "N2"
+  | "N3"
+  | "O1"
+  | "O2"
+  | "O3"
+  | "O4";
+
+export type LegalActSource = {
+  celexNumber: string;
+  title: string;
+  sourceUrl: string;
+  lexUrl: string;
+};
+
+export type LegalRegulationTable = {
   id: string;
   title: string;
+  shortTitle: string;
+  shortContent: string;
   startDate: string;
   endDate: string | null;
+  keywords: string[];
+  categories: [VehicleCategory, ...VehicleCategory[]];
+  Content: ComponentType<LegalRegulationTable>;
   legalActs: {
-    act: {
-      celexNumber: string;
-      title: string;
-      sourceUrl: string;
-      lexUrl: string;
-    };
+    act: LegalActSource;
     references: string[];
   }[];
 };
@@ -29,13 +50,14 @@ export const legalActsSourceLink = {
     sourceUrl: "http://data.europa.eu/eli/reg_impl/2015/504/",
     lexUrl: "https://sip.lex.pl/#/act/68511210/",
   }
-}
+} satisfies Record<string, LegalActSource>;
 
-export const legalRegulationsTable = [
+export const legalRegulationsTable: LegalRegulationTable[] = [
   {
     id: "zdarzenie-001",
     title: "VIN dla nowych pojazdów rejestrowanych od 07.07.2026 roku",
     shortTitle: "VIN suma kontrolna",
+    shortContent: "Od 07.07.2026 r. organy krajowe mają odmawiać rejestracji nowych pojazdów kategorii M, N i O, jeżeli ich numer VIN nie zawiera prawidłowo obliczonej cyfry kontrolnej. VIN musi być niepowtarzalny, składać się z części WMI, VDS i VIS oraz cyfry kontrolnej, przy czym nie wolno w nim stosować liter I, O i Q",
     startDate: "2026-07-07",
     endDate: null,
     keywords: ["VIN", "cyfra kontrolna", "numer identyfikacyjny pojazdu"],

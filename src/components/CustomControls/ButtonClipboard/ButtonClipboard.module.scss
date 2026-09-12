@@ -1,0 +1,21 @@
+.clipboardButtonContainer {
+  position: relative;
+
+  .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.75rem;
+    border: none;
+    background: transparent;
+
+    >svg {
+      transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    &:hover>svg,
+    &:focus-visible>svg {
+      transform: scale(1.15);
+    }
+  }
+}
