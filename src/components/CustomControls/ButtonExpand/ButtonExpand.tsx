@@ -16,7 +16,7 @@ export function ButtonExpand({
     <div
       className={styles.expandButtonContainer}
       data-tooltip-id="app-tooltip"
-      data-tooltip-content={isExpanded ? "Rozwiń" : "Zwiń"}
+      data-tooltip-content={isExpanded ? "Zwiń" : "Rozwiń"}
       data-tooltip-variant="info"
     >
       <button
@@ -28,9 +28,9 @@ export function ButtonExpand({
         className={styles.icon}
       >
         {isExpanded ? (
-          <ListChevronsUpDown aria-hidden="true" />
-        ) : (
           <ListChevronsDownUp aria-hidden="true" />
+        ) : (
+          <ListChevronsUpDown aria-hidden="true" />
         )}
       </button>
     </div>
