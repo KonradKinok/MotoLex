@@ -1,8 +1,19 @@
 import type { ComponentType } from "react";
-import Regulation001Vin from "./Regulation001Vin"
+import Regulation001Vin from "./Regulation001Vin";
 import Regulation002Vin from "./Regulation002Vin";
-import { legalActsSourceLink, type LegalActSource, } from "./legalActsSourceLink";
-import { type VehicleCategory, category_M, category_N, category_O, category_T, category_C, category_R, } from "./vehicleCategoriesTheory";
+import {
+  legalActsSourceLink,
+  type LegalActSource,
+} from "./legalActsSourceLink";
+import {
+  type VehicleCategory,
+  category_M,
+  category_N,
+  category_O,
+  category_T,
+  category_C,
+  category_R,
+} from "./vehicleCategoriesTheory";
 
 export type LegalRegulationTable = {
   id: string;
@@ -12,7 +23,7 @@ export type LegalRegulationTable = {
   startDate: string;
   endDate: string | null;
   keywords: string[];
-  categories: [VehicleCategory, ...VehicleCategory[]];
+  categories: readonly VehicleCategory[];
   Content: ComponentType<LegalRegulationTable>;
   legalActs: {
     act: LegalActSource;
@@ -25,11 +36,15 @@ export const legalRegulationsTable: LegalRegulationTable[] = [
     id: "zdarzenie-001",
     title: "VIN dla nowych pojazdów (kat. M, N, O) rejestrowanych od 07.07.2026 roku",
     shortTitle: "VIN suma kontrolna",
-    shortContent: "Od 07.07.2026 r. organy krajowe mają odmawiać rejestracji nowych pojazdów kategorii M, N i O, jeżeli ich numer VIN nie zawiera prawidłowo obliczonej cyfry kontrolnej. VIN musi być niepowtarzalny, składać się z części WMI, VDS i VIS oraz cyfry kontrolnej, przy czym nie wolno w nim stosować liter I, O i Q",
+    shortContent: "Od 07.07.2026 r. organy krajowe odmawiają rejestracji nowych pojazdów kategorii M, N i O, jeżeli ich numer VIN nie zawiera prawidłowo obliczonej cyfry kontrolnej. VIN musi być niepowtarzalny, składać się z części WMI, VDS i VIS oraz cyfry kontrolnej, przy czym nie wolno w nim stosować liter I, O i Q",
     startDate: "2026-07-07",
     endDate: null,
     keywords: ["VIN", "cyfra kontrolna", "numer identyfikacyjny pojazdu"],
-    categories: [...category_M, ...category_N, ...category_O],
+    categories: [
+      ...category_M.map(({ name }) => name),
+      ...category_N.map(({ name }) => name),
+      ...category_O.map(({ name }) => name),
+    ],
     Content: Regulation001Vin,
     legalActs: [
       {
@@ -58,7 +73,13 @@ export const legalRegulationsTable: LegalRegulationTable[] = [
     startDate: "2016-01-01",
     endDate: null,
     keywords: ["VIN", "PIN", "numer identyfikacyjny pojazdu"],
-    categories: ["M1", "M2", ...category_T, ...category_C, ...category_R],
+    categories: [
+      "M1",
+      "M2",
+      ...category_T.map(({ name }) => name),
+      ...category_C.map(({ name }) => name),
+      ...category_R.map(({ name }) => name),
+    ],
     Content: Regulation002Vin,
     legalActs: [
       {

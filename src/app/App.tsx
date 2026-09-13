@@ -28,21 +28,6 @@ const VehicleCategoriesPage = lazy(
     import("../pages/HomologationPage/VehicleCategoriesPage/VehicleCategoriesPage"),
 );
 
-const VehicleCategoryM1Page = lazy(
-  () =>
-    import("../pages/HomologationPage/VehicleCategoriesPage/VehicleCategoryM1Page/VehicleCategoryM1Page"),
-);
-
-const VehicleCategoryM2Page = lazy(
-  () =>
-    import("../pages/HomologationPage/VehicleCategoriesPage/VehicleCategoryM2Page/VehicleCategoryM2Page"),
-);
-
-const VehicleCategoryM3Page = lazy(
-  () =>
-    import("../pages/HomologationPage/VehicleCategoriesPage/VehicleCategoryM3Page/VehicleCategoryM3Page"),
-);
-
 //CalculatorPage
 const CalculatorPage = lazy(
   () => import("../pages/CalculatorPage/CalculatorPage"),
@@ -80,14 +65,13 @@ function App() {
           <Route index element={<EmployeeZonePage />} />
           <Route path="homologacja">
             <Route index element={<HomologationPage />} />
-            <Route
-              path="kategorie-pojazdow"
-              element={<VehicleCategoriesPage />}
-            >
-              <Route index element={<p>Wybierz kategorię pojazdu.</p>} />
-              <Route path="m1" element={<VehicleCategoryM1Page />} />
-              <Route path="m2" element={<VehicleCategoryM2Page />} />
-              <Route path="m3" element={<VehicleCategoryM3Page />} />
+            <Route path="kategorie-pojazdow">
+              <Route index element={<VehicleCategoriesPage />} />
+              <Route path=":group" element={<VehicleCategoriesPage />} />
+              <Route
+                path=":group/:category"
+                element={<VehicleCategoriesPage />}
+              />
             </Route>
           </Route>
         </Route>

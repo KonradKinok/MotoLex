@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { ROUTES } from "./routes";
-
+import { vehicleCategoryGroups } from "../LegalRegulations/vehicleCategoriesTheory";
 export type NavigationItem = {
   label: string;
   to: string;
@@ -20,23 +20,17 @@ export type NavigationItem = {
   children?: NavigationItem[];
 };
 
-const homologationVehicleCategoriesItems: NavigationItem[] = [
-  {
-    label: "M1",
-    to: ROUTES.vehicleCategoryM1,
-    icon: Car,
-  },
-  {
-    label: "M2",
-    to: ROUTES.vehicleCategoryM2,
-    icon: Car,
-  },
-  {
-    label: "M3",
-    to: ROUTES.vehicleCategoryM3,
-    icon: Car,
-  },
-];
+const homologationVehicleCategoriesItems: NavigationItem[] =
+  vehicleCategoryGroups.map((group) => ({
+    label: group.name,
+    to: `${ROUTES.vehicleCategories}/${group.name.toLowerCase()}`,
+    icon: group.icon,
+    children: group.categories.map((category) => ({
+      label: category.name,
+      to: `${ROUTES.vehicleCategories}/${group.name.toLowerCase()}/${category.name.toLowerCase()}`,
+      icon: category.icon,
+    })),
+  }));
 
 
 
