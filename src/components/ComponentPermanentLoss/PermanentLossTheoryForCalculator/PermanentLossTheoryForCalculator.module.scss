@@ -1,5 +1,22 @@
 .permanentLossTheoryForCalculatorContainer {
   margin: 1rem auto;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+  color: var(--color-text);
+  background: var(--color-surface);
+  box-shadow: 0 0.125rem 0.5rem color-mix(in srgb, var(--color-text) 14%, transparent);
+  margin: 1rem auto;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   .legalList {
     list-style: decimal inside;

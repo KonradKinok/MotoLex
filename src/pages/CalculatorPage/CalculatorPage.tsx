@@ -6,7 +6,7 @@ import styles from "./CalculatorPage.module.scss";
 
 function CalculatorPage() {
   return (
-    <article className={styles.calculatorPageMainContainer}>
+    <section className={styles.calculatorPageMainContainer}>
       <h1>Kalkulatory</h1>
 
       <div className={styles.calculatorLinks}>
@@ -40,7 +40,7 @@ function CalculatorPage() {
           />
         </Link>
       </div>
-    </article>
+    </section>
   );
 }
 

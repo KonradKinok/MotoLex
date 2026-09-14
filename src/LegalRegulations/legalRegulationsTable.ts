@@ -57,12 +57,6 @@ export const legalRegulationsTable: LegalRegulationTable[] = [
           "załącznik II część 2 sekcja C pkt 2",
         ],
       },
-      {
-        act: legalActsSourceLink.celex02015R0504,
-        references: [
-          "załącznik IV sekcja 3",
-        ],
-      },
     ],
   },
   {
@@ -74,8 +68,6 @@ export const legalRegulationsTable: LegalRegulationTable[] = [
     endDate: null,
     keywords: ["VIN", "PIN", "numer identyfikacyjny pojazdu"],
     categories: [
-      "M1",
-      "M2",
       ...category_T.map(({ name }) => name),
       ...category_C.map(({ name }) => name),
       ...category_R.map(({ name }) => name),
