@@ -21,7 +21,7 @@ export function PageMetadata({
 
       <meta name="description" content={description} />
 
-      <link rel="canonical" href={canonicalUrl} />
+      {!noIndex && <link rel="canonical" href={canonicalUrl} />}
 
       {noIndex && <meta name="robots" content="noindex" />}
     </>

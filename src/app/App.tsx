@@ -28,6 +28,10 @@ const VehicleCategoriesPage = lazy(
     import("../pages/HomologationPage/VehicleCategoriesPage/VehicleCategoriesPage"),
 );
 
+const LegalRegulationsPage = lazy(
+  () => import("../pages/LegalRegulationsPage/LegalRegulationsPage"),
+);
+
 //CalculatorPage
 const CalculatorPage = lazy(
   () => import("../pages/CalculatorPage/CalculatorPage"),
@@ -47,9 +51,7 @@ const PermanentLossCalculatorPage = lazy(
 const PenaltiesPage = lazy(
   () => import("../pages/PenaltiesPage/PenaltiesPage"),
 );
-const LegalRegulationsPage = lazy(
-  () => import("../pages/LegalRegulationsPage/LegalRegulationsPage"),
-);
+
 const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
 
 function App() {
@@ -69,6 +71,7 @@ function App() {
               <Route index element={<VehicleCategoriesPage />} />
               <Route path=":group" element={<VehicleCategoriesPage />} />
             </Route>
+            <Route path="przepisy-prawne" element={<LegalRegulationsPage />} />
           </Route>
         </Route>
         <Route path={ROUTES.calculator}>
@@ -81,7 +84,7 @@ function App() {
           />
         </Route>
         <Route path="kary" element={<PenaltiesPage />} />
-        <Route path="przepisy-prawne" element={<LegalRegulationsPage />} />
+
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

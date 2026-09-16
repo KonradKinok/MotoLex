@@ -1,15 +1,15 @@
 import { NavLink } from "react-router";
 import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
-import { ROUTES } from "../../config/routes";
+import { ROUTES, APPLICATION_NAME } from "../../config/routes";
 import styles from "./HomePage.module.scss";
 
 function HomePage() {
   return (
     <>
       <PageMetadata
-        title="Rejestracja pojazdów krok po kroku | PojazdLex"
+        title={`Rejestracja pojazdów krok po kroku | ${APPLICATION_NAME}`}
         description="Sprawdź wymagane dokumenty, opłaty, terminy i zasady dotyczące rejestracji oraz innych spraw związanych z pojazdami."
-        path="/"
+        path={ROUTES.home}
       />
       <div className={styles.contentPage}>
         <p className={styles.eyebrow}>Informacje dotyczące pojazdów</p>

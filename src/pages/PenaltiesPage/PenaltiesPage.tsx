@@ -1,4 +1,5 @@
 import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
+import { APPLICATION_NAME, ROUTES } from "../../config/routes";
 
 function PenaltiesPage() {
   // const tablica = obiektDoKary["rejestracja"]["osobaPrawna"];
@@ -6,9 +7,9 @@ function PenaltiesPage() {
   return (
     <>
       <PageMetadata
-        title="Terminy i kary dotyczące pojazdów | PojazdLex"
+        title={`Terminy i kary dotyczące pojazdów | ${APPLICATION_NAME}`}
         description="Sprawdź terminy ustawowe i kary administracyjne związane z rejestracją, nabyciem i zbyciem pojazdu."
-        path="/kary"
+        path={ROUTES.penalties}
       />
       <article>
         <h1>Terminy i kary</h1>

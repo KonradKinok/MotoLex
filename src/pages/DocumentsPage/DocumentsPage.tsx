@@ -1,12 +1,12 @@
 import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
-
+import { ROUTES, APPLICATION_NAME } from "../../config/routes";
 function DocumentsPage() {
   return (
     <>
       <PageMetadata
-        title="Jak sprawdzić dokumenty pojazdu? | PojazdLex"
+        title={`Jak sprawdzić dokumenty pojazdu? | ${APPLICATION_NAME}`}
         description="Dowiedz się, jakie dokumenty pojazdu należy sprawdzić przed zakupem lub sprzedażą samochodu."
-        path="/dla-wlascicieli/dokumenty"
+        path={ROUTES.documents}
       />
       <article>
         <h1>Sprawdź dokumenty</h1>

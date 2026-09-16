@@ -1,8 +1,9 @@
 import { Suspense } from "react";
 import { NavLink, useParams } from "react-router";
 import { Loader } from "../../../components/Loader/Loader";
-import { ROUTES } from "../../../config/routes";
+import { ROUTES, APPLICATION_NAME } from "../../../config/routes";
 import { legalRegulationsTable } from "../../../LegalRegulations/legalRegulationsTable";
+import { PageMetadata } from "../../../components/PageMetaData/PageMetaData";
 import {
   vehicleCategoryGroups,
   type VehicleCategory,
@@ -55,57 +56,79 @@ function VehicleCategoriesPage() {
   const canShowRegulations = !groupDoesNotExist;
 
   return (
-    <section className={styles.page}>
-      <h1>
-        {selectedGroup
-          ? `Kategoria pojazdów ${selectedGroup.name}`
-          : "Wszystkie kategorie pojazdów"}
-      </h1>
+    <>
+      <PageMetadata
+        title={`${groupDoesNotExist ? "Nie znaleziono kategorii pojazdów" : selectedGroup ? `Kategoria pojazdów ${selectedGroup.name}` : "Kategorie pojazdów"} | ${APPLICATION_NAME}`}
+        description={
+          groupDoesNotExist
+            ? "Podany adres nie odpowiada istniejącej grupie kategorii pojazdów."
+            : selectedGroup
+              ? `Poznaj kategorię pojazdów ${selectedGroup.name} i przypisane do niej przepisy. Sprawdź wymagania dotyczące homologacji i rejestracji oraz daty obowiązywania regulacji.`
+              : "Poznaj kategorie pojazdów i przypisane do nich przepisy. Sprawdź wymagania dotyczące homologacji i rejestracji oraz daty obowiązywania regulacji."
+        }
+        path={
+          selectedGroup
+            ? getVehicleCategoryGroupUrl(selectedGroup)
+            : ROUTES.vehicleCategories
+        }
+        noIndex={groupDoesNotExist}
+      />
+      <section className={styles.page}>
+        <h1>
+          {selectedGroup
+            ? `Kategoria pojazdów ${selectedGroup.name}`
+            : "Wszystkie kategorie pojazdów"}
+        </h1>
 
-      <nav aria-label="Grupy kategorii pojazdów">
-        <ul className={styles.navigation}>
-          <li>
-            <NavLink to={ROUTES.vehicleCategories} end className={styles.link}>
-              Wszystkie
-            </NavLink>
-          </li>
-
-          {vehicleCategoryGroups.map((group) => (
-            <li key={group.name}>
+        <nav aria-label="Grupy kategorii pojazdów">
+          <ul className={styles.navigation}>
+            <li>
               <NavLink
-                to={getVehicleCategoryGroupUrl(group)}
+                to={ROUTES.vehicleCategories}
                 end
                 className={styles.link}
               >
-                {group.name}
+                Wszystkie
               </NavLink>
             </li>
-          ))}
-        </ul>
-      </nav>
 
-      {selectedGroup?.description && <p>{selectedGroup.description}</p>}
+            {vehicleCategoryGroups.map((group) => (
+              <li key={group.name}>
+                <NavLink
+                  to={getVehicleCategoryGroupUrl(group)}
+                  end
+                  className={styles.link}
+                >
+                  {group.name}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-      {groupDoesNotExist && (
-        <p role="alert">Nie istnieje grupa kategorii "{groupFromUrl}".</p>
-      )}
+        {selectedGroup?.description && <p>{selectedGroup.description}</p>}
 
-      {canShowRegulations && regulations.length === 0 && (
-        <p>Obecnie nie ma przepisów do wyświetlenia.</p>
-      )}
+        {groupDoesNotExist && (
+          <p role="alert">Nie istnieje grupa kategorii "{groupFromUrl}".</p>
+        )}
 
-      {canShowRegulations && regulations.length > 0 && (
-        <Suspense fallback={<Loader />}>
-          <div className={styles.regulations}>
-            {regulations.map((record) => {
-              const Content = record.Content;
+        {canShowRegulations && regulations.length === 0 && (
+          <p>Obecnie nie ma przepisów do wyświetlenia.</p>
+        )}
 
-              return <Content key={record.id} {...record} />;
-            })}
-          </div>
-        </Suspense>
-      )}
-    </section>
+        {canShowRegulations && regulations.length > 0 && (
+          <Suspense fallback={<Loader />}>
+            <div className={styles.regulations}>
+              {regulations.map((record) => {
+                const Content = record.Content;
+
+                return <Content key={record.id} {...record} />;
+              })}
+            </div>
+          </Suspense>
+        )}
+      </section>
+    </>
   );
 }
 

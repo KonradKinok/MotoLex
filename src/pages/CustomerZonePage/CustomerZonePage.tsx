@@ -1,12 +1,13 @@
 import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
+import { ROUTES, APPLICATION_NAME } from "../../config/routes";
 
 function CustomerZonePage() {
   return (
     <>
       <PageMetadata
-        title="Sprawy właścicieli pojazdów | PojazdLex"
+        title={`Sprawy właścicieli pojazdów | ${APPLICATION_NAME}`}
         description="Informacje dla właścicieli pojazdów dotyczące dokumentów, rejestracji, opłat, terminów, wniosków i umów."
-        path="/dla-wlascicieli"
+        path={ROUTES.vehicleOwners}
       />
       <article>
         <h1>Załatw sprawę</h1>

@@ -8,6 +8,7 @@ export const ROUTES = {
   employees: "/dla-pracownikow",
   homologation: "/dla-pracownikow/homologacja",
   vehicleCategories: "/dla-pracownikow/homologacja/kategorie-pojazdow",
+  legalRegulations: "/dla-pracownikow/homologacja/przepisy-prawne",
 
   calculator: "/kalkulator",
   penaltiesCalculator: "/kalkulator/kary",
@@ -15,7 +16,7 @@ export const ROUTES = {
   permanentLossCalculator: "/kalkulator/trwala-utrata",
 
   penalties: "/kary",
-  legalRegulations: "/przepisy-prawne",
+
 } as const;
 
 export const PUBLIC_ROUTES = Object.values(ROUTES);
