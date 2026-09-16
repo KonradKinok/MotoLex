@@ -7,12 +7,11 @@ import {
   FileX,
   ScanLine,
   Users,
-  // Van,
-  // Caravan,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { ROUTES } from "./routes";
 import { vehicleCategoryGroups } from "../LegalRegulations/vehicleCategoriesTheory";
+
 export type NavigationItem = {
   label: string;
   to: string;
@@ -20,20 +19,13 @@ export type NavigationItem = {
   children?: NavigationItem[];
 };
 
+
 const homologationVehicleCategoriesItems: NavigationItem[] =
   vehicleCategoryGroups.map((group) => ({
     label: group.name,
     to: `${ROUTES.vehicleCategories}/${group.name.toLowerCase()}`,
     icon: group.icon,
-    children: group.categories.map((category) => ({
-      label: category.name,
-      to: `${ROUTES.vehicleCategories}/${group.name.toLowerCase()}/${category.name.toLowerCase()}`,
-      icon: category.icon,
-    })),
   }));
-
-
-
 
 const homologationVehicleCategories: NavigationItem[] = [
   {
@@ -79,6 +71,7 @@ const calculatorItems: NavigationItem[] = [
   },
 ];
 
+//Dane do Menu
 export const navigationItems: NavigationItem[] = [
   {
     label: "Dla właścicieli pojazdów",

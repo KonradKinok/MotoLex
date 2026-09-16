@@ -1,5 +1,6 @@
 import { NavLink } from "react-router";
 import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
+import { ROUTES } from "../../config/routes";
 import styles from "./HomePage.module.scss";
 
 function HomePage() {
@@ -19,12 +20,12 @@ function HomePage() {
         </p>
 
         <div className={styles.zoneLinks}>
-          <NavLink className={styles.zoneLink} to="/zalatw-sprawe">
+          <NavLink className={styles.zoneLink} to={ROUTES.vehicleOwners}>
             <h2>Chcę załatwić sprawę</h2>
             <p>Dokumenty, formularze, terminy i informacje o karach.</p>
           </NavLink>
 
-          <NavLink className={styles.zoneLink} to="/dla-pracownikow">
+          <NavLink className={styles.zoneLink} to={ROUTES.employees}>
             <h2>Baza wiedzy dla pracowników</h2>
             <p>Materiały specjalistyczne dla wydziałów komunikacji.</p>
           </NavLink>

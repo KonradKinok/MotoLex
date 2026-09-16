@@ -68,10 +68,6 @@ function App() {
             <Route path="kategorie-pojazdow">
               <Route index element={<VehicleCategoriesPage />} />
               <Route path=":group" element={<VehicleCategoriesPage />} />
-              <Route
-                path=":group/:category"
-                element={<VehicleCategoriesPage />}
-              />
             </Route>
           </Route>
         </Route>
