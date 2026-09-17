@@ -15,7 +15,7 @@ function CalculatorPage() {
         path={ROUTES.calculator}
       />
       <section className={styles.calculatorPageMainContainer}>
-        <h1>Kalkulatory</h1>
+        <h1 className={styles.headerH1}>Kalkulatory:</h1>
 
         <div className={styles.calculatorLinks}>
           <Link to="kary" className={styles.calculatorLink}>
