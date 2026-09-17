@@ -1,9 +1,16 @@
-import { NavLink } from "react-router";
+import { Link } from "react-router";
 import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
 import { ROUTES, APPLICATION_NAME } from "../../config/routes";
+import VehicleOwnersImg from "../../assets/images/home/VehicleOwnersVertical.jpg";
+import EmployeesImg from "../../assets/images/home/EmployeesVertical.jpg";
+import CalculatorImg from "../../assets/images/home/CalculatorVertical.jpg";
 import styles from "./HomePage.module.scss";
 
 function HomePage() {
+  const vehicleOwnersTooltip = "Dla właścicieli pojazdów";
+  const employeesTooltip = "Dla pracowników Wydziałów Komunikacji";
+  const calculatorTooltip = "Kalkulatory";
+
   return (
     <>
       <PageMetadata
@@ -11,26 +18,58 @@ function HomePage() {
         description="Sprawdź wymagane dokumenty, opłaty, terminy i zasady dotyczące rejestracji oraz innych spraw związanych z pojazdami."
         path={ROUTES.home}
       />
-      <div className={styles.contentPage}>
-        <p className={styles.eyebrow}>Informacje dotyczące pojazdów</p>
-        <h1>Rejestracja pojazdów krok po kroku</h1>
-        <p>
-          Sprawdź wymagane dokumenty, terminy, opłaty oraz zasady składania
-          wniosków i zawiadomień.
-        </p>
+      <section className={styles.homePageMainContainer}>
+        <h1 className={styles.headerH1}>Rejestracja pojazdów krok po kroku</h1>
+        <div className={styles.homeLinksContainer}>
+          <Link
+            to="dla-wlascicieli"
+            data-tooltip-id="app-tooltip"
+            data-tooltip-content={vehicleOwnersTooltip}
+            data-tooltip-variant="info"
+            className={styles.homeLink}
+          >
+            <img
+              src={VehicleOwnersImg}
+              alt={vehicleOwnersTooltip}
+              width={600}
+              height={800}
+              className={styles.img}
+            />
+          </Link>
 
-        <div className={styles.zoneLinks}>
-          <NavLink className={styles.zoneLink} to={ROUTES.vehicleOwners}>
-            <h2>Chcę załatwić sprawę</h2>
-            <p>Dokumenty, formularze, terminy i informacje o karach.</p>
-          </NavLink>
+          <Link
+            to="dla-pracownikow"
+            data-tooltip-id="app-tooltip"
+            data-tooltip-content={employeesTooltip}
+            data-tooltip-variant="info"
+            className={styles.homeLink}
+          >
+            <img
+              src={EmployeesImg}
+              alt={employeesTooltip}
+              width={600}
+              height={800}
+              className={styles.img}
+            />
+          </Link>
 
-          <NavLink className={styles.zoneLink} to={ROUTES.employees}>
-            <h2>Baza wiedzy dla pracowników</h2>
-            <p>Materiały specjalistyczne dla wydziałów komunikacji.</p>
-          </NavLink>
+          <Link
+            to="kalkulator"
+            data-tooltip-id="app-tooltip"
+            data-tooltip-content={calculatorTooltip}
+            data-tooltip-variant="info"
+            className={styles.homeLink}
+          >
+            <img
+              src={CalculatorImg}
+              alt={calculatorTooltip}
+              width={600}
+              height={800}
+              className={styles.img}
+            />
+          </Link>
         </div>
-      </div>
+      </section>
     </>
   );
 }
