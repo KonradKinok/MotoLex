@@ -21,13 +21,7 @@ function HomePage() {
       <section className={styles.homePageMainContainer}>
         <h1 className={styles.headerH1}>Rejestracja pojazdów krok po kroku</h1>
         <div className={styles.homeLinksContainer}>
-          <Link
-            to="dla-wlascicieli"
-            data-tooltip-id="app-tooltip"
-            data-tooltip-content={vehicleOwnersTooltip}
-            data-tooltip-variant="info"
-            className={styles.homeLink}
-          >
+          <Link to="dla-wlascicieli" className={styles.homeLink}>
             <img
               src={VehicleOwnersImg}
               alt={vehicleOwnersTooltip}
@@ -37,13 +31,7 @@ function HomePage() {
             />
           </Link>
 
-          <Link
-            to="dla-pracownikow"
-            data-tooltip-id="app-tooltip"
-            data-tooltip-content={employeesTooltip}
-            data-tooltip-variant="info"
-            className={styles.homeLink}
-          >
+          <Link to="dla-pracownikow" className={styles.homeLink}>
             <img
               src={EmployeesImg}
               alt={employeesTooltip}
@@ -53,13 +41,7 @@ function HomePage() {
             />
           </Link>
 
-          <Link
-            to="kalkulator"
-            data-tooltip-id="app-tooltip"
-            data-tooltip-content={calculatorTooltip}
-            data-tooltip-variant="info"
-            className={styles.homeLink}
-          >
+          <Link to="kalkulator" className={styles.homeLink}>
             <img
               src={CalculatorImg}
               alt={calculatorTooltip}
