@@ -49,17 +49,17 @@ export function LayoutPage() {
 
       <header className={styles.siteHeader}>
         <div className={`${styles.pageContainer} ${styles.headerContent}`}>
-          <div className={`${styles.logoContainer}`}>
+          <div className={styles.logoContainer}>
             <Logo />
           </div>
-          <div>
+          <div className={styles.navigationContainer}>
             <NavigationTop />
             <ButtonMobileMenu
               isMobileMenuOpen={isMobileMenuOpen}
               toggleMobileMenu={toggleMobileMenu}
             />
           </div>
-          <div>
+          <div className={styles.themeContainer}>
             <ThemeSelector />
           </div>
         </div>

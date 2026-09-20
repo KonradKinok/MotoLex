@@ -46,3 +46,10 @@
     margin-right: auto;
   }
 }
+
+@media (max-width: 24rem) {
+  .siteLogo {
+    width: 11rem;
+    min-width: 0;
+  }
+}

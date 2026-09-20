@@ -58,12 +58,14 @@
     margin-bottom: 1.5rem;
   }
 
-  .sidebarMobileOpen {
-    display: block;
-  }
-
   .sidebarCollapseButton {
     display: none;
+  }
+}
+
+@media (max-width: 56.25rem) {
+  .sidebarMobileOpen {
+    display: block;
   }
 }
 

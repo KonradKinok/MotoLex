@@ -21,7 +21,6 @@ function getOpenItemPath(pathname: string): string | null {
   return belongsToNavigation ? pathname : null;
 }
 
-//1088px mobile menu breakpoint
 export function NavigationSide({
   isSidebarCollapsed,
   toggleSidebarCollapsed,
