@@ -1,0 +1,151 @@
+.documentsVinCheckMainContainer {
+  margin: 1rem auto;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+  color: var(--color-text);
+  background: var(--color-surface);
+  box-shadow: 0 0.125rem 0.5rem color-mix(in srgb, var(--color-text) 14%, transparent);
+  margin: 1rem auto;
+
+  .documentsSvg {
+    --countViewBox: 700px;
+    // Scans retain a light background in every theme, so their frames use darker shades.
+    --document-frame-error: color-mix(in srgb, var(--color-error) 60%, black);
+    --document-frame-success: color-mix(in srgb, var(--color-success) 60%, black);
+    --document-frame-warning: color-mix(in srgb, var(--day-before-punish-icon-color) 60%, black);
+    //DR
+    --drImgWidth: 200px;
+    --drImgPositionX: calc(var(--countViewBox) - var(--drImgWidth) - 20px);
+    --drImgPositionY: 260px;
+    //DR frame
+    --drFrameWidth: 96px;
+
+    display: block;
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    margin-inline: auto;
+
+
+  }
+
+  //obrazek umowa
+  .agreementImg {
+    x: 15px;
+    y: 15px;
+    width: 450px;
+    filter: brightness(0.95) drop-shadow(4px 4px 6px color-mix(in srgb, var(--color-text) 35%, transparent));
+  }
+
+  //obrazek badanie techniczne
+  .technicalInspectionImg {
+    x: 15px;
+    y: 325px;
+    width: 400px;
+    filter: drop-shadow(4px 4px 6px color-mix(in srgb, var(--color-text) 35%, transparent));
+  }
+
+  //obrazek DR
+  .drImg {
+    x: var(--drImgPositionX);
+    y: var(--drImgPositionY);
+    width: var(--drImgWidth);
+    filter: drop-shadow(4px 4px 6px color-mix(in srgb, var(--color-text) 35%, transparent));
+  }
+
+  //kwadrat czerwony - umowa
+  .agreementFrame {
+    x: 120px;
+    y: 152px;
+    width: 100px;
+    height: 20px;
+    rx: 3px;
+    fill: none;
+    stroke: var(--document-frame-error);
+    stroke-width: 2;
+  }
+
+  //kwadrat zielony - badanie
+  .technicalInspectionFrame {
+    x: 281px;
+    y: 525px;
+    width: 96px;
+    height: 23px;
+    rx: 3px;
+    stroke: var(--document-frame-success);
+    stroke-width: 2;
+  }
+
+  //kwadrat pomarańczowy - DR
+  .registrationCertificateFrame {
+    x: calc(var(--drImgPositionX) + 30px);
+    y: calc(var(--drImgPositionY) + 240px);
+    width: var(--drFrameWidth);
+    height: 23px;
+    rx: 3px;
+    stroke: var(--document-frame-warning);
+    stroke-width: 2;
+  }
+
+  .agreementSecondFrame {
+    x: 211px;
+    y: 602px;
+    width: 345px;
+    height: 30px;
+    rx: 3px;
+    fill: none;
+    stroke: var(--color-error);
+    stroke-width: 2;
+  }
+
+  .errorMark {
+    fill: var(--color-error);
+  }
+
+  .successMark {
+    fill: var(--color-success);
+  }
+
+  //linia umowa -> DR
+  .agreementLine {
+    fill: none;
+    stroke: var(--color-error);
+    stroke-width: 2;
+  }
+
+  //linia  umowa -> DR
+  .technicalInspectionLine {
+    fill: none;
+    stroke: var(--color-success);
+    stroke-width: 2;
+  }
+
+  .vinComparison {
+    font-family: monospace;
+    font-size: 16px;
+    fill: var(--color-text);
+
+    .vinDifference {
+      fill: var(--color-error);
+      font-weight: 700;
+      font-size: 24px;
+    }
+  }
+
+  .vinInstructions {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+
+    fill: var(--color-text);
+
+    .vinWarning {
+      fill: var(--color-error);
+    }
+  }
+}
