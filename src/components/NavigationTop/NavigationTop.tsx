@@ -1,4 +1,5 @@
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { useId, useRef, useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { NavLink } from "react-router";
 import {
   navigationItems,
@@ -8,7 +9,6 @@ import styles from "./NavigationTop.module.scss";
 
 type NavigationMenuItemProps = {
   item: NavigationItem;
-  level?: number;
 };
 
 function getNavigationLinkClassName(isActive: boolean) {
@@ -19,16 +19,41 @@ function getNavigationLinkClassName(isActive: boolean) {
 
 export function NavigationMenuItem({
   item,
-  level = 0,
 }: NavigationMenuItemProps) {
   const hasChildren = Boolean(item.children?.length);
+  const [isOpen, setIsOpen] = useState(false);
+  const submenuId = useId();
+  const linkRef = useRef<HTMLAnchorElement>(null);
   const ItemIcon = item.icon;
-  const SubmenuIcon = level === 0 ? ChevronDown : ChevronRight;
 
   return (
-    <li className={styles.navigationItem}>
+    <li
+      className={styles.navigationItem}
+      onMouseEnter={() => hasChildren && setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+      onFocus={(event) => {
+        if (hasChildren && !event.currentTarget.contains(event.relatedTarget)) {
+          setIsOpen(true);
+        }
+      }}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setIsOpen(false);
+      }}
+      onKeyDown={(event) => {
+        if (event.key === "Escape" && isOpen) {
+          event.preventDefault();
+          event.stopPropagation();
+          linkRef.current?.focus();
+          setIsOpen(false);
+        }
+      }}
+    >
       <NavLink
+        ref={linkRef}
         to={item.to}
+        aria-expanded={hasChildren ? isOpen : undefined}
+        aria-controls={hasChildren ? submenuId : undefined}
+        onClick={() => setIsOpen(false)}
         className={({ isActive }) => getNavigationLinkClassName(isActive)}
       >
         <ItemIcon
@@ -41,7 +66,7 @@ export function NavigationMenuItem({
         <span className={styles.navigationLabel}>{item.label}</span>
 
         {hasChildren && (
-          <SubmenuIcon
+          <ChevronDown
             className={styles.submenuIcon}
             size={18}
             strokeWidth={2}
@@ -51,9 +76,14 @@ export function NavigationMenuItem({
       </NavLink>
 
       {hasChildren && (
-        <ul className={styles.submenu} aria-label={`Podmenu: ${item.label}`}>
-          {item.children?.map((child) => (
-            <NavigationMenuItem key={child.to} item={child} level={level + 1} />
+        <ul
+          id={submenuId}
+          hidden={!isOpen}
+          className={styles.submenu}
+          aria-label={`Podmenu: ${item.label}`}
+        >
+          {isOpen && item.children?.map((child) => (
+            <NavigationMenuItem key={child.to} item={child} />
           ))}
         </ul>
       )}

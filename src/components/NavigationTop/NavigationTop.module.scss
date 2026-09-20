@@ -17,14 +17,6 @@
 
 .navigationItem {
   position: relative;
-
-  &:hover>.submenu,
-  &:focus-within>.submenu {
-    visibility: visible;
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
 }
 
 .navigationLink {
@@ -76,20 +68,15 @@
   z-index: 100;
   top: 100%;
   left: 0;
-  min-width: 17rem;
+  width: 17rem;
+  max-width: calc(100vw - 2rem);
+  max-height: calc(100dvh - 6rem);
+  overflow-y: auto;
   padding: 0.25rem;
-  visibility: hidden;
-  opacity: 0;
-  transform: translateY(0.25rem);
-  pointer-events: none;
   background-color: var(--color-header-background);
   border: 1px solid var(--color-header-border);
   border-radius: var(--radius-small);
   box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 20%);
-  transition:
-    visibility 0.2s,
-    opacity 0.2s ease,
-    transform 0.2s ease;
 
   .navigationItem {
     width: 100%;
@@ -100,20 +87,30 @@
     justify-content: flex-start;
   }
 
+  .navigationLabel {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  // Deeper levels expand in the same panel and push following items down.
   .submenu {
-    top: -0.25rem;
-    left: 100%;
+    position: static;
+    width: auto;
+    max-width: 100%;
+    max-height: none;
+    overflow: visible;
+    margin-left: 0.5rem;
+    padding: 0 0 0 0.25rem;
+    border: 0;
+    border-left: 1px solid var(--color-header-border);
+    border-radius: 0;
+    box-shadow: none;
   }
 }
 
 .navigationList>.navigationItem:last-child>.submenu {
   right: 0;
   left: auto;
-
-  .submenu {
-    right: 100%;
-    left: auto;
-  }
 }
 
 @media (max-width: 68rem) {
