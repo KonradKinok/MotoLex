@@ -1,5 +1,4 @@
 .documentsVinCheckMainContainer {
-  margin: 1rem auto;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -10,7 +9,6 @@
   color: var(--color-text);
   background: var(--color-surface);
   box-shadow: 0 0.125rem 0.5rem color-mix(in srgb, var(--color-text) 14%, transparent);
-  margin: 1rem auto;
 
   .documentsSvg {
     --countViewBox: 700px;
@@ -30,8 +28,6 @@
     max-width: 900px;
     height: auto;
     margin-inline: auto;
-
-
   }
 
   //obrazek umowa
