@@ -1,4 +1,5 @@
 import DocumentsMakeCheck from "../../components/DocumentsCheck/DocumentsMakeCheck";
+import DocumentsSellerCheck from "../../components/DocumentsCheck/DocumentsSellerCheck";
 import DocumentsVinCheck from "../../components/DocumentsCheck/DocumentsVinCheck";
 import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
 import { ROUTES, APPLICATION_NAME } from "../../config/routes";
@@ -42,6 +43,7 @@ function DocumentsPage() {
         </div>
         <DocumentsVinCheck />
         <DocumentsMakeCheck />
+        <DocumentsSellerCheck />
       </section>
     </>
   );
