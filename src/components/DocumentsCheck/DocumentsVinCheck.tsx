@@ -12,9 +12,7 @@ export default function DocumentsVinCheck() {
   return (
     <article className={styles.documentsVinCheckMainContainer}>
       <div>
-        <p>
-          <b>1️⃣ NUMER VIN, NADWOZIA, PODWOZIA LUB RAMY</b>
-        </p>
+        <h4>1️⃣ NUMER VIN, NADWOZIA, PODWOZIA LUB RAMY</h4>
         <p>
           Numer VIN to unikalny, 17-znakowy kod składający się z liter i cyfr.
           Pełni funkcję swoistego „numeru PESEL" dla pojazdów, umożliwiając ich

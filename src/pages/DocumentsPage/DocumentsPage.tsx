@@ -1,4 +1,6 @@
+import DocumentsElectronicInvoiceCheck from "../../components/DocumentsCheck/DocumentsElectronicInvoiceCheck";
 import DocumentsMakeCheck from "../../components/DocumentsCheck/DocumentsMakeCheck";
+import DocumentsOriginalCheck from "../../components/DocumentsCheck/DocumentsOriginalCheck";
 import DocumentsSellerCheck from "../../components/DocumentsCheck/DocumentsSellerCheck";
 import DocumentsVinCheck from "../../components/DocumentsCheck/DocumentsVinCheck";
 import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
@@ -22,8 +24,8 @@ function DocumentsPage() {
         </p>
         <div>
           <p>
-            ‼️ DLACZEGO TO TAKIE WAŻNE? Różnica w danych = brak możliwości
-            rejestracji.
+            ‼️ DLACZEGO SPRAWDZENIE DOKUMENTÓW JEST WAŻNE? Różnica w danych =
+            brak możliwości rejestracji.
           </p>
           <p>
             Urzędnik ma obowiązek zweryfikować każdy dokument. To nie
@@ -44,6 +46,8 @@ function DocumentsPage() {
         <DocumentsVinCheck />
         <DocumentsMakeCheck />
         <DocumentsSellerCheck />
+        <DocumentsElectronicInvoiceCheck />
+        <DocumentsOriginalCheck />
       </section>
     </>
   );

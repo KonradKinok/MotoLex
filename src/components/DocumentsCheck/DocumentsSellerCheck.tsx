@@ -24,11 +24,9 @@ export default function DocumentsSellerCheck() {
   return (
     <article className={styles.documentsSellerCheckMainContainer}>
       <div>
-        <p>
-          <b>
-            3️⃣ DANE SPRZEDAJĄCEGO - porównaj umowę z dowodem rejestracyjnym 📄
-          </b>
-        </p>
+        <h4>
+          3️⃣ DANE SPRZEDAJĄCEGO - porównaj umowę z dowodem rejestracyjnym 📄
+        </h4>
         <p>
           🔍 Porównaj dane sprzedającego na umowie z danymi właściciela w
           dowodzie rejestracyjnym. Sprawdź imię i nazwisko lub nazwę firmy,
