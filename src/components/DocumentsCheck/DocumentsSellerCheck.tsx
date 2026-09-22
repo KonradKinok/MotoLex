@@ -33,22 +33,21 @@ export default function DocumentsSellerCheck() {
           PESEL lub REGON oraz adres.
         </p>
         <p>
-          ⚠️ Sprzedający to inna osoba niż ta wpisana w dowodzie? Zwykle
-          potrzebujesz także wcześniejszych umów lub faktur. Powinno z nich
-          wynikać, kto komu przekazywał pojazd — od właściciela wpisanego w
-          dowodzie aż do Ciebie.
+          ⚠️ Sprzedający nie jest osobą wpisaną w dowodzie rejestracyjnym?
+          Zwykle potrzebujesz również wcześniejszych umów lub faktur, które
+          pokazują kolejne zmiany właściciela.
         </p>
         <p>
-          📄 To tzw. łańcuszek własności. Na przykład: osoba wpisana w dowodzie
-          sprzedała auto sprzedającemu, a on sprzedał je Tobie. W takim
-          przypadku potrzebujesz obu umów.
+          📄 Przykład: Anna jest wpisana w dowodzie, sprzedała auto Piotrowi, a
+          Piotr sprzedaje je Tobie. Potrzebujesz umowy Anna ➡️ Piotr oraz Piotr
+          ➡️ Ty.
         </p>
 
         <p>
-          ❓ Nie zgadza się tylko adres, nazwisko albo widzisz literówkę?
-          Zapytaj sprzedającego, skąd ta różnica.
+          ❓ Różni się tylko adres lub nazwisko? To nie musi oznaczać innego
+          właściciela. Wyjaśnij różnicę ze sprzedającym przed zakupem.
         </p>
-        <p>📝 Sprawdź też, czy na umowach są podpisy obu stron.</p>
+        <p>📝 Sprawdź też podpisy sprzedających i kupujących na umowach.</p>
       </div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
