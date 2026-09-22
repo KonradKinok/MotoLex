@@ -5,7 +5,7 @@ export default function DocumentsElectronicInvoiceCheck() {
   return (
     <article className={styles.documentsElectronicInvoiceCheckMainContainer}>
       <div>
-        <h4>4️⃣UMOWA ELEKTRONICZNA LUB FAKTURA?</h4>
+        <h4>4️⃣ UMOWA ELEKTRONICZNA LUB FAKTURA?</h4>
         <p>
           💻 Masz umowę podpisaną elektronicznie? Zachowaj oryginalny plik z
           podpisami. Sam wydruk nie pozwoli urzędnikowi sprawdzić podpisów

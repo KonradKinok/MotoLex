@@ -1,3 +1,4 @@
+import DocumentsAuthorizationCheck from "../../components/DocumentsCheck/DocumentsAuthorizationCheck";
 import DocumentsElectronicInvoiceCheck from "../../components/DocumentsCheck/DocumentsElectronicInvoiceCheck";
 import DocumentsMakeCheck from "../../components/DocumentsCheck/DocumentsMakeCheck";
 import DocumentsOriginalCheck from "../../components/DocumentsCheck/DocumentsOriginalCheck";
@@ -48,6 +49,7 @@ function DocumentsPage() {
         <DocumentsSellerCheck />
         <DocumentsElectronicInvoiceCheck />
         <DocumentsOriginalCheck />
+        <DocumentsAuthorizationCheck />
       </section>
     </>
   );
