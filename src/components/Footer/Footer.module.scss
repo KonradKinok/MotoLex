@@ -68,6 +68,22 @@
     }
 }
 
+.footerPrivacyButton {
+    padding: 0.25rem 0.5rem;
+    color: var(--footer-address-color);
+    background: transparent;
+    border: 0;
+    border-radius: var(--radius-small);
+    font: inherit;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+
+    &:hover {
+        color: var(--footer-address-color-hover);
+    }
+}
+
 @media (max-width: 40rem) {
     .footer {
         flex-wrap: wrap;

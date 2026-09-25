@@ -1,11 +1,23 @@
 import { BookOpenText } from "lucide-react";
 import { Link } from "react-router";
+import toast from "react-hot-toast";
 import { ROUTES } from "../../config/routes";
 import { useToggle } from "../../hooks/useToggle";
 import { ModalLibraries } from "../ModalLibraries/ModalLibraries";
 import footerLogoImage from "../../assets/images/footer/konikMaly24x24Squoosh.png";
 import footerLogoText from "../../assets/images/footer/3KLogo.png";
 import styles from "./Footer.module.scss";
+
+declare global {
+  interface Window {
+    googlefc?: {
+      callbackQueue?: {
+        push: (callback: () => void) => unknown;
+      };
+      showRevocationMessage?: () => void;
+    };
+  }
+}
 
 export function Footer() {
   // Libraries modal state
@@ -14,6 +26,22 @@ export function Footer() {
     disable: closeModalLibraries,
     toggle: toggleModalLibraries,
   } = useToggle();
+
+  function openPrivacySettings() {
+    const googlefc = window.googlefc;
+
+    if (!googlefc?.callbackQueue || !googlefc.showRevocationMessage) {
+      toast.error(
+        "Ustawienia prywatności są teraz niedostępne. " +
+          "Spróbuj ponownie po załadowaniu strony. " +
+          "Jeśli używasz blokera reklam, może on blokować komunikat Google.",
+        { id: "privacy-settings-unavailable", duration: 8000 },
+      );
+      return;
+    }
+
+    googlefc.callbackQueue.push(googlefc.showRevocationMessage);
+  }
 
   return (
     <footer className={styles.footer}>
@@ -35,6 +63,13 @@ export function Footer() {
         <Link className={styles.footerAddress} to={ROUTES.privacyPolicy}>
           Polityka prywatności
         </Link>
+        <button
+          type="button"
+          className={styles.footerPrivacyButton}
+          onClick={openPrivacySettings}
+        >
+          Ustawienia prywatności
+        </button>
       </div>
 
       <button
