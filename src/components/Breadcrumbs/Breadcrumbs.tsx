@@ -5,6 +5,7 @@ import {
   getPathNames,
 } from "../globalFunctions/globalFunctions";
 import { navigationItems } from "../../config/navigationMain";
+import { ROUTES } from "../../config/routes";
 import styles from "./Breadcrumbs.module.scss";
 
 export function Breadcrumbs() {
@@ -32,7 +33,10 @@ export function Breadcrumbs() {
           const isLast = index === pathNames.length - 1;
           const to = pathNames.slice(0, index + 1).join("");
           const item = findNavigationItem(navigationItems, to);
-          const label = item?.label ?? to;
+          const label =
+            to === ROUTES.privacyPolicy
+              ? "Polityka prywatności"
+              : item?.label ?? to;
 
           return (
             <li className={styles.item} key={to}>

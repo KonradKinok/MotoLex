@@ -45,6 +45,13 @@
     margin: 0;
 }
 
+.footerLegal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
 .footerLibraries {
     padding: 0;
     color: var(--color-header-text);

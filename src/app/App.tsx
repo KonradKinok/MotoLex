@@ -53,6 +53,9 @@ const PenaltiesPage = lazy(
 );
 
 const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
+const PrivacyPolicyPage = lazy(
+  () => import("../pages/PrivacyPolicyPage/PrivacyPolicyPage"),
+);
 
 function App() {
   return (
@@ -84,6 +87,7 @@ function App() {
           />
         </Route>
         <Route path="kary" element={<PenaltiesPage />} />
+        <Route path={ROUTES.privacyPolicy} element={<PrivacyPolicyPage />} />
 
         <Route path="*" element={<NotFoundPage />} />
       </Route>

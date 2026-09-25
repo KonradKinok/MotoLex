@@ -16,6 +16,7 @@ export const ROUTES = {
   permanentLossCalculator: "/kalkulator/trwala-utrata",
 
   penalties: "/kary",
+  privacyPolicy: "/polityka-prywatnosci",
 
 } as const;
 

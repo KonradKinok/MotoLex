@@ -1,4 +1,6 @@
 import { BookOpenText } from "lucide-react";
+import { Link } from "react-router";
+import { ROUTES } from "../../config/routes";
 import { useToggle } from "../../hooks/useToggle";
 import { ModalLibraries } from "../ModalLibraries/ModalLibraries";
 import footerLogoImage from "../../assets/images/footer/konikMaly24x24Squoosh.png";
@@ -26,10 +28,13 @@ export function Footer() {
           </a>
         </address>
       </div>
-      <div className={styles.footerContainer}>
+      <div className={styles.footerLegal}>
         <p className={styles.footerCopyrightText}>
           © {new Date().getFullYear()} PojazdLex
         </p>
+        <Link className={styles.footerAddress} to={ROUTES.privacyPolicy}>
+          Polityka prywatności
+        </Link>
       </div>
 
       <button
