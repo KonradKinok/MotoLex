@@ -14,6 +14,8 @@ function generateNetlifyRedirects(): Plugin {
         .map((path) => `${path}  /index.html  200`);
 
       const redirectsContent = [
+        "https://pojazdlex.netlify.app/*  https://pojazdlex.pl/:splat  301!",
+        "http://pojazdlex.netlify.app/*  https://pojazdlex.pl/:splat  301!",
         ...routeRules,
         "/*  /index.html  404",
         "",

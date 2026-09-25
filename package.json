@@ -2,11 +2,11 @@
   "name": "motolex",
   "displayName": "MotoLex",
   "private": true,
-  "version": "0.0.0",
+  "homepage": "https://pojazdlex.pl/",
+  "version": "1.0.0",
   "author": {
     "name": "Konrad Konik",
-    "email": "3k.nexgen@gmail.com",
-    "url": "https://twojastrona.pl"
+    "email": "3k.nexgen@gmail.com"
   },
   "type": "module",
   "scripts": {

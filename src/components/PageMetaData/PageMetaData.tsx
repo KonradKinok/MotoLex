@@ -5,7 +5,7 @@ type PageMetadataProps = {
   noIndex?: boolean;
 };
 
-const SITE_URL = "https://pojazdlex.netlify.app/";
+const SITE_URL = "https://pojazdlex.pl/";
 
 export function PageMetadata({
   title,
