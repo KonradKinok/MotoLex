@@ -30,9 +30,53 @@ function generateNetlifyRedirects(): Plugin {
   };
 }
 
+function generateSitemap(): Plugin {
+  return {
+    name: "generate-sitemap",
+    apply: "build",
+
+    generateBundle() {
+      const siteUrl = "https://pojazdlex.pl";
+
+      const escapeXml = (value: string) =>
+        value
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&apos;");
+
+      const urls = PUBLIC_ROUTES.map((path) => {
+        const url = new URL(path, siteUrl).href;
+
+        return [
+          "  <url>",
+          `    <loc>${escapeXml(url)}</loc>`,
+          "  </url>",
+        ].join("\n");
+      });
+
+      const sitemap = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+        ...urls,
+        "</urlset>",
+        "",
+      ].join("\n");
+
+      this.emitFile({
+        type: "asset",
+        fileName: "sitemap.xml",
+        source: sitemap,
+      });
+    },
+  };
+}
+
 export default defineConfig({
   plugins: [
     react(),
     generateNetlifyRedirects(),
+    generateSitemap(),
   ],
 });
