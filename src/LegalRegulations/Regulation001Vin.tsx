@@ -181,10 +181,20 @@ export default function Regulation001Vin({
                 </blockquote>
                 <blockquote cite={CELEX_02021R0535.act.sourceUrl}>
                   <h4 className={styles.blockquoteHeader}>
-                    rozdział V art.12 pkt 2:
+                    rozdział V art.12 pkt 1 i 2:
                   </h4>
                   <p className={styles.paragraph}>
-                    Ze skutkiem od dnia 7 lipca 2026 r. organy krajowe
+                    1. Ze skutkiem od dnia 6 lipca 2022 r. organy udzielające
+                    homologacji typu odmawiają udzielenia homologacji typu UE
+                    nowym typom pojazdów w odniesieniu do cyfry kontrolnej
+                    numeru identyfikacyjnego pojazdu, które nie są zgodne ze
+                    specyfikacjami technicznymi określonymi w załączniku II
+                    część 2 sekcja C w odniesieniu do odpowiednich wymagań
+                    wymienionych w załączniku II do rozporządzenia (UE)
+                    2019/2144.
+                  </p>
+                  <p className={styles.paragraph}>
+                    2. Ze skutkiem od dnia 7 lipca 2026 r. organy krajowe
                     odmawiają, z przyczyn związanych z cyfrą kontrolną numeru
                     identyfikacyjnego pojazdu, rejestracji, wprowadzania do
                     obrotu i dopuszczenia pojazdów, które nie są zgodne ze

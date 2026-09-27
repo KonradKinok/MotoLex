@@ -52,7 +52,7 @@ export const legalRegulationsTable: LegalRegulationTable[] = [
         references: [
           "Preambuła(10)",
           "rozdział I art. 1 pkt 1",
-          "rozdział V art.12 pkt 2",
+          "rozdział V art.12 pkt 1 i 2",
           "załącznik II część 2 sekcja A pkt 2",
           "załącznik II część 2 sekcja C pkt 2",
         ],

@@ -125,6 +125,7 @@ a {
   color: var(--color-link);
   text-decoration-thickness: 0.1em;
   text-underline-offset: 0.18em;
+  transition: color .75s cubic-bezier(.4, 0, .2, 1);
 }
 
 a:hover {

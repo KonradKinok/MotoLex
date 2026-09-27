@@ -1,26 +1,40 @@
+import { useEffect } from "react";
 import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
 import { APPLICATION_NAME, ROUTES } from "../../config/routes";
 import styles from "./PrivacyPolicyPage.module.scss";
+import { upScreen } from "../../components/globalFunctions/globalFunctions";
 
 function PrivacyPolicyPage() {
+  useEffect(() => {
+    upScreen();
+  }, []);
+
   return (
     <>
       <PageMetadata
-        title={`Polityka prywatności | ${APPLICATION_NAME}`}
-        description="Informacje o przetwarzaniu danych w serwisie PojazdLex: administrator, hosting, ustawienia przeglądarki, reklamy Google AdSense i prawa użytkowników."
+        title={`Polityka prywatności i zastrzeżenia prawne | ${APPLICATION_NAME}`}
+        description="Polityka prywatności i zastrzeżenia prawne PojazdLex: przetwarzanie danych, reklamy Google AdSense, prawa użytkowników i informacyjny charakter serwisu."
         path={ROUTES.privacyPolicy}
       />
 
       <article className={styles.policy} aria-labelledby="privacy-policy-title">
         <header>
-          <h1 id="privacy-policy-title">Polityka prywatności</h1>
+          <h1 id="privacy-policy-title">
+            Polityka prywatności i zastrzeżenia prawne
+          </h1>
           <p className={styles.updated}>
-            Ostatnia aktualizacja: <time dateTime="2026-09-25">25 września 2026 r.</time>
+            Ostatnia aktualizacja:{" "}
+            <time dateTime="2026-09-27">27 września 2026 r.</time>
           </p>
           <p>
-            Niniejsza polityka opisuje przetwarzanie danych związane z korzystaniem
-            z serwisu PojazdLex, dostępnego pod adresem{" "}
+            Niniejsza polityka opisuje przetwarzanie danych związane z
+            korzystaniem z serwisu PojazdLex, dostępnego pod adresem{" "}
             <a href="https://pojazdlex.pl/">pojazdlex.pl</a>.
+          </p>
+          <p>
+            Informacje o charakterze publikowanych treści i odpowiedzialności
+            autora znajdziesz w części{" "}
+            <a href="#legal-disclaimer">Zastrzeżenia prawne</a>.
           </p>
         </header>
 
@@ -35,20 +49,22 @@ function PrivacyPolicyPage() {
         </section>
 
         <section aria-labelledby="privacy-calculators">
-          <h2 id="privacy-calculators">2. Korzystanie z serwisu i kalkulatorów</h2>
+          <h2 id="privacy-calculators">
+            2. Korzystanie z serwisu i kalkulatorów
+          </h2>
           <p>
             PojazdLex udostępnia informacje i narzędzia związane z pojazdami.
             Korzystanie z serwisu nie wymaga zakładania konta.
           </p>
           <p>
             Obliczenia i sprawdzanie danych wpisanych do kalkulatorów, w tym
-            numeru VIN, odbywają się w przeglądarce użytkownika. Kod kalkulatorów
-            nie przesyła tych wartości do bazy danych administratora ani do
-            zewnętrznej usługi sprawdzającej pojazdy.
+            numeru VIN, odbywają się w przeglądarce użytkownika. Kod
+            kalkulatorów nie przesyła tych wartości do bazy danych
+            administratora ani do zewnętrznej usługi sprawdzającej pojazdy.
           </p>
           <p>
-            Niezależnie od działania kalkulatorów, otwieranie strony wiąże się
-            z przetwarzaniem danych technicznych przez hosting oraz z działaniem
+            Niezależnie od działania kalkulatorów, otwieranie strony wiąże się z
+            przetwarzaniem danych technicznych przez hosting oraz z działaniem
             usług reklamowych opisanych poniżej.
           </p>
         </section>
@@ -56,20 +72,25 @@ function PrivacyPolicyPage() {
         <section aria-labelledby="privacy-hosting">
           <h2 id="privacy-hosting">3. Hosting i dane techniczne</h2>
           <p>
-            Serwis korzysta z infrastruktury Netlify. W celu dostarczenia strony,
-            zapewnienia jej bezpieczeństwa i diagnozowania błędów dostawca hostingu
-            może przetwarzać adres IP, czas żądania, adres odwiedzanej strony,
-            informacje o przeglądarce i systemie oraz dane o błędach.
+            Serwis korzysta z infrastruktury Netlify. W celu dostarczenia
+            strony, zapewnienia jej bezpieczeństwa i diagnozowania błędów
+            dostawca hostingu może przetwarzać adres IP, czas żądania, adres
+            odwiedzanej strony, informacje o przeglądarce i systemie oraz dane o
+            błędach.
           </p>
           <p>
             Podstawą przetwarzania danych osobowych w tym zakresie jest prawnie
-            uzasadniony interes administratora polegający na utrzymaniu dostępnego
-            i bezpiecznego serwisu — art. 6 ust. 1 lit. f RODO. Przesłanie danych
-            technicznych jest związane z nawiązaniem połączenia ze stroną.
+            uzasadniony interes administratora polegający na utrzymaniu
+            dostępnego i bezpiecznego serwisu — art. 6 ust. 1 lit. f RODO.
+            Przesłanie danych technicznych jest związane z nawiązaniem
+            połączenia ze stroną.
           </p>
           <p>
             Więcej informacji znajdziesz w{" "}
-            <a href="https://www.netlify.com/privacy/">polityce prywatności Netlify</a>.
+            <a href="https://www.netlify.com/privacy/">
+              polityce prywatności Netlify
+            </a>
+            .
           </p>
         </section>
 
@@ -83,17 +104,19 @@ function PrivacyPolicyPage() {
             zapytań — art. 6 ust. 1 lit. f RODO.
           </p>
           <p>
-            Podanie danych jest dobrowolne, ale bez adresu kontaktowego odpowiedź
-            może być niemożliwa. Skrzynka administratora jest obsługiwana przez Gmail.
+            Podanie danych jest dobrowolne, ale bez adresu kontaktowego
+            odpowiedź może być niemożliwa. Skrzynka administratora jest
+            obsługiwana przez Gmail.
           </p>
         </section>
 
         <section aria-labelledby="privacy-storage">
           <h2 id="privacy-storage">5. Zapamiętywanie ustawień strony</h2>
           <p>
-            Serwis wykorzystuje pamięć przeglądarki localStorage do zapamiętywania
-            wybranego motywu wyglądu i stanu rozwinięcia menu bocznego. Ustawienia
-            pozostają na urządzeniu użytkownika i nie służą profilowaniu reklamowemu.
+            Serwis wykorzystuje pamięć przeglądarki localStorage do
+            zapamiętywania wybranego motywu wyglądu i stanu rozwinięcia menu
+            bocznego. Ustawienia pozostają na urządzeniu użytkownika i nie służą
+            profilowaniu reklamowemu.
           </p>
           <p>
             Dane te nie mają ustawionego terminu wygaśnięcia. Możesz je usunąć
@@ -154,20 +177,24 @@ function PrivacyPolicyPage() {
           </p>
           <p>
             Zgodę można wycofać w dowolnym momencie. Wycofanie nie wpływa na
-            zgodność z prawem wcześniejszego przetwarzania. W sprawach związanych
-            z realizacją tego prawa możesz skontaktować się z administratorem
-            pod adresem <a href="mailto:3k.nexgen@gmail.com">3k.nexgen@gmail.com</a>.
+            zgodność z prawem wcześniejszego przetwarzania. W sprawach
+            związanych z realizacją tego prawa możesz skontaktować się z
+            administratorem pod adresem{" "}
+            <a href="mailto:3k.nexgen@gmail.com">3k.nexgen@gmail.com</a>.
           </p>
           <p>
-            Ustawienia przeglądarki pozwalają blokować i usuwać cookies oraz dane
-            witryny. Ich usunięcie może skasować zapisane preferencje i spowodować
-            ponowne wyświetlenie komunikatu zgód. Usunięcie danych z przeglądarki
-            nie jest równoznaczne z usunięciem wszystkich danych u dostawców usług.
+            Ustawienia przeglądarki pozwalają blokować i usuwać cookies oraz
+            dane witryny. Ich usunięcie może skasować zapisane preferencje i
+            spowodować ponowne wyświetlenie komunikatu zgód. Usunięcie danych z
+            przeglądarki nie jest równoznaczne z usunięciem wszystkich danych u
+            dostawców usług.
           </p>
         </section>
 
         <section aria-labelledby="privacy-recipients">
-          <h2 id="privacy-recipients">8. Odbiorcy danych i przekazywanie poza EOG</h2>
+          <h2 id="privacy-recipients">
+            8. Odbiorcy danych i przekazywanie poza EOG
+          </h2>
           <p>
             Dane mogą być przetwarzane przez Netlify jako dostawcę hostingu,
             Google jako dostawcę poczty i usług reklamowych oraz partnerów
@@ -175,15 +202,16 @@ function PrivacyPolicyPage() {
             przetwarzania i wyborów użytkownika.
           </p>
           <p>
-            Korzystanie z tych usług może wiązać się z przekazywaniem danych poza
-            Europejski Obszar Gospodarczy, w tym do Stanów Zjednoczonych.
+            Korzystanie z tych usług może wiązać się z przekazywaniem danych
+            poza Europejski Obszar Gospodarczy, w tym do Stanów Zjednoczonych.
             Przekazywanie wymaga odpowiedniej podstawy, takiej jak decyzja
             stwierdzająca odpowiedni stopień ochrony lub standardowe klauzule
-            umowne. Informacji o zabezpieczeniach i możliwości uzyskania ich kopii
-            udziela administrator. Zobacz również{" "}
+            umowne. Informacji o zabezpieczeniach i możliwości uzyskania ich
+            kopii udziela administrator. Zobacz również{" "}
             <a href="https://policies.google.com/privacy/frameworks?hl=pl">
               zasady przesyłania danych Google
-            </a>.
+            </a>
+            .
           </p>
         </section>
 
@@ -191,13 +219,14 @@ function PrivacyPolicyPage() {
           <h2 id="privacy-retention">9. Okres przechowywania danych</h2>
           <ul>
             <li>
-              Korespondencja: przez czas potrzebny do obsługi sprawy, a następnie
-              tylko w zakresie niezbędnym do ustalenia, dochodzenia lub obrony
-              roszczeń, do upływu odpowiednich terminów przedawnienia.
+              Korespondencja: przez czas potrzebny do obsługi sprawy, a
+              następnie tylko w zakresie niezbędnym do ustalenia, dochodzenia
+              lub obrony roszczeń, do upływu odpowiednich terminów
+              przedawnienia.
             </li>
             <li>
-              Ustawienia wyglądu i menu: do ich usunięcia lub zastąpienia
-              w przeglądarce.
+              Ustawienia wyglądu i menu: do ich usunięcia lub zastąpienia w
+              przeglądarce.
             </li>
             <li>
               Dane techniczne hostingu: przez okres potrzebny do obsługi
@@ -207,16 +236,17 @@ function PrivacyPolicyPage() {
               wyjaśnienia lub obrony roszczeń.
             </li>
             <li>
-              Dane reklamowe i zapis zgód: przez okresy zależne od celu,
-              rodzaju technologii i dostawcy, opisane w szczegółach komunikatu
-              zgód i dokumentacji dostawców.
+              Dane reklamowe i zapis zgód: przez okresy zależne od celu, rodzaju
+              technologii i dostawcy, opisane w szczegółach komunikatu zgód i
+              dokumentacji dostawców.
             </li>
           </ul>
           <p>
             Informacje o technologiach Google znajdziesz w{" "}
             <a href="https://policies.google.com/technologies/cookies?hl=pl">
               opisie plików cookie Google
-            </a>. Czas działania cookie na urządzeniu może różnić się od czasu
+            </a>
+            . Czas działania cookie na urządzeniu może różnić się od czasu
             przechowywania danych przez dostawcę.
           </p>
         </section>
@@ -225,9 +255,10 @@ function PrivacyPolicyPage() {
           <h2 id="privacy-rights">10. Twoje prawa</h2>
           <p>
             W przypadkach przewidzianych przez RODO przysługują Ci prawa dostępu
-            do danych, sprostowania, usunięcia, ograniczenia przetwarzania
-            i przenoszenia danych. Możesz wnieść sprzeciw wobec przetwarzania
-            opartego na prawnie uzasadnionym interesie oraz wycofać udzieloną zgodę.
+            do danych, sprostowania, usunięcia, ograniczenia przetwarzania i
+            przenoszenia danych. Możesz wnieść sprzeciw wobec przetwarzania
+            opartego na prawnie uzasadnionym interesie oraz wycofać udzieloną
+            zgodę.
           </p>
           <p>
             Żądania kieruj na adres{" "}
@@ -239,8 +270,8 @@ function PrivacyPolicyPage() {
           <p>
             Administrator nie podejmuje wobec użytkowników wyłącznie
             automatycznych decyzji wywołujących skutki prawne lub podobnie
-            istotnie na nich wpływających. Profilowanie reklamowe opisano
-            w części dotyczącej Google AdSense.
+            istotnie na nich wpływających. Profilowanie reklamowe opisano w
+            części dotyczącej Google AdSense.
           </p>
         </section>
 
@@ -250,6 +281,42 @@ function PrivacyPolicyPage() {
             Polityka może być aktualizowana wraz ze zmianami funkcji serwisu,
             dostawców lub zasad przetwarzania danych. Aktualna wersja jest
             dostępna na tej stronie wraz z datą aktualizacji.
+          </p>
+        </section>
+        <section aria-labelledby="legal-disclaimer">
+          <h2 id="legal-disclaimer">12. Zastrzeżenia prawne</h2>
+
+          <h3>Charakter serwisu</h3>
+          <p>
+            PojazdLex jest niezależnym serwisem autorskim. Publikowane
+            opracowania, komentarze i interpretacje przedstawiają stanowisko
+            autora i nie stanowią oficjalnego stanowiska żadnego urzędu ani
+            organu administracji publicznej.
+          </p>
+
+          <h3>Informacje i kalkulatory</h3>
+          <p>
+            Treści zamieszczone w serwisie oraz wyniki kalkulatorów mają
+            charakter informacyjny i pomocniczy. Nie stanowią porady prawnej w
+            indywidualnej sprawie ani wiążącej interpretacji przepisów.
+          </p>
+          <p>
+            Autor dokłada starań, aby informacje były rzetelne i aktualne,
+            jednak mogą one zawierać błędy, nie uwzględniać wszystkich
+            okoliczności konkretnej sprawy lub zmian przepisów. Przed podjęciem
+            działań należy zweryfikować informacje i wyniki obliczeń na
+            podstawie aktualnych przepisów, a w razie wątpliwości skontaktować
+            się z właściwym urzędem lub specjalistą.
+          </p>
+
+          <h3>Odpowiedzialność</h3>
+          <p>
+            W zakresie dopuszczalnym przez obowiązujące przepisy prawa autor nie
+            ponosi odpowiedzialności za szkody wynikające z działań lub
+            zaniechań podjętych na podstawie treści serwisu lub wyników
+            udostępnionych kalkulatorów. Zastrzeżenie to nie wyłącza ani nie
+            ogranicza odpowiedzialności, której zgodnie z prawem nie można
+            wyłączyć lub ograniczyć.
           </p>
         </section>
       </article>

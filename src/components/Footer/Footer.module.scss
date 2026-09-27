@@ -15,23 +15,22 @@
     padding: 15px 10px;
     box-shadow: inset 0px 2px 1px -1px rgba(255, 255, 255, 0.2),
         0px 1px 1px 0px rgba(255, 255, 255, 0.14), 0px 1px 3px 0px rgba(255, 253, 253, 0.12);
-
 }
 
-.footerContainer {
+.footerLogoContainer {
     display: flex;
     align-items: center;
     gap: 10px;
+
+    .footerLogo {
+        display: flex;
+        flex-flow: column nowrap;
+        width: 32px;
+        align-items: center;
+    }
 }
 
-.footerLogo {
-    display: flex;
-    flex-flow: column nowrap;
-    width: 32px;
-    align-items: center;
-}
-
-.footerAddress {
+.footerLinkStyle {
     color: var(--footer-address-color);
     transition: color .75s cubic-bezier(.4, 0, .2, 1);
     text-decoration: none;
@@ -41,8 +40,24 @@
     }
 }
 
-.footerCopyrightText {
-    margin: 0;
+.footerPrivacyPolicyContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .footerPrivacyButton {
+        padding: 0.25rem 0.5rem;
+        color: var(--footer-address-color);
+        background: transparent;
+        border: 0;
+        border-radius: var(--radius-small);
+        font: inherit;
+        cursor: pointer;
+
+        &:hover {
+            color: var(--footer-address-color-hover);
+        }
+    }
 }
 
 .footerLegal {
@@ -50,6 +65,10 @@
     flex-direction: column;
     align-items: center;
     gap: 0.25rem;
+
+    .footerCopyrightText {
+        margin: 0;
+    }
 }
 
 .footerLibraries {
@@ -62,22 +81,6 @@
     flex-flow: column nowrap;
     align-items: center;
     transition: color .75s cubic-bezier(.4, 0, .2, 1);
-
-    &:hover {
-        color: var(--footer-address-color-hover);
-    }
-}
-
-.footerPrivacyButton {
-    padding: 0.25rem 0.5rem;
-    color: var(--footer-address-color);
-    background: transparent;
-    border: 0;
-    border-radius: var(--radius-small);
-    font: inherit;
-    cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 0.18em;
 
     &:hover {
         color: var(--footer-address-color-hover);

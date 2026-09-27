@@ -60,6 +60,19 @@ export function findNavigationItem(
   return undefined;
 }
 
+
+//moveKind: auto, smooth, instant
+export function upScreen(moveKind: ScrollBehavior = "smooth") {
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+
+  window.scrollTo({
+    top: 0,
+    behavior: prefersReducedMotion ? "auto" : moveKind,
+  });
+};
+
 //Pobierz nazwy pól obiektów
 export function typedKeys<T extends object>(object: T): Array<keyof T> {
   return Object.keys(object) as Array<keyof T>;

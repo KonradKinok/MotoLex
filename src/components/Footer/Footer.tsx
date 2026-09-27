@@ -12,7 +12,7 @@ declare global {
   interface Window {
     googlefc?: {
       callbackQueue?: {
-        push: (callback: () => void) => unknown;
+        push: (config: { CONSENT_API_READY: () => void }) => unknown;
       };
       showRevocationMessage?: () => void;
     };
@@ -40,28 +40,33 @@ export function Footer() {
       return;
     }
 
-    googlefc.callbackQueue.push(googlefc.showRevocationMessage);
+    googlefc.callbackQueue.push({
+      CONSENT_API_READY: () => {
+        googlefc.showRevocationMessage?.();
+      },
+    });
   }
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.footerContainer}>
+      <div className={styles.footerLogoContainer}>
         <div className={styles.footerLogo}>
           <img src={footerLogoImage} alt="" width="24" />
           <img src={footerLogoText} alt="3K NexGen" />
         </div>
         <address>
-          <a className={styles.footerAddress} href="mailto:3k.nexgen@gmail.com">
+          <a
+            className={styles.footerLinkStyle}
+            href="mailto:3k.nexgen@gmail.com"
+          >
             3K.nexgen@gmail.com
           </a>
         </address>
       </div>
-      <div className={styles.footerLegal}>
-        <p className={styles.footerCopyrightText}>
-          © {new Date().getFullYear()} PojazdLex
-        </p>
-        <Link className={styles.footerAddress} to={ROUTES.privacyPolicy}>
-          Polityka prywatności
+
+      <div className={styles.footerPrivacyPolicyContainer}>
+        <Link className={styles.footerLinkStyle} to={ROUTES.privacyPolicy}>
+          Informacje prawne i prywatność
         </Link>
         <button
           type="button"
@@ -71,7 +76,11 @@ export function Footer() {
           Ustawienia prywatności
         </button>
       </div>
-
+      <div className={styles.footerLegal}>
+        <p className={styles.footerCopyrightText}>
+          © {new Date().getFullYear()} PojazdLex
+        </p>
+      </div>
       <button
         type="button"
         className={styles.footerLibraries}
