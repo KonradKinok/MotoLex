@@ -64,7 +64,7 @@ export function Footer() {
         </address>
       </div>
 
-      <div className={styles.footerPrivacyPolicyContainer}>
+      <div data-nosnippet="" className={styles.footerPrivacyPolicyContainer}>
         <Link className={styles.footerLinkStyle} to={ROUTES.privacyPolicy}>
           Informacje prawne i prywatność
         </Link>
@@ -90,7 +90,9 @@ export function Footer() {
         aria-expanded={isModalLibrariesOpen}
       >
         <BookOpenText size={32} aria-hidden="true" />
-        <small>Biblioteki</small>
+        <span data-nosnippet="">
+          <small>Biblioteki</small>
+        </span>
       </button>
 
       <ModalLibraries

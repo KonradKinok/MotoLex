@@ -55,26 +55,38 @@ export default function DocumentsVinCheck() {
         {/* Trzy osobne obrazki */}
         <image
           href={agreementImg}
+          x={15}
+          y={15}
+          width={450}
+          height={(450 * 526) / 807}
           preserveAspectRatio="xMinYMin meet"
           className={styles.agreementImg}
         />{" "}
         <image
           href={vehicleTechnicalInspectionHalfTopImg}
+          x={15}
+          y={325}
+          width={400}
+          height={(400 * 536) / 872}
           preserveAspectRatio="xMinYMin meet"
           className={styles.technicalInspectionImg}
         />
         <image
           href={drFirstPage}
+          x={480}
+          y={260}
+          width={200}
+          height={(200 * 604) / 390}
           preserveAspectRatio="xMinYMin meet"
           className={styles.drImg}
         />{" "}
         {/* Ramki i linie nad obrazkami */}
         <g fill="none" strokeWidth={2} strokeLinejoin="round">
           {" "}
-          <rect className={styles.agreementFrame} />{" "}
-          <rect className={styles.technicalInspectionFrame} />{" "}
-          <rect className={styles.registrationCertificateFrame} />{" "}
-          <rect className={styles.agreementSecondFrame} />
+          <rect x={120} y={152} width={100} height={20} rx={3} className={styles.agreementFrame} />{" "}
+          <rect x={281} y={525} width={96} height={23} rx={3} className={styles.technicalInspectionFrame} />{" "}
+          <rect x={510} y={500} width={96} height={23} rx={3} className={styles.registrationCertificateFrame} />{" "}
+          <rect x={211} y={602} width={345} height={30} rx={3} className={styles.agreementSecondFrame} />
           {/* Umowa → dowód */}
           <path
             d="M 220 163 H 475 V 505 H 511"
