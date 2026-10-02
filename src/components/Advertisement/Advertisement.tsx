@@ -39,12 +39,12 @@ export function Advertisement() {
   return (
     <aside className={styles.advertisingColumn} aria-label="Reklamy">
       <section className={styles.advertisement}>
-        <p className={styles.advertisementLabel}>Reklama</p>
+        <p className={styles.advertisementLabel}></p>
         <AdSenseAd slot="6720559195" />
       </section>
 
       <section className={styles.advertisement}>
-        <p className={styles.advertisementLabel}>Reklama</p>
+        <p className={styles.advertisementLabel}></p>
         <AdSenseAd slot="7810279586" />
       </section>
     </aside>

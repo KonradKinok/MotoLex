@@ -81,6 +81,13 @@ export type PermanentLossFormData = {
 };
 
 //Regulation001Vin.tsx
-
+// export type TimeUnit =
+//   | { en: "day" | "week" | "month" | "year"; pl?: never }
+//   | { pl: "dzień" | "tydzień" | "miesiąc" | "rok"; en?: never };
 // <pre>Wynik: { JSON.stringify(przyklad1a, null, 2) } </pre>
 
+export type TimeUnit =
+  | { readonly en: "day"; readonly pl: "dzień" }
+  | { readonly en: "month"; readonly pl: "miesiąc" }
+  | { readonly en: "year"; readonly pl: "rok" }
+  | { readonly en: "week"; readonly pl: "tydzień" };

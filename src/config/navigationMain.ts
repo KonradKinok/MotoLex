@@ -7,6 +7,7 @@ import {
   FileX,
   ScanLine,
   Users,
+  CalendarRange,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { ROUTES } from "./routes";
@@ -68,6 +69,11 @@ const calculatorItems: NavigationItem[] = [
     label: "Trwała utrata",
     to: ROUTES.permanentLossCalculator,
     icon: FileX,
+  },
+  {
+    label: "Zakres dat",
+    to: ROUTES.dateRangeCalculator,
+    icon: CalendarRange,
   },
 ];
 

@@ -1,6 +1,20 @@
+import toast from "react-hot-toast";
 import { navigationItems } from "../../config/navigationMain";
 import type { NavigationItem } from "../../config/navigationMain";
 import { logToConsole } from "./console";
+
+export function displayErrorMessage(componentName: string, functionName: string, error: unknown, isToast: boolean = true) {
+  const errorMessage = error instanceof Error ? error.message : String(error);
+  console.error(
+    `%c[ERROR]%c [${componentName}] [${functionName}]\n%c${errorMessage}`,
+    "color: rgb(255, 255, 255); background: rgb(255, 0, 0); ",
+    "color: rgb(255, 255, 0); font-weight: bold; ",
+    "color: rgb(224, 255, 255); font-style: italic;"
+  );
+  if (isToast) {
+    toast.error(`${errorMessage}`);
+  }
+}
 // Get the path names from a patch name
 export function getPathNames(pathname: string): string[] {
   const pathParts = pathname
@@ -136,6 +150,60 @@ export function currencyFormater(value: string | number | null | undefined, maxi
 export function formatDate(date: Date | null): string {
   return date?.toLocaleDateString("pl-PL", dateOptions) ?? "- - -";
 }
+
+export function getWeekDay(date: Date | null, weekday: Intl.DateTimeFormatOptions["weekday"] = "long"): string {
+  return date?.toLocaleDateString("pl-PL", { weekday }) ?? "";
+}
+
+export function localDateWithWeekDay(date: Date | null): string {
+  if (!date || !Number.isFinite(date.getTime())) {
+    return "- - -";
+  }
+  const stringDate = `${formatDate(date)}r. ${getWeekDay(date)}`;
+  return stringDate;
+}
+
+// Funkcja do poprawnej polskiej deklinacji słowa
+const pluralRules = new Intl.PluralRules("pl-PL");
+export function pluralizeWord(count: number, word: "dzień" | "tydzień" | "miesiąc" | "rok",): string {
+  let declination: Record<string, string>;
+  switch (word) {
+    case "dzień":
+      declination = {
+        one: "dzień",
+        few: "dni",
+        many: "dni",
+        other: "dnia",
+      }
+      break;
+    case "tydzień":
+      declination = {
+        one: "tydzień",
+        few: "tygodnie",
+        many: "tygodni",
+        other: "tygodnia",
+      }
+      break;
+    case "miesiąc":
+      declination = {
+        one: "miesiąc",
+        few: "miesiące",
+        many: "miesięcy",
+        other: "miesięca",
+      };
+      break;
+    case "rok":
+      declination = {
+        one: "rok",
+        few: "lata",
+        many: "lat",
+        other: "roku",
+      };
+      break;
+  }
+  const rule = pluralRules.select(count);
+  return `${count} ${declination[rule]}`;
+};
 
 
 

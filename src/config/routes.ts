@@ -14,6 +14,7 @@ export const ROUTES = {
   penaltiesCalculator: "/kalkulator/kary",
   vinCalculator: "/kalkulator/vin",
   permanentLossCalculator: "/kalkulator/trwala-utrata",
+  dateRangeCalculator: "/kalkulator/zakres-dat",
 
   penalties: "/kary",
   privacyPolicy: "/polityka-prywatnosci",

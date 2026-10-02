@@ -219,7 +219,7 @@ export function calculationNumberOfDays(
 
 }
 
-function isHoliday(dayOff: Date): boolean {
+export function isHoliday(dayOff: Date): boolean {
   // Sprawdza dni wolne w tygodniu
   if (dayOff.getDay() === 6) return true; // Sobota
   if (dayOff.getDay() === 0) return true; // Niedziela

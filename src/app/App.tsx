@@ -46,6 +46,9 @@ const PermanentLossCalculatorPage = lazy(
   () =>
     import("../pages/PermanentLossCalculatorPage/PermanentLossCalculatorPage"),
 );
+const DateRangeCalculatorPage = lazy(
+  () => import("../pages/DateRangeCalculatorPage/DateRangeCalculatorPage"),
+);
 
 //OtherPages
 const PenaltiesPage = lazy(
@@ -85,6 +88,7 @@ function App() {
             path="trwala-utrata"
             element={<PermanentLossCalculatorPage />}
           />
+          <Route path="zakres-dat" element={<DateRangeCalculatorPage />} />
         </Route>
         <Route path="kary" element={<PenaltiesPage />} />
         <Route path={ROUTES.privacyPolicy} element={<PrivacyPolicyPage />} />
