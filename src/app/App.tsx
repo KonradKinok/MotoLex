@@ -28,10 +28,6 @@ const VehicleCategoriesPage = lazy(
     import("../pages/HomologationPage/VehicleCategoriesPage/VehicleCategoriesPage"),
 );
 
-const LegalRegulationsPage = lazy(
-  () => import("../pages/LegalRegulationsPage/LegalRegulationsPage"),
-);
-
 //CalculatorPage
 const CalculatorPage = lazy(
   () => import("../pages/CalculatorPage/CalculatorPage"),
@@ -51,10 +47,6 @@ const DateRangeCalculatorPage = lazy(
 );
 
 //OtherPages
-const PenaltiesPage = lazy(
-  () => import("../pages/PenaltiesPage/PenaltiesPage"),
-);
-
 const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
 const PrivacyPolicyPage = lazy(
   () => import("../pages/PrivacyPolicyPage/PrivacyPolicyPage"),
@@ -77,7 +69,6 @@ function App() {
               <Route index element={<VehicleCategoriesPage />} />
               <Route path=":group" element={<VehicleCategoriesPage />} />
             </Route>
-            <Route path="przepisy-prawne" element={<LegalRegulationsPage />} />
           </Route>
         </Route>
         <Route path={ROUTES.calculator}>
@@ -93,7 +84,7 @@ function App() {
             element={<DateRangeCalculatorPage />}
           />
         </Route>
-        <Route path="kary" element={<PenaltiesPage />} />
+
         <Route path={ROUTES.privacyPolicy} element={<PrivacyPolicyPage />} />
 
         <Route path="*" element={<NotFoundPage />} />
