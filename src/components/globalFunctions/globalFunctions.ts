@@ -1,7 +1,6 @@
 import toast from "react-hot-toast";
 import { navigationItems } from "../../config/navigationMain";
 import type { NavigationItem } from "../../config/navigationMain";
-import { logToConsole } from "./console";
 
 export function displayErrorMessage(componentName: string, functionName: string, error: unknown, isToast: boolean = true) {
   const errorMessage = error instanceof Error ? error.message : String(error);
@@ -24,32 +23,16 @@ export function getPathNames(pathname: string): string[] {
   return pathParts;
 }
 
-//not used
+// Nie używane. Zwraca linki najwyższego poziomu, a po nich bezpośrednie elementy podrzędne bieżącej strony.
 export function conditionToDisplaySidebar(pathname: string): NavigationItem[] {
-  const patchnameTable = getPathNames(pathname);
-  const allNavigationItems: NavigationItem[] = [];
-  const mainNavigationPages = navigationItems.map((item) => ({
-    to: item.to,
-    label: item.label,
-    icon: item.icon,
+  const normalizedPath = `/${pathname.split("/").filter(Boolean).join("/")}`;
+  const mainNavigationPages: NavigationItem[] = navigationItems.map((item) => ({
+    ...item,
+    children: undefined,
   }));
-  logToConsole("table", `[globalFunctions.ts] [conditionToDisplaySidebar]-patchnameTable`, patchnameTable);
-  if (Array.isArray(patchnameTable) && patchnameTable.length === 0) {
+  const currentPage = findNavigationItem(navigationItems, normalizedPath);
 
-    logToConsole("table", `[globalFunctions.ts] [conditionToDisplaySidebar]`, mainNavigationPages);
-    return mainNavigationPages;
-  }
-  else if (Array.isArray(patchnameTable) && patchnameTable.length > 0) {
-    const filteredNavigationItems = navigationItems.find((item) => item.to === pathname)?.children ?? [];
-    logToConsole("table", `[globalFunctions.ts] [conditionToDisplaySidebar]`, filteredNavigationItems);
-
-    allNavigationItems.push(...mainNavigationPages);
-    allNavigationItems.push(...(filteredNavigationItems || []));
-
-    return allNavigationItems;
-  }
-
-  return mainNavigationPages;
+  return [...mainNavigationPages, ...(currentPage?.children ?? [])];
 }
 
 // Find a navigation item by its path in a nested structure
@@ -207,3 +190,4 @@ export function pluralizeWord(count: number, word: "dzień" | "tydzień" | "mies
 
 
 
+// <pre>Wynik: { JSON.stringify(przyklad1a, null, 2) } </pre>

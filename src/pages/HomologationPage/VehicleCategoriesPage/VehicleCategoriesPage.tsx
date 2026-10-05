@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 import { NavLink, useParams } from "react-router";
+import { PageMetadata } from "../../../components/PageMetaData/PageMetaData";
 import { Loader } from "../../../components/Loader/Loader";
 import { ROUTES, APPLICATION_NAME } from "../../../config/routes";
 import { legalRegulationsTable } from "../../../LegalRegulations/legalRegulationsTable";
-import { PageMetadata } from "../../../components/PageMetaData/PageMetaData";
 import {
   vehicleCategoryGroups,
   type VehicleCategory,
@@ -28,7 +28,7 @@ function getVehicleCategoryGroupUrl(group: VehicleCategoryGroup) {
 }
 
 //Strona /dla-pracownikow/homologacja/kategorie-pojazdow
-function VehicleCategoriesPage() {
+export default function VehicleCategoriesPage() {
   const { group: groupFromUrl } = useParams<{
     group?: string;
   }>();
@@ -131,5 +131,3 @@ function VehicleCategoriesPage() {
     </>
   );
 }
-
-export default VehicleCategoriesPage;

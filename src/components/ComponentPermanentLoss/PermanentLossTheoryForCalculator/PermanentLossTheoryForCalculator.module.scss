@@ -3,14 +3,13 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  gap: 15px;
+  gap: 1rem;
   padding: 10px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-medium);
   color: var(--color-text);
   background: var(--color-surface);
   box-shadow: 0 0.125rem 0.5rem color-mix(in srgb, var(--color-text) 14%, transparent);
-  margin: 1rem auto;
 
   .container {
     display: flex;
@@ -19,6 +18,9 @@
   }
 
   .legalList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     list-style: decimal inside;
   }
 

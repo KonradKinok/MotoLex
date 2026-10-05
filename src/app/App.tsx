@@ -5,9 +5,9 @@ import { ROUTES } from "../config/routes";
 //HomePage
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 
-//CustomerPage
-const CustomerZonePage = lazy(
-  () => import("../pages/CustomerZonePage/CustomerZonePage"),
+//VehicleOwnersPage
+const VehicleOwnersPage = lazy(
+  () => import("../pages/VehicleOwnersPage/VehicleOwnersPage"),
 );
 
 const DocumentsPage = lazy(
@@ -66,7 +66,7 @@ function App() {
       <Route path="/" element={<LayoutPage />}>
         <Route index element={<HomePage />} />
         <Route path={ROUTES.vehicleOwners}>
-          <Route index element={<CustomerZonePage />} />
+          <Route index element={<VehicleOwnersPage />} />
           <Route path="dokumenty" element={<DocumentsPage />} />
         </Route>
         <Route path={ROUTES.employees}>
@@ -88,7 +88,10 @@ function App() {
             path="trwala-utrata"
             element={<PermanentLossCalculatorPage />}
           />
-          <Route path="zakres-dat" element={<DateRangeCalculatorPage />} />
+          <Route
+            path="terminy-administracyjne"
+            element={<DateRangeCalculatorPage />}
+          />
         </Route>
         <Route path="kary" element={<PenaltiesPage />} />
         <Route path={ROUTES.privacyPolicy} element={<PrivacyPolicyPage />} />

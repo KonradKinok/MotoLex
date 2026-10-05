@@ -7,6 +7,7 @@ import { useToggle } from "../../hooks/useToggle";
 import { Loader } from "../../components/Loader/Loader";
 import { Breadcrumbs } from "../../components/Breadcrumbs/Breadcrumbs";
 import { ButtonUp } from "../../components/CustomControls/ButtonUp/ButtonUp";
+import { ScrollToTop } from "../../components/CustomControls/ScrollToTop/ScrollToTop";
 import { Logo } from "../../components/Logo/Logo";
 import { ThemeSelector } from "../../components/ThemeSelector/ThemeSelector";
 import { NavigationTop } from "../../components/NavigationTop/NavigationTop";
@@ -43,6 +44,7 @@ export function LayoutPage() {
 
   return (
     <div className={styles.site}>
+      <ScrollToTop />
       <a className={styles.skipLink} href="#main-content">
         Przejdź do głównej treści
       </a>

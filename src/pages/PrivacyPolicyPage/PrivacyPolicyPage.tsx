@@ -1,14 +1,8 @@
-import { useEffect } from "react";
 import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
 import { APPLICATION_NAME, ROUTES } from "../../config/routes";
 import styles from "./PrivacyPolicyPage.module.scss";
-import { upScreen } from "../../components/globalFunctions/globalFunctions";
 
 function PrivacyPolicyPage() {
-  useEffect(() => {
-    upScreen();
-  }, []);
-
   return (
     <>
       <PageMetadata

@@ -1,12 +1,12 @@
 import { Link, useLocation } from "react-router";
 import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
-import { APPLICATION_NAME, ROUTES } from "../../config/routes";
+import { ROUTES, APPLICATION_NAME } from "../../config/routes";
 import { navigationItems } from "../../config/navigationMain";
 import { findNavigationItem } from "../../components/globalFunctions/globalFunctions";
 import LinkImgPageCustom from "../../components/CustomControls/LinkImgPageCustom/LinkImgPageCustom";
 import styles from "../PageStyles.module.scss";
 
-function HomologationPage() {
+export default function VehicleOwnersPage() {
   const { pathname } = useLocation();
   const normalizedPath = pathname.replace(/\/+$/, "") || "/";
   const mainPage = findNavigationItem(navigationItems, normalizedPath);
@@ -49,5 +49,3 @@ function HomologationPage() {
     </>
   );
 }
-
-export default HomologationPage;

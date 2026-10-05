@@ -1,22 +1,39 @@
+import { Link, useLocation } from "react-router";
 import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
 import { APPLICATION_NAME, ROUTES } from "../../config/routes";
+import { navigationItems } from "../../config/navigationMain";
+import { findNavigationItem } from "../../components/globalFunctions/globalFunctions";
 import CalculatorVin from "../../components/ComponentVin/CalculatorVin/CalculatorVin";
-import styles from "./VinCalculatorPage.module.scss";
+import styles from "../PageStyles.module.scss";
 
-function VinCalculatorPage() {
+export default function VinCalculatorPage() {
+  const { pathname } = useLocation();
+  const normalizedPath = pathname.replace(/\/+$/, "") || "/";
+  const mainPage = findNavigationItem(navigationItems, normalizedPath);
+
+  if (!mainPage) {
+    return (
+      <div className={styles.pageMainContainer}>
+        <h1>Nie znaleziono strony</h1>
+        <p>Nie znaleziono strony dla podanej ścieżki: {pathname}</p>
+        <p>
+          <Link to={ROUTES.home}>Wróć na stronę główną</Link>
+        </p>
+      </div>
+    );
+  }
   return (
     <>
       <PageMetadata
-        title={`Kalkulator VIN | ${APPLICATION_NAME}`}
-        description="Sprawdź poprawność numeru VIN dla nowych pojazdów rejestrowanych od 07 lipca 2026 roku i upewnij się, że jest prawidłowy."
-        path={ROUTES.vinCalculator}
+        title={`${mainPage.fullLabel} | ${APPLICATION_NAME}`}
+        description={mainPage.description}
+        path={normalizedPath}
       />
-      <section className={styles.vinCalculatorPageContainer}>
-        <h1 className={styles.headerH1}>Kalkulator VIN</h1>
+      <section className={styles.pageMainContainer}>
+        <h1>{mainPage.fullLabel}</h1>
+        <p>{mainPage.description}</p>
         <CalculatorVin />
       </section>
     </>
   );
 }
-
-export default VinCalculatorPage;

@@ -1,34 +1,47 @@
 import { useState } from "react";
+import { Link, useLocation } from "react-router";
 import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
 import { APPLICATION_NAME, ROUTES } from "../../config/routes";
-import ComponentDateRange from "../../components/ComponentDateRange/ComponentDateRange";
+import { navigationItems } from "../../config/navigationMain";
+import { findNavigationItem } from "../../components/globalFunctions/globalFunctions";
 import {
   administrativeDateRange,
   type AdministrativeDateRangeType,
 } from "../../components/globalFunctions/administrativeDateRangeTable";
+import ComponentDateRange from "../../components/ComponentDateRange/ComponentDateRange";
 import styles from "./DateRangeCalculatorPage.module.scss";
 
-function DateRangeCalculatorPage() {
+export default function DateRangeCalculatorPage() {
   const [selectedValueForComboBox, setSelectedValueForComboBox] =
     useState<AdministrativeDateRangeType | null>(
       administrativeDateRange[0] ?? null,
     );
+
+  const { pathname } = useLocation();
+  const normalizedPath = pathname.replace(/\/+$/, "") || "/";
+  const mainPage = findNavigationItem(navigationItems, normalizedPath);
+
+  if (!mainPage) {
+    return (
+      <div className={styles.dateRangeCalculatorPageContainer}>
+        <h1>Nie znaleziono strony</h1>
+        <p>Nie znaleziono strony dla podanej ścieżki: {pathname}</p>
+        <p>
+          <Link to={ROUTES.home}>Wróć na stronę główną</Link>
+        </p>
+      </div>
+    );
+  }
   return (
     <>
       <PageMetadata
-        title={`Kalkulator terminów administracyjnych | ${APPLICATION_NAME}`}
-        description="Oblicz ostatni dzień terminu administracyjnego i dzień po jego upływie. Wybierz rodzaj sprawy oraz datę początkową."
-        path={ROUTES.dateRangeCalculator}
+        title={`${mainPage.fullLabel} | ${APPLICATION_NAME}`}
+        description={mainPage.description}
+        path={normalizedPath}
       />
       <section className={styles.dateRangeCalculatorPageContainer}>
-        <h1 className={styles.headerH1}>
-          Kalkulator terminów administracyjnych
-        </h1>
-        <p className={styles.headerH1}>
-          Wybierz rodzaj sprawy i datę początkową. Kalkulator wyznaczy ostatni
-          dzień terminu oraz pierwszy dzień po jego upływie.
-        </p>
-
+        <h1>{mainPage.fullLabel}</h1>
+        <p>{mainPage.description}</p>
         <ComponentDateRange
           selectedValueForComboBox={selectedValueForComboBox}
           setSelectedValueForComboBox={setSelectedValueForComboBox}
@@ -37,5 +50,3 @@ function DateRangeCalculatorPage() {
     </>
   );
 }
-
-export default DateRangeCalculatorPage;

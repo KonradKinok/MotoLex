@@ -1,5 +1,5 @@
 .dateRangeCalculatorPageContainer {
-  .headerH1 {
-    margin: 1rem auto;
-  }
+  display: flex;
+  flex-flow: column;
+  gap: 1rem;
 }

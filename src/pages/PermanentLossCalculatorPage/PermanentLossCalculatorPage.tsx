@@ -1,24 +1,42 @@
-import { FormPermanentLossCalculator } from "../../components/ComponentPermanentLoss/FormPermanentLossCalculator/FormPermanentLossCalculator";
+import { Link, useLocation } from "react-router";
 import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
 import { APPLICATION_NAME, ROUTES } from "../../config/routes";
-import styles from "./PermanentLossCalculatorPage.module.scss";
+import { navigationItems } from "../../config/navigationMain";
+import { findNavigationItem } from "../../components/globalFunctions/globalFunctions";
+import FormPermanentLossCalculator from "../../components/ComponentPermanentLoss/FormPermanentLossCalculator/FormPermanentLossCalculator";
 import PermanentLossTheoryForCalculator from "../../components/ComponentPermanentLoss/PermanentLossTheoryForCalculator/PermanentLossTheoryForCalculator";
+import styles from "../PageStyles.module.scss";
 
-function PermanentLossCalculatorPage() {
+export default function PermanentLossCalculatorPage() {
+  const { pathname } = useLocation();
+  const normalizedPath = pathname.replace(/\/+$/, "") || "/";
+  const mainPage = findNavigationItem(navigationItems, normalizedPath);
+
+  if (!mainPage) {
+    return (
+      <div className={styles.pageMainContainer}>
+        <h1>Nie znaleziono strony</h1>
+        <p>Nie znaleziono strony dla podanej ścieżki: {pathname}</p>
+        <p>
+          <Link to={ROUTES.home}>Wróć na stronę główną</Link>
+        </p>
+      </div>
+    );
+  }
+
   return (
     <>
       <PageMetadata
-        title={`Kalkulator opłaty w przypadku trwałej utraty pojazdu | ${APPLICATION_NAME}`}
-        description="Kalkulator opłaty z tytułu udokumentowanej trwałej i zupełnej utraty posiadania pojazdu bez zmiany w zakresie prawa własności."
-        path={ROUTES.permanentLossCalculator}
+        title={`${mainPage.fullLabel} | ${APPLICATION_NAME}`}
+        description={mainPage.description}
+        path={normalizedPath}
       />
-      <section className={styles.permanentLossCalculatorPageMainContainer}>
-        <h1 className={styles.headerH1}>Kalkulator trwałej utraty</h1>
+      <section className={styles.pageMainContainer}>
+        <h1>{mainPage.fullLabel}</h1>
+        <p>{mainPage.description}</p>
         <PermanentLossTheoryForCalculator />
         <FormPermanentLossCalculator />
       </section>
     </>
   );
 }
-
-export default PermanentLossCalculatorPage;

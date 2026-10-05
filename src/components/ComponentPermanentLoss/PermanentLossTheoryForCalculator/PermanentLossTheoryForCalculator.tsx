@@ -1,6 +1,6 @@
 import styles from "./PermanentLossTheoryForCalculator.module.scss";
 
-export function PermanentLossTheoryForCalculator() {
+export default function PermanentLossTheoryForCalculator() {
   return (
     <article className={styles.permanentLossTheoryForCalculatorContainer}>
       <div className={styles.container}>
@@ -59,5 +59,3 @@ export function PermanentLossTheoryForCalculator() {
     </article>
   );
 }
-
-export default PermanentLossTheoryForCalculator;

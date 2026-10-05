@@ -60,7 +60,7 @@ type FieldChange = {
   };
 }[keyof LossFormValues];
 
-export function FormPermanentLossCalculator() {
+export default function FormPermanentLossCalculator() {
   const id = useId();
   const [values, setValues] = useState<LossFormValues>({
     year: null,

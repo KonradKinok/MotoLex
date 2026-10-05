@@ -1,28 +1,43 @@
+import { Link, useLocation } from "react-router";
+import { ROUTES, APPLICATION_NAME } from "../../config/routes";
+import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
+import { navigationItems } from "../../config/navigationMain";
+import { findNavigationItem } from "../../components/globalFunctions/globalFunctions";
 import DocumentsAuthorizationCheck from "../../components/DocumentsCheck/DocumentsAuthorizationCheck";
 import DocumentsElectronicInvoiceCheck from "../../components/DocumentsCheck/DocumentsElectronicInvoiceCheck";
 import DocumentsMakeCheck from "../../components/DocumentsCheck/DocumentsMakeCheck";
 import DocumentsOriginalCheck from "../../components/DocumentsCheck/DocumentsOriginalCheck";
 import DocumentsSellerCheck from "../../components/DocumentsCheck/DocumentsSellerCheck";
 import DocumentsVinCheck from "../../components/DocumentsCheck/DocumentsVinCheck";
-import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
-import { ROUTES, APPLICATION_NAME } from "../../config/routes";
 import styles from "./DocumentsPage.module.scss";
-function DocumentsPage() {
+
+export default function DocumentsPage() {
+  const { pathname } = useLocation();
+  const normalizedPath = pathname.replace(/\/+$/, "") || "/";
+  const mainPage = findNavigationItem(navigationItems, normalizedPath);
+
+  if (!mainPage) {
+    return (
+      <div className={styles.documentsPageMainContainer}>
+        <h1>Nie znaleziono strony</h1>
+        <p>Nie znaleziono strony dla podanej ścieżki: {pathname}</p>
+        <p>
+          <Link to={ROUTES.home}>Wróć na stronę główną</Link>
+        </p>
+      </div>
+    );
+  }
+
   return (
     <>
       <PageMetadata
-        title={`Jak sprawdzić dokumenty pojazdu? | ${APPLICATION_NAME}`}
-        description="Dowiedz się, jakie dokumenty pojazdu należy sprawdzić przed zakupem, sprzedażą samochodu i przed wizytą w Wydziale Komunikacji."
-        path={ROUTES.documents}
+        title={`${mainPage.fullLabel} | ${APPLICATION_NAME}`}
+        description={mainPage.description}
+        path={normalizedPath}
       />
       <section className={styles.documentsPageMainContainer}>
-        <h1 className={styles.headerH1}>Sprawdź dokumenty</h1>
-        <p>
-          Sprawdzanie dokumentów pojazdu jest istotnym krokiem w procesie zakupu
-          lub sprzedaży samochodu. Poniżej znajdziesz informacje na temat
-          najważniejszych dokumentów, które powinieneś sprawdzić przed
-          dokonaniem transakcji i wizytą w Wydziale Komunikcji.
-        </p>
+        <h1>{mainPage.fullLabel}</h1>
+        <p>{mainPage.description}</p>
         <div>
           <p>
             ‼️ DLACZEGO SPRAWDZENIE DOKUMENTÓW JEST WAŻNE? Różnica w danych =
@@ -54,5 +69,3 @@ function DocumentsPage() {
     </>
   );
 }
-
-export default DocumentsPage;

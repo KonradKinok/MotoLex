@@ -1,39 +1,52 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
 import { ROUTES, APPLICATION_NAME } from "../../config/routes";
-import HomologacjaVertical from "../../assets/images/employeeZonePage/HomologacjaVertical.webp";
-import styles from "./EmployeeZonePage.module.scss";
+import { findNavigationItem } from "../../components/globalFunctions/globalFunctions";
+import { navigationItems } from "../../config/navigationMain";
+import LinkImgPageCustom from "../../components/CustomControls/LinkImgPageCustom/LinkImgPageCustom";
+import styles from "../PageStyles.module.scss";
 
-function EmployeeZonePage() {
+export default function EmployeeZonePage() {
+  const { pathname } = useLocation();
+  const normalizedPath = pathname.replace(/\/+$/, "") || "/";
+  const mainPage = findNavigationItem(navigationItems, normalizedPath);
+
+  const columnsCount = 3; // Liczba kolumn obrazków
+
+  if (!mainPage) {
+    return (
+      <div className={styles.pageMainContainer}>
+        <h1>Nie znaleziono strony</h1>
+        <p>Nie znaleziono strony dla podanej ścieżki: {pathname}</p>
+        <p>
+          <Link to={ROUTES.home}>Wróć na stronę główną</Link>
+        </p>
+      </div>
+    );
+  }
+
   return (
     <>
       <PageMetadata
-        title={`Baza wiedzy dla pracowników | ${APPLICATION_NAME}`}
-        description="Baza wiedzy dla pracowników wydziałów komunikacji. Miejsce na komunikaty instytucji, orzeczenia i specjalistyczne materiały wspierające codzienną pracę."
-        path={ROUTES.employees}
+        title={`${mainPage.fullLabel} | ${APPLICATION_NAME}`}
+        description={mainPage.description}
+        path={normalizedPath}
       />
-      <section className={styles.employeeZonePageMainContainer}>
-        <div>
-          <h1 className={styles.headerH1}>Baza wiedzy dla pracowników</h1>
-          <p>
-            W tym miejscu znajdują się komunikaty instytucji, orzeczenia oraz
-            specjalistyczne materiały dla pracowników wydziałów komunikacji.
-          </p>
-        </div>
-        <div className={styles.employeeZoneLinksContainer}>
-          <Link to="homologacja" className={styles.employeeZoneLink}>
-            <img
-              src={HomologacjaVertical}
-              alt="Homologacja"
-              width={600}
-              height={800}
-              className={styles.img}
-            />
-          </Link>
-        </div>
+      <section className={styles.pageMainContainer}>
+        <h1>{mainPage.fullLabel}</h1>
+        <p>{mainPage.description}</p>
+        {mainPage.children && mainPage.children.length > 0 && (
+          <div data-columns={columnsCount} className={styles.linksImgContainer}>
+            {mainPage.children.map((childPage, index) => (
+              <LinkImgPageCustom
+                key={childPage.to}
+                childPage={childPage}
+                loading={index < columnsCount ? "eager" : "lazy"}
+              />
+            ))}
+          </div>
+        )}
       </section>
     </>
   );
 }
-
-export default EmployeeZonePage;

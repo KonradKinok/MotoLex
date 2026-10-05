@@ -1,3 +1,5 @@
+
+export type Route = (typeof ROUTES)[keyof typeof ROUTES];
 export const APPLICATION_NAME = "PojazdLex";
 export const ROUTES = {
   home: "/",
@@ -14,7 +16,7 @@ export const ROUTES = {
   penaltiesCalculator: "/kalkulator/kary",
   vinCalculator: "/kalkulator/vin",
   permanentLossCalculator: "/kalkulator/trwala-utrata",
-  dateRangeCalculator: "/kalkulator/zakres-dat",
+  administrativeDeadlines: "/kalkulator/terminy-administracyjne",
 
   penalties: "/kary",
   privacyPolicy: "/polityka-prywatnosci",
