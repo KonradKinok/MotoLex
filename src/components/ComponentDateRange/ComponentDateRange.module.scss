@@ -30,9 +30,9 @@
 
   .resultContainer {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 60% 35%;
     gap: 5px 12px;
-    align-items: baseline;
+    align-items: center;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
@@ -47,7 +47,31 @@
     .resultLabel {
       text-align: right;
       overflow-wrap: anywhere;
+
+      &::first-letter {
+        text-transform: uppercase;
+      }
     }
+
+    .resultTable {
+      width: 100%;
+      table-layout: fixed;
+      border-collapse: collapse;
+      margin: 1rem auto;
+
+      .resultTableCell {
+        border: 1px solid var(--color-border);
+        padding: 0.5rem;
+        text-align: center;
+        overflow-wrap: anywhere;
+
+        &:hover {
+          border: 1px solid var(--color-link-text-hover);
+          color: var(--color-link-text-hover);
+        }
+      }
+    }
+
 
     .resultDate {
       min-width: 0;
@@ -73,6 +97,7 @@
 
 @media print {
   .containerForm {
+
     .inputControls,
     .containerDateTimePicker,
     .submitButton {

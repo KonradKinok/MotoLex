@@ -188,6 +188,8 @@ export function pluralizeWord(count: number, word: "dzień" | "tydzień" | "mies
   return `${count} ${declination[rule]}`;
 };
 
-
-
+//Pierwsza wielka litera
+export const capitalizeFirstLetter = (str: string): string => {
+  return str ? str.charAt(0).toUpperCase() + str.slice(1) : str;
+};
 // <pre>Wynik: { JSON.stringify(przyklad1a, null, 2) } </pre>

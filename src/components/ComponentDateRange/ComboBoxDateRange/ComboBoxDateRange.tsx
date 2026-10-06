@@ -1,6 +1,9 @@
 import { useId } from "react";
 import Select from "react-select";
-import { pluralizeWord } from "../../globalFunctions/globalFunctions";
+import {
+  capitalizeFirstLetter,
+  pluralizeWord,
+} from "../../globalFunctions/globalFunctions";
 import {
   administrativeDateRange,
   type AdministrativeDateRangeType,
@@ -72,7 +75,7 @@ function getComboBoxData(
     )
     .map((item) => ({
       value: item,
-      label: `${item.description} (${pluralizeWord(
+      label: `${capitalizeFirstLetter(item.description)} (${pluralizeWord(
         item.timeAmount,
         item.timeUnit.pl,
       )})`,

@@ -1,4 +1,4 @@
-import React, { useState, type SubmitEvent } from "react";
+import React, { useId, useState, type SubmitEvent } from "react";
 import { Calculator } from "lucide-react";
 import { calculationAdministrativeDates } from "../globalFunctions/calculatorDate";
 import type { AdministrativeDateRangeType } from "../globalFunctions/administrativeDateRangeTable";
@@ -23,6 +23,7 @@ export default function ComponentDateRange({
   selectedValueForComboBox,
   setSelectedValueForComboBox,
 }: ComponentDateRangeProps) {
+  const datePickerFirstId = useId();
   const [dateTimePickerDate, setDateTimePickerDate] = useState(new Date());
 
   const [
@@ -78,40 +79,45 @@ export default function ComponentDateRange({
           <div className={styles.containerDateTimePicker}>
             <label
               className={styles.labelDateTimePicker}
-              htmlFor="dateTimePicker"
+              htmlFor={datePickerFirstId}
             >
-              {selectedValueForComboBox?.descriptionSelectedDate ?? "Data początkowa"}:
+              {selectedValueForComboBox?.descriptionSelectedDate}:
             </label>
             <DateTimePicker
+              id={datePickerFirstId}
               dateTimePickerDate={dateTimePickerDate}
               onChange={handleDateChange}
               isClearable={false}
             />
           </div>
           <p className={styles.printSummary}>
-            Rodzaj terminu: {selectedValueForComboBox?.description ?? "Nie wybrano"}
+            Rodzaj terminu: {selectedValueForComboBox?.description}
           </p>
           <dl
             className={styles.resultContainer}
             aria-live="polite"
             aria-atomic="true"
           >
-            <dt className={styles.resultLabel}>Data początkowa:</dt>
+            <dt className={styles.resultLabel}>
+              {selectedValueForComboBox?.descriptionSelectedDate}:
+            </dt>
             <dd className={styles.resultDate}>
               {localDateWithWeekDay(
                 resultCalculationAdministrativeDates?.startDate ?? null,
               )}
             </dd>
-            <dt className={styles.resultLabel}>Ostatni dzień terminu:</dt>
+            <dt className={styles.resultLabel}>
+              {selectedValueForComboBox?.resultLastDayDescription}:
+            </dt>
             <dd className={`${styles.resultDate} ${styles.resultDateEnd}`}>
               {localDateWithWeekDay(
                 resultCalculationAdministrativeDates?.endDate ?? null,
               )}
             </dd>
-            <dt className={styles.resultLabel}>Dzień po terminie:</dt>
-            <dd
-              className={`${styles.resultDate} ${styles.resultDateEndAfter}`}
-            >
+            <dt className={styles.resultLabel}>
+              {selectedValueForComboBox?.resultAfterDayDescription}:
+            </dt>
+            <dd className={`${styles.resultDate} ${styles.resultDateEndAfter}`}>
               {localDateWithWeekDay(
                 resultCalculationAdministrativeDates?.endDatePlusOneDay ?? null,
               )}
