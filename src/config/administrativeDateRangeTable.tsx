@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { CalendarDays, CalendarClock } from "lucide-react";
-import type { TimeUnit } from "../../types/globalTypes";
+import type { TimeUnit } from "../types/globalTypes";
 
 export type AdministrativeDateRangeType = {
   id: number;
@@ -68,6 +68,19 @@ export const administrativeDateRange: readonly AdministrativeDateRangeType[] = [
   {
     id: 5,
     description:
+      "doręczenie awizowanego pisma (eDoręczenia - fikcja doręczenia)",
+    descriptionSelectedDate:
+      "data wpłynięcia pisma na adres do doręczeń elektronicznych ",
+    resultLastDayDescription: "data uznania nieodebranego pisma za doręczone",
+    resultAfterDayDescription: "dzień po uznaniu pisma za doręczone",
+    timeAmount: 15,
+    timeUnit: { en: "day", pl: "dzień" },
+    icon: <CalendarDays size={20} />,
+    group: "Dla interesantów",
+  },
+  {
+    id: 6,
+    description:
       "termin na przesłanie odwołania od decyzji organu I instancji do SKO",
     descriptionSelectedDate: "data otrzymania odwołania przez organ",
     resultLastDayDescription: "ostatni dzień na przesłanie odwołania do SKO",
@@ -78,7 +91,7 @@ export const administrativeDateRange: readonly AdministrativeDateRangeType[] = [
     group: "Dla pracowników urzędu",
   },
   {
-    id: 6,
+    id: 7,
     description: "termin na przesłanie ponaglenia do SKO",
     descriptionSelectedDate: "data otrzymania ponaglenia przez organ",
     resultLastDayDescription: "ostatni dzień na przesłanie ponaglenia do SKO",
@@ -90,7 +103,7 @@ export const administrativeDateRange: readonly AdministrativeDateRangeType[] = [
     group: "Dla pracowników urzędu",
   },
   {
-    id: 7,
+    id: 8,
     description:
       "termin na przesłanie zażalenia na postanowienie organu I instancji do SKO",
     descriptionSelectedDate: "data otrzymania zażalenia przez organ",

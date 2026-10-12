@@ -1,7 +1,7 @@
 import React, { useId, useState, type SubmitEvent } from "react";
 import { Calculator } from "lucide-react";
 import { calculationAdministrativeDates } from "../globalFunctions/calculatorDate";
-import type { AdministrativeDateRangeType } from "../globalFunctions/administrativeDateRangeTable";
+import type { AdministrativeDateRangeType } from "../../config/administrativeDateRangeTable";
 import { DateTimePicker } from "../CustomControls/DateTimePicker/DateTimePicker";
 import { ButtonUniversal } from "../CustomControls/ButtonUniversal/ButtonUniversal";
 import { FieldsetCustom } from "../CustomControls/FieldsetCustom/FieldsetCustom";

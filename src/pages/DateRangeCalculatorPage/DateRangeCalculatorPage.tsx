@@ -7,7 +7,7 @@ import { findNavigationItem } from "../../components/globalFunctions/globalFunct
 import {
   administrativeDateRange,
   type AdministrativeDateRangeType,
-} from "../../components/globalFunctions/administrativeDateRangeTable";
+} from "../../config/administrativeDateRangeTable";
 import ComponentDateRange from "../../components/ComponentDateRange/ComponentDateRange";
 import styles from "./DateRangeCalculatorPage.module.scss";
 

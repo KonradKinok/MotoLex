@@ -7,7 +7,7 @@ import {
 import {
   administrativeDateRange,
   type AdministrativeDateRangeType,
-} from "../../globalFunctions/administrativeDateRangeTable";
+} from "../../../config/administrativeDateRangeTable";
 import {
   createComboBoxStyles,
   formatComboBoxOption,

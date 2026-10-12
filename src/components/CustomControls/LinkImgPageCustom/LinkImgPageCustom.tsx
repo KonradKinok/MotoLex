@@ -19,14 +19,14 @@ export default function LinkImgPageCustom({
     <NavLink to={childPage.to} className={styles.link}>
       <img
         src={childPage.image.src}
-        alt={childPage.image.alt}
+        alt={childPage.fullLabel}
         width={childPage.image.width}
         height={childPage.image.height}
         loading={loading}
         className={styles.img}
       />
       <div className={styles.overlayContainer}>
-        <h2 className={styles.overlayTitle}>{childPage.fullLabel}</h2>
+        {/* <h2 className={styles.overlayTitle}>{childPage.fullLabel}</h2> */}
         <p className={styles.overlayText}>{childPage.description}</p>
       </div>
     </NavLink>
