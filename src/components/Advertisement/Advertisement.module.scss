@@ -17,17 +17,24 @@
   }
 }
 
+// @media (max-width: 79.999rem) {
+//   .advertisingColumn {
+//     grid-column: 2;
+//     grid-template-columns: repeat(2, minmax(0, 1fr));
+//   }
+// }
+
+// @media (max-width: 68rem) {
+//   .advertisingColumn {
+//     grid-template-columns: 1fr;
+//     margin-top: 2rem;
+//   }
+// }
+
+//do usunięcia
 @media (max-width: 79.999rem) {
   .advertisingColumn {
-    grid-column: 2;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 68rem) {
-  .advertisingColumn {
-    grid-template-columns: 1fr;
-    margin-top: 2rem;
+    display: none;
   }
 }
 
