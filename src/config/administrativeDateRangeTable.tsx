@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { CalendarDays, CalendarClock } from "lucide-react";
-import type { TimeUnit } from "../types/globalTypes";
+import type { TimeUnit, TimeUnitOption } from "../types/globalTypes";
 
 export type AdministrativeDateRangeType = {
   id: number;
@@ -13,6 +13,13 @@ export type AdministrativeDateRangeType = {
   icon: ReactNode;
   group: "Dla interesantów" | "Dla pracowników urzędu";
 };
+
+export const timeUnits = [
+  { en: "day", pl: "dzień", icon: <CalendarDays /> },
+  { en: "week", pl: "tydzień", icon: <CalendarDays /> },
+  { en: "month", pl: "miesiąc", icon: <CalendarDays /> },
+  { en: "year", pl: "rok", icon: <CalendarDays /> },
+] satisfies readonly TimeUnitOption[];
 
 export const administrativeDateRange: readonly AdministrativeDateRangeType[] = [
   {

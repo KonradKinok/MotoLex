@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 //calculator.ts
 export type DayKind =
   | "start"
@@ -91,3 +93,7 @@ export type TimeUnit =
   | { readonly en: "month"; readonly pl: "miesiąc" }
   | { readonly en: "year"; readonly pl: "rok" }
   | { readonly en: "week"; readonly pl: "tydzień" };
+
+export type TimeUnitOption = TimeUnit & {
+  icon: ReactNode;
+};

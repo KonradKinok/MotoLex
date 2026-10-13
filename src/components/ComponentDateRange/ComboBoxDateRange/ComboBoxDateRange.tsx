@@ -43,7 +43,7 @@ export default function ComboBoxDateRange({
   return (
     <div className={styles.containerComboBoxDateRange}>
       <label className={styles.labelComboBoxDateRange} htmlFor={id}>
-        Rodzaj terminu:
+        Wybierz rodzaj terminu:
       </label>
       <Select
         inputId={id}
