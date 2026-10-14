@@ -16,6 +16,7 @@
   z-index: 100;
   max-width: min(22rem, calc(100vw - 2rem));
   box-sizing: border-box;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-medium);
   font-family: inherit;
   font-size: 0.875rem;
@@ -93,11 +94,6 @@
 
 .mainContent {
   min-width: 0;
-
-  // >article,
-  // >div {
-  //   max-width: 75ch;
-  // }
 
   h1 {
     margin-top: 0;

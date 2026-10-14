@@ -85,11 +85,7 @@ export function LayoutPage() {
       </div>
       <Footer />
       <ButtonUp />
-      <Tooltip
-        id="app-tooltip"
-        className={styles.tooltip}
-        border="1px solid var(--color-border)"
-      />
+      <Tooltip id="app-tooltip" className={styles.tooltip} />
       <Toaster
         position="top-right"
         reverseOrder={false}

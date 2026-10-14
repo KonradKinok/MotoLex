@@ -52,9 +52,9 @@
 }
 
 //media
-@media (min-width: 769px) {
-    .up-button {
-        bottom: 80px;
+@media (max-width: 640px) {
+    .upButton {
+        bottom: 220px;
         right: 10px;
     }
 }
