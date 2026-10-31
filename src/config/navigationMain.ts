@@ -8,6 +8,7 @@ import {
   ScanLine,
   Users,
   CalendarRange,
+  TrafficCone,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { ROUTES } from "./routes";
@@ -92,6 +93,19 @@ const employeesItems: NavigationItem[] = [
       height: 800,
     },
     children: homologationVehicleCategories,
+  },
+  {
+    label: "Przepisy",
+    fullLabel: "Przepisy prawne",
+    to: ROUTES.laws,
+    icon: TrafficCone,
+    description: "Aktualne przepisy prawne.",
+    image: {
+      src: imagesPageCollection.employees.laws,
+      alt: "",
+      width: 600,
+      height: 800,
+    },
   },
 ];
 

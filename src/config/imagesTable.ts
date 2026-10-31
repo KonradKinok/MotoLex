@@ -6,6 +6,7 @@ import CalculatorImg from "../assets/images/home/CalculatorVertical.jpg";
 import SprawdzDokumentyVertical from "../assets/images/vehicleOwnersPage/SprawdzDokumentyVertical.webp";
 //Employees page images
 import HomologacjaVertical from "../assets/images/employeeZonePage/HomologacjaVertical.webp";
+import PrzepisyPrawne from "../assets/images/employeeZonePage/PrzepisyPrawne.webp";
 //Homologation page images
 import KategoriePojazdowVertical from "../assets/images/homologationPage/KategoriePojazdowVertical.jpg";
 //Calculators page images
@@ -30,7 +31,8 @@ export const imagesPageCollection = {
     documents: SprawdzDokumentyVertical
   },
   employees: {
-    homologation: HomologacjaVertical
+    homologation: HomologacjaVertical,
+    laws: PrzepisyPrawne
   },
   homologation: {
     vehicleCategories: KategoriePojazdowVertical

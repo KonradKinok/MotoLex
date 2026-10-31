@@ -6,7 +6,7 @@ import { findNavigationItem } from "../../components/globalFunctions/globalFunct
 import LinkImgPageCustom from "../../components/CustomControls/LinkImgPageCustom/LinkImgPageCustom";
 import styles from "../PageStyles.module.scss";
 
-function HomologationPage() {
+export default function HomologationPage() {
   const { pathname } = useLocation();
   const normalizedPath = pathname.replace(/\/+$/, "") || "/";
   const mainPage = findNavigationItem(navigationItems, normalizedPath);
@@ -49,5 +49,3 @@ function HomologationPage() {
     </>
   );
 }
-
-export default HomologationPage;

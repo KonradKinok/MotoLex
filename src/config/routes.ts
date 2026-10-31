@@ -8,6 +8,7 @@ export const ROUTES = {
   documents: "/dla-wlascicieli/dokumenty",
 
   employees: "/dla-pracownikow",
+  laws: "/dla-pracownikow/przepisy-prawne",
   homologation: "/dla-pracownikow/homologacja",
   vehicleCategories: "/dla-pracownikow/homologacja/kategorie-pojazdow",
   legalRegulations: "/dla-pracownikow/homologacja/przepisy-prawne",

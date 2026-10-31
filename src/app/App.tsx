@@ -19,6 +19,8 @@ const EmployeeZonePage = lazy(
   () => import("../pages/EmployeeZonePage/EmployeeZonePage"),
 );
 
+const LawsPage = lazy(() => import("../pages/LawsPage/LawsPage"));
+
 const HomologationPage = lazy(
   () => import("../pages/HomologationPage/HomologationPage"),
 );
@@ -63,6 +65,7 @@ function App() {
         </Route>
         <Route path={ROUTES.employees}>
           <Route index element={<EmployeeZonePage />} />
+          <Route path="przepisy-prawne" element={<LawsPage />} />
           <Route path="homologacja">
             <Route index element={<HomologationPage />} />
             <Route path="kategorie-pojazdow">
