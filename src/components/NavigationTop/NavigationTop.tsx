@@ -1,4 +1,4 @@
-import { useId, useRef, useState } from "react";
+import { useId, useLayoutEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { NavLink } from "react-router";
 import {
@@ -24,7 +24,30 @@ export function NavigationMenuItem({
   const [isOpen, setIsOpen] = useState(false);
   const submenuId = useId();
   const linkRef = useRef<HTMLAnchorElement>(null);
+  const submenuRef = useRef<HTMLUListElement>(null);
+  const [submenuSide, setSubmenuSide] = useState<"left" | "right">("right");
   const ItemIcon = item.icon;
+
+  useLayoutEffect(() => {
+    if (!isOpen) return;
+
+    function updateSubmenuSide() {
+      const submenu = submenuRef.current;
+      const parent = submenu?.parentElement;
+      if (!submenu || !parent?.parentElement?.hasAttribute("data-submenu")) return;
+
+      const bounds = parent.getBoundingClientRect();
+      const rightSpace = document.documentElement.clientWidth - bounds.right - 16;
+      const leftSpace = bounds.left - 16;
+      setSubmenuSide(
+        rightSpace >= submenu.offsetWidth || rightSpace >= leftSpace ? "right" : "left",
+      );
+    }
+
+    updateSubmenuSide();
+    window.addEventListener("resize", updateSubmenuSide);
+    return () => window.removeEventListener("resize", updateSubmenuSide);
+  }, [isOpen]);
 
   return (
     <li
@@ -78,6 +101,9 @@ export function NavigationMenuItem({
       {hasChildren && (
         <ul
           id={submenuId}
+          ref={submenuRef}
+          data-submenu
+          data-side={submenuSide}
           hidden={!isOpen}
           className={styles.submenu}
           aria-label={`Podmenu: ${item.label}`}
