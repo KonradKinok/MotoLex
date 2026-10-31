@@ -99,7 +99,7 @@ const employeesItems: NavigationItem[] = [
     fullLabel: "Przepisy prawne",
     to: ROUTES.laws,
     icon: TrafficCone,
-    description: "Aktualne przepisy prawne.",
+    description: "Znajdziesz tu przepisy prawne dotyczące rejestracji pojazdów.",
     image: {
       src: imagesPageCollection.employees.laws,
       alt: "",
