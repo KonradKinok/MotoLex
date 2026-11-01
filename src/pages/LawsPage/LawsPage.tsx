@@ -3,15 +3,17 @@ import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
 import { APPLICATION_NAME, ROUTES } from "../../config/routes";
 import { navigationItems } from "../../config/navigationMain";
 import { findNavigationItem } from "../../components/globalFunctions/globalFunctions";
-import LinkImgPageCustom from "../../components/CustomControls/LinkImgPageCustom/LinkImgPageCustom";
+import { useAppContext } from "../../hooks/useAppContext";
 import styles from "../PageStyles.module.scss";
+import { LawPolish } from "../../components/LawPolish/LawPolish";
 
 export default function LawsPage() {
   const { pathname } = useLocation();
   const normalizedPath = pathname.replace(/\/+$/, "") || "/";
   const mainPage = findNavigationItem(navigationItems, normalizedPath);
 
-  const columnsCount = 3; // Liczba kolumn obrazków
+  const { pord, rozRejestracjaPojazdow } = useAppContext();
+
   if (!mainPage) {
     return (
       <div className={styles.pageMainContainer}>
@@ -34,17 +36,9 @@ export default function LawsPage() {
       <section className={styles.pageMainContainer}>
         <h1>{mainPage.fullLabel}</h1>
         <p>{mainPage.description}</p>
-        {mainPage.children && mainPage.children.length > 0 && (
-          <div data-columns={columnsCount} className={styles.linksImgContainer}>
-            {mainPage.children.map((childPage, index) => (
-              <LinkImgPageCustom
-                key={childPage.to}
-                childPage={childPage}
-                loading={index < columnsCount ? "eager" : "lazy"}
-              />
-            ))}
-          </div>
-        )}
+
+        <LawPolish legalActs={pord} />
+        <LawPolish legalActs={rozRejestracjaPojazdow} />
       </section>
     </>
   );

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 const DEFAULT_LOCAL_STORAGE_KEY = "__defaultLocalStorageKey";
 
-
 export const useLocalStorage = <T>(
   initialValue: T,
   localStorageKey = DEFAULT_LOCAL_STORAGE_KEY
@@ -13,7 +12,7 @@ export const useLocalStorage = <T>(
       return localValue ? JSON.parse(localValue) : initialValue;
     } catch (error) {
       console.error(
-        `Failed to get "${localStorageKey}" value from Local Storage. Returning initial value.`,
+        `Nie udało się pobrać wartości "${localStorageKey}" z pamięci lokalnej (Local Storage). Zwracana jest wartość początkowa.`,
         error
       );
       return initialValue;
@@ -21,7 +20,17 @@ export const useLocalStorage = <T>(
   });
 
   useEffect(() => {
-    window.localStorage.setItem(localStorageKey, JSON.stringify(stateLocalStorage));
+    try {
+      window.localStorage.setItem(
+        localStorageKey,
+        JSON.stringify(stateLocalStorage),
+      );
+    } catch (error) {
+      console.error(
+        `Nie udało się zapisać "${localStorageKey}" w localStorage.`,
+        error,
+      );
+    }
   }, [localStorageKey, stateLocalStorage]);
 
   return [stateLocalStorage, setStateLocalStorage];

@@ -1,0 +1,77 @@
+.lawPolishMainContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .expandableContent {
+    display: grid;
+    grid-template-rows: 0fr;
+    min-width: 0;
+    transition: grid-template-rows 450ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &[data-expanded="true"] {
+      grid-template-rows: 1fr;
+    }
+  }
+
+  .expandableInner {
+    min-height: 0;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .headerContainer {
+    display: flex;
+    flex-direction: row;
+
+    .utilityButtonContainer {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      z-index: 1;
+    }
+  }
+
+  .actsList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .itemActsList {
+      display: flex;
+      flex-direction: column;
+
+      .paragraph {
+        transition: color .75s cubic-bezier(.4, 0, .2, 1);
+
+        &:hover {
+          color: var(--color-link-text-hover);
+        }
+      }
+    }
+  }
+
+  .linkContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+
+    .link {
+      transition: color .75s cubic-bezier(.4, 0, .2, 1);
+      text-decoration-line: none;
+      color: var(--color-link);
+
+      &:hover {
+        color: var(--color-link-text-hover);
+      }
+    }
+  }
+
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lawPolishMainContainer .expandableContent {
+    transition: none;
+  }
+}
