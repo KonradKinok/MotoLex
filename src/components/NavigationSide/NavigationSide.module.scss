@@ -5,6 +5,7 @@
   background: var(--color-surface-muted);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-medium);
+  font-size: 0.8rem;
 }
 
 .sidebarCollapseButton {
@@ -70,6 +71,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .collapseButtonIcon,
   .collapseButtonText {
     transition: none;
