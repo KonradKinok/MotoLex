@@ -76,7 +76,6 @@ export function typedKeys<T extends object>(object: T): Array<keyof T> {
 }
 
 
-
 const plnCurrencyFormatter = new Intl.NumberFormat("pl-PL", {
   style: "currency",
   currency: "PLN",
@@ -145,6 +144,26 @@ export function localDateWithWeekDay(date: Date | null): string {
   const stringDate = `${formatDate(date)}r. ${getWeekDay(date)}`;
   return stringDate;
 }
+
+
+
+
+export function getCurrentTimeToString(now: Date): string {
+  return [
+    String(now.getHours()).padStart(2, "0"),
+    String(now.getMinutes()).padStart(2, "0"),
+    String(now.getSeconds()).padStart(2, "0"),
+  ].join(":");
+}
+
+export function getTodayToString(now = new Date()): string {
+  return [
+    now.getFullYear(),
+    String(now.getMonth() + 1).padStart(2, "0"),
+    String(now.getDate()).padStart(2, "0"),
+  ].join("-");
+}
+
 
 // Funkcja do poprawnej polskiej deklinacji słowa
 const pluralRules = new Intl.PluralRules("pl-PL");

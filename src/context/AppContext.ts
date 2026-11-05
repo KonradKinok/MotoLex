@@ -5,6 +5,8 @@ import type {
 
 export type AppResource<T> = {
   data: T | null;
+  date: string | null;
+  time: string | null;
   loading: boolean;
   error: string | null;
   // load: () => Promise<void>;

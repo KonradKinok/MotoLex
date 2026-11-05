@@ -35,16 +35,18 @@ export function AppProvider({ children }: PropsWithChildren) {
   const contextValue: AppContextValue = {
     pord: {
       data: pord.data,
+      date: pord.date,
+      time: pord.time,
       loading: pord.loading,
       error: pord.error,
-      // load: () => pord.getData(),
       refresh: refreshPoRD,
     },
     rozRejestracjaPojazdow: {
       data: rozRejestracjaPojazdow.data,
+      date: rozRejestracjaPojazdow.date,
+      time: rozRejestracjaPojazdow.time,
       loading: rozRejestracjaPojazdow.loading,
       error: rozRejestracjaPojazdow.error,
-      // load: () => rozRejestracjaPojazdow.getData(),
       refresh: refreshRozRejestracjaPojazdow,
     },
   };

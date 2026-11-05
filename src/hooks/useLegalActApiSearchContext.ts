@@ -3,9 +3,11 @@ import { isAxiosError } from "axios";
 import { type LegalActsTable, httpStatusCodes } from "../components/Api/ApiPolishLaws/apiPolishRegulationData";
 import { getDzUToTable } from "../components/Api/ApiPolishLaws/apiPolishRegulationFunction";
 import { useLocalStorage } from "./useLocalStorage";
+import { getCurrentTimeToString, getTodayToString } from "../components/globalFunctions/globalFunctions";
 
 type LegalActCache = {
   date: string;
+  time?: string;
   data: LegalActsTable;
 };
 
@@ -38,7 +40,7 @@ export function useLegalActApiSearchContext(
     force = false,
   ): Promise<void> => {
     if (signal?.aborted || inProgress.current) return;
-    if (!force && cache?.date === getToday()) {
+    if (!force && cache?.date === getTodayToString()) {
       setError(null);
       return;
     }
@@ -57,8 +59,10 @@ export function useLegalActApiSearchContext(
       if (signal?.aborted) return;
 
       // Data jest zapisywana dopiero po udanym pobraniu.
+      const fetchedAt = new Date();
       setStoredValue({
-        date: getToday(),
+        date: getTodayToString(fetchedAt),
+        time: getCurrentTimeToString(fetchedAt),
         data: result,
       } satisfies LegalActCache);
     } catch (err) {
@@ -90,6 +94,8 @@ export function useLegalActApiSearchContext(
 
   return {
     data: cache?.data ?? null,
+    date: cache?.date ?? null,
+    time: cache?.time ?? null,
     loading,
     error,
     getData,
@@ -108,15 +114,7 @@ function isLegalActCache(value: unknown): value is LegalActCache {
   );
 }
 
-function getToday(): string {
-  const now = new Date();
 
-  return [
-    now.getFullYear(),
-    String(now.getMonth() + 1).padStart(2, "0"),
-    String(now.getDate()).padStart(2, "0"),
-  ].join("-");
-}
 
 function getTextError(status: number): string {
   const statusInfo = httpStatusCodes.find(

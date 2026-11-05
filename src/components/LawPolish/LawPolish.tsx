@@ -31,9 +31,13 @@ export function LawPolish({ legalActs }: LawsPageProps) {
       ref={articleRef}
       aria-labelledby={titleId}
     >
-      <FieldsetCustom legend={"Stan na:"}>
+      <FieldsetCustom
+        legend={`Stan na: ${legalActs.date ?? ""} ${legalActs.time ?? ""}`}
+      >
         <div className={styles.headerContainer}>
-          <h2 id={titleId} className={styles.headerText}>{actName}</h2>
+          <h2 id={titleId} className={styles.headerText}>
+            {actName}
+          </h2>
           <div className={styles.utilityButtonContainer}>
             <ButtonExpand
               isExpanded={isExpandedArticle}
@@ -66,7 +70,10 @@ export function LawPolish({ legalActs }: LawsPageProps) {
               ) : (
                 <ul className={styles.actsList}>
                   {legalActs.data.map((act, index) => (
-                    <li key={`${act.ELI}-${index}`} className={styles.itemActsList}>
+                    <li
+                      key={`${act.ELI}-${index}`}
+                      className={styles.itemActsList}
+                    >
                       <p className={styles.paragraph}>
                         {act.title} ({act.displayAddress}){" "}
                       </p>
