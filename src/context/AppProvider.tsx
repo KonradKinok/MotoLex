@@ -32,7 +32,7 @@ export function AppProvider({ children }: PropsWithChildren) {
     void loadRozRejestracjaPojazdow();
   }, [loadPoRD, loadRozRejestracjaPojazdow]);
 
-  const contextValue: AppContextValue = {
+  const resources = {
     pord: {
       data: pord.data,
       date: pord.date,
@@ -49,6 +49,11 @@ export function AppProvider({ children }: PropsWithChildren) {
       error: rozRejestracjaPojazdow.error,
       refresh: refreshRozRejestracjaPojazdow,
     },
+  };
+
+  const contextValue: AppContextValue = {
+    ...resources,
+    recentPolishLaws: Object.values(resources),
   };
 
   return (

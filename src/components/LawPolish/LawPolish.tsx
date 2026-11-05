@@ -75,7 +75,7 @@ export function LawPolish({ legalActs }: LawsPageProps) {
                       className={styles.itemActsList}
                     >
                       <p className={styles.paragraph}>
-                        {act.title} ({act.displayAddress}){" "}
+                        {act.title} ({act.displayAddress})
                       </p>
                       <div className={styles.linkContainer}>
                         {act.textPDF && (

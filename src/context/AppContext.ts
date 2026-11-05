@@ -16,6 +16,7 @@ export type AppResource<T> = {
 export type AppContextValue = {
   pord: AppResource<LegalActsTable>;
   rozRejestracjaPojazdow: AppResource<LegalActsTable>;
+  recentPolishLaws: AppResource<LegalActsTable>[];
 
   // Tutaj możesz później dodać inne dane aplikacji.
 };
