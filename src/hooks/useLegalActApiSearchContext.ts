@@ -32,6 +32,7 @@ export function useLegalActApiSearchContext(
     ? storedValue
     : null;
 
+  const cacheDateRef = useRef(cache?.date ?? null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const inProgress = useRef(false);
@@ -40,8 +41,7 @@ export function useLegalActApiSearchContext(
     force = false,
   ): Promise<void> => {
     if (signal?.aborted || inProgress.current) return;
-    if (!force && cache?.date === getTodayToString()) {
-      setError(null);
+    if (!force && cacheDateRef.current === getTodayToString()) {
       return;
     }
 
@@ -60,11 +60,14 @@ export function useLegalActApiSearchContext(
 
       // Data jest zapisywana dopiero po udanym pobraniu.
       const fetchedAt = new Date();
-      setStoredValue({
+      const nextCache = {
         date: getTodayToString(fetchedAt),
         time: getCurrentTimeToString(fetchedAt),
         data: result,
-      } satisfies LegalActCache);
+      } satisfies LegalActCache;
+
+      cacheDateRef.current = nextCache.date;
+      setStoredValue(nextCache);
     } catch (err) {
       if (signal?.aborted) return;
 
@@ -85,7 +88,6 @@ export function useLegalActApiSearchContext(
       setLoading(false);
     }
   }, [
-    cache,
     idDzU,
     paramsSearchTitleText,
     signal,

@@ -54,19 +54,22 @@ export async function getFirstDzU(idDzU: string, signal?: AbortSignal): Promise<
     { signal }
   );
   return response.data;
-
 }
 
 
 export const nameDzuTable = {
   PoRD: { idDzU: "DU/1997/602", paramsSearchTitleText: "prawo o ruchu drogowym" },
   RozRejestracjaPojazdow: { idDzU: "DU/2024/1709", paramsSearchTitleText: "rejestracji i oznaczania pojazdów, wymagań dla tablic rejestracyjnych oraz wzorów innych dokumentów związanych z rejestracją pojazdów" },
+  RozSzczegoloweCzynnosci: { idDzU: "DU/2022/1849", paramsSearchTitleText: "szczegółowych czynności organów w sprawach związanych z dopuszczeniem pojazdu do ruchu oraz wzorów dokumentów w tych sprawach" },
+  RozOplatyZaDrPcTr: { idDzU: "DU/2022/1848", paramsSearchTitleText: "wysokości opłat za wydanie dowodu rejestracyjnego, pozwolenia czasowego i zalegalizowanych tablic (tablicy) rejestracyjnych oraz ich wtórników" },
+  RozTrybLegalizacjiTrWzoryZl: { idDzU: "DU/2012/481", paramsSearchTitleText: "trybu legalizacji tablic rejestracyjnych oraz warunków technicznych i wzorów znaku legalizacyjnego" },
+  RozProdukcjaDystrybucjaTr: { idDzU: "DU/2012/585", paramsSearchTitleText: "warunków produkcji i sposobu dystrybucji tablic rejestracyjnych i znaków legalizacyjnych" },
+  RozCzasoweWycofanie: { idDzU: "DU/2004/2856", paramsSearchTitleText: "czasowego wycofania pojazdów z ruchu" },
+  RozNadawanieCechIdentyfikacyjnych: { idDzU: "DU/2011/1401", paramsSearchTitleText: "sposobu oraz trybu nadawania i umieszczania w pojazdach cech identyfikacyjnych" },
+  RozWzorOplataTrwalaUtrata: { idDzU: "DU/2002/419", paramsSearchTitleText: "opłaty będącej warunkiem wyrejestrowania pojazdu w przypadku udokumentowanej trwałej i zupełnej utraty pojazdu bez zmiany w zakresie prawa własności" },
+  RozProfesjonalnaRejestracja: { idDzU: "DU/2019/546", paramsSearchTitleText: "profesjonalnej rejestracji pojazdów, stosowanych oznaczeń oraz opłat związanych z profesjonalną rejestracją pojazdów" },
+  RozProfesjonalnaRejestracjaDystrybucjaPtr: { idDzU: "DU/2019/547", paramsSearchTitleText: "warunków produkcji i sposobu dystrybucji profesjonalnych tablic rejestracyjnych i znaków legalizacyjnych oraz trybu legalizacji profesjonalnych tablic rejestracyjnych" },
 };
-
-
-export const gettedDzUTable = [
-
-];
 
 export async function getDzUToTable(idDzU: string, paramsSearchTitleText: string, signal?: AbortSignal): Promise<LegalActsTable> {
 

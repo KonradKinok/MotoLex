@@ -1,54 +1,55 @@
-import { useCallback, useEffect, type PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { AppContext, type AppContextValue } from "./AppContext";
-import { useLegalActApiSearchContext } from "../hooks/useLegalActApiSearchContext";
+import { useLegalActApiResourceContext } from "../hooks/useLegalActApiResourceContext";
 import { nameDzuTable } from "../components/Api/ApiPolishLaws/apiPolishRegulationFunction";
 
 export function AppProvider({ children }: PropsWithChildren) {
-  const pordConfig = nameDzuTable.PoRD;
-  const rejestracjaConfig = nameDzuTable.RozRejestracjaPojazdow;
-
-  const pord = useLegalActApiSearchContext(
-    pordConfig.idDzU,
-    pordConfig.paramsSearchTitleText,
+  const pord = useLegalActApiResourceContext(
+    nameDzuTable.PoRD,
   );
-
-  const rozRejestracjaPojazdow = useLegalActApiSearchContext(
-    rejestracjaConfig.idDzU,
-    rejestracjaConfig.paramsSearchTitleText,
+  const rozRejestracjaPojazdow = useLegalActApiResourceContext(
+    nameDzuTable.RozRejestracjaPojazdow,
   );
-
-  const loadPoRD = pord.getData;
-  const loadRozRejestracjaPojazdow = rozRejestracjaPojazdow.getData;
-
-  const refreshPoRD = useCallback(() => loadPoRD(true), [loadPoRD]);
-
-  const refreshRozRejestracjaPojazdow = useCallback(
-    () => loadRozRejestracjaPojazdow(true),
-    [loadRozRejestracjaPojazdow],
+  const rozSzczegoloweCzynnosci = useLegalActApiResourceContext(
+    nameDzuTable.RozSzczegoloweCzynnosci,
   );
-
-  useEffect(() => {
-    void loadPoRD();
-    void loadRozRejestracjaPojazdow();
-  }, [loadPoRD, loadRozRejestracjaPojazdow]);
+  const rozOplatyZaDrPcTr = useLegalActApiResourceContext(
+    nameDzuTable.RozOplatyZaDrPcTr,
+  );
+  const rozTrybLegalizacjiTrWzoryZl = useLegalActApiResourceContext(
+    nameDzuTable.RozTrybLegalizacjiTrWzoryZl,
+  );
+  const rozProdukcjaDystrybucjaTr = useLegalActApiResourceContext(
+    nameDzuTable.RozProdukcjaDystrybucjaTr,
+  );
+  const rozCzasoweWycofanie = useLegalActApiResourceContext(
+    nameDzuTable.RozCzasoweWycofanie,
+  );
+  const rozNadawanieCechIdentyfikacyjnych = useLegalActApiResourceContext(
+    nameDzuTable.RozNadawanieCechIdentyfikacyjnych,
+  );
+  const rozWzorOplataTrwalaUtrata = useLegalActApiResourceContext(
+    nameDzuTable.RozWzorOplataTrwalaUtrata,
+  );
+  const rozProfesjonalnaRejestracja = useLegalActApiResourceContext(
+    nameDzuTable.RozProfesjonalnaRejestracja,
+  );
+  const rozProfesjonalnaRejestracjaDystrybucjaPtr = useLegalActApiResourceContext(
+    nameDzuTable.RozProfesjonalnaRejestracjaDystrybucjaPtr,
+  );
 
   const resources = {
-    pord: {
-      data: pord.data,
-      date: pord.date,
-      time: pord.time,
-      loading: pord.loading,
-      error: pord.error,
-      refresh: refreshPoRD,
-    },
-    rozRejestracjaPojazdow: {
-      data: rozRejestracjaPojazdow.data,
-      date: rozRejestracjaPojazdow.date,
-      time: rozRejestracjaPojazdow.time,
-      loading: rozRejestracjaPojazdow.loading,
-      error: rozRejestracjaPojazdow.error,
-      refresh: refreshRozRejestracjaPojazdow,
-    },
+    pord,
+    rozRejestracjaPojazdow,
+    rozSzczegoloweCzynnosci,
+    rozOplatyZaDrPcTr,
+    rozTrybLegalizacjiTrWzoryZl,
+    rozProdukcjaDystrybucjaTr,
+    rozCzasoweWycofanie,
+    rozNadawanieCechIdentyfikacyjnych,
+    rozWzorOplataTrwalaUtrata,
+    rozProfesjonalnaRejestracja,
+    rozProfesjonalnaRejestracjaDystrybucjaPtr,
   };
 
   const contextValue: AppContextValue = {

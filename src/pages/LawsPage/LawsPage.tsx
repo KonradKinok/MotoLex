@@ -6,13 +6,26 @@ import { findNavigationItem } from "../../components/globalFunctions/globalFunct
 import { useAppContext } from "../../hooks/useAppContext";
 import styles from "../PageStyles.module.scss";
 import { LawPolish } from "../../components/LawPolish/LawPolish";
+import { FieldsetCustom } from "../../components/CustomControls/FieldsetCustom/FieldsetCustom";
 
 export default function LawsPage() {
   const { pathname } = useLocation();
   const normalizedPath = pathname.replace(/\/+$/, "") || "/";
   const mainPage = findNavigationItem(navigationItems, normalizedPath);
 
-  const { pord, rozRejestracjaPojazdow } = useAppContext();
+  const {
+    pord,
+    rozRejestracjaPojazdow,
+    rozSzczegoloweCzynnosci,
+    rozOplatyZaDrPcTr,
+    rozTrybLegalizacjiTrWzoryZl,
+    rozProdukcjaDystrybucjaTr,
+    rozCzasoweWycofanie,
+    rozNadawanieCechIdentyfikacyjnych,
+    rozWzorOplataTrwalaUtrata,
+    rozProfesjonalnaRejestracja,
+    rozProfesjonalnaRejestracjaDystrybucjaPtr,
+  } = useAppContext();
 
   if (!mainPage) {
     return (
@@ -36,9 +49,21 @@ export default function LawsPage() {
       <section className={styles.pageMainContainer}>
         <h1>{mainPage.fullLabel}</h1>
         <p>{mainPage.description}</p>
-
-        <LawPolish legalActs={pord} />
-        <LawPolish legalActs={rozRejestracjaPojazdow} />
+        <FieldsetCustom legend={`Przepisy podstawowe:`}>
+          <LawPolish legalActs={pord} />
+          <LawPolish legalActs={rozRejestracjaPojazdow} />
+          <LawPolish legalActs={rozSzczegoloweCzynnosci} />
+          <LawPolish legalActs={rozOplatyZaDrPcTr} />
+          <LawPolish legalActs={rozTrybLegalizacjiTrWzoryZl} />
+          <LawPolish legalActs={rozProdukcjaDystrybucjaTr} />
+          <LawPolish legalActs={rozCzasoweWycofanie} />
+          <LawPolish legalActs={rozNadawanieCechIdentyfikacyjnych} />
+          <LawPolish legalActs={rozWzorOplataTrwalaUtrata} />
+        </FieldsetCustom>
+        <FieldsetCustom legend={`Profesjonalna rejestracja pojazdów:`}>
+          <LawPolish legalActs={rozProfesjonalnaRejestracja} />
+          <LawPolish legalActs={rozProfesjonalnaRejestracjaDystrybucjaPtr} />
+        </FieldsetCustom>
       </section>
     </>
   );
