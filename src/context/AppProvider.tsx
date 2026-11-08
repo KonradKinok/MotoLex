@@ -1,12 +1,16 @@
 import type { PropsWithChildren } from "react";
 import { AppContext, type AppContextValue } from "./AppContext";
-import { useLegalActApiResourceContext } from "../hooks/useLegalActApiResourceContext";
-import { nameDzuTable } from "../components/Api/ApiPolishLaws/apiPolishRegulationFunction";
+import {
+  useLegalActApiResourceContext,
+  useLegalActApiResourceContextByTitle,
+} from "../hooks/useLegalActApiResourceContext";
+import {
+  nameDzuTable,
+  nameDzuTableByTitle,
+} from "../components/Api/ApiPolishLaws/apiPolishRegulationFunction";
 
 export function AppProvider({ children }: PropsWithChildren) {
-  const pord = useLegalActApiResourceContext(
-    nameDzuTable.PoRD,
-  );
+  const pord = useLegalActApiResourceContext(nameDzuTable.PoRD);
   const rozRejestracjaPojazdow = useLegalActApiResourceContext(
     nameDzuTable.RozRejestracjaPojazdow,
   );
@@ -34,10 +38,18 @@ export function AppProvider({ children }: PropsWithChildren) {
   const rozProfesjonalnaRejestracja = useLegalActApiResourceContext(
     nameDzuTable.RozProfesjonalnaRejestracja,
   );
-  const rozProfesjonalnaRejestracjaDystrybucjaPtr = useLegalActApiResourceContext(
-    nameDzuTable.RozProfesjonalnaRejestracjaDystrybucjaPtr,
-  );
+  const rozProfesjonalnaRejestracjaDystrybucjaPtr =
+    useLegalActApiResourceContext(
+      nameDzuTable.RozProfesjonalnaRejestracjaDystrybucjaPtr,
+    );
 
+  //Obwieszczenia
+  const obwProfesjonalnaRejestracja = useLegalActApiResourceContextByTitle(
+    nameDzuTableByTitle.ObwieszczenieProfesjonalnaRejestracja,
+  );
+  const obwOplatyTrwalaUtrata = useLegalActApiResourceContextByTitle(
+    nameDzuTableByTitle.ObwieszczenieTrwalaUtrata,
+  );
   const resources = {
     pord,
     rozRejestracjaPojazdow,
@@ -50,6 +62,10 @@ export function AppProvider({ children }: PropsWithChildren) {
     rozWzorOplataTrwalaUtrata,
     rozProfesjonalnaRejestracja,
     rozProfesjonalnaRejestracjaDystrybucjaPtr,
+
+    //Obwieszczenia
+    obwProfesjonalnaRejestracja,
+    obwOplatyTrwalaUtrata,
   };
 
   const contextValue: AppContextValue = {

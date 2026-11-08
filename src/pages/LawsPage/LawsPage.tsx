@@ -25,6 +25,9 @@ export default function LawsPage() {
     rozWzorOplataTrwalaUtrata,
     rozProfesjonalnaRejestracja,
     rozProfesjonalnaRejestracjaDystrybucjaPtr,
+    //Obwieszczenia
+    obwProfesjonalnaRejestracja,
+    obwOplatyTrwalaUtrata,
   } = useAppContext();
 
   if (!mainPage) {
@@ -58,11 +61,20 @@ export default function LawsPage() {
           <LawPolish legalActs={rozProdukcjaDystrybucjaTr} />
           <LawPolish legalActs={rozCzasoweWycofanie} />
           <LawPolish legalActs={rozNadawanieCechIdentyfikacyjnych} />
-          <LawPolish legalActs={rozWzorOplataTrwalaUtrata} />
         </FieldsetCustom>
         <FieldsetCustom legend={`Profesjonalna rejestracja pojazdów:`}>
           <LawPolish legalActs={rozProfesjonalnaRejestracja} />
           <LawPolish legalActs={rozProfesjonalnaRejestracjaDystrybucjaPtr} />
+          <LawPolish legalActs={obwProfesjonalnaRejestracja} />
+        </FieldsetCustom>
+        <FieldsetCustom legend={`Wyrejestrowanie - trwała utrata:`}>
+          <LawPolish legalActs={rozWzorOplataTrwalaUtrata} />
+          <LawPolish
+            legalActs={{
+              ...obwOplatyTrwalaUtrata,
+              data: obwOplatyTrwalaUtrata.data?.slice(0, 1) ?? null,
+            }}
+          />
         </FieldsetCustom>
       </section>
     </>

@@ -25,7 +25,10 @@ export type AppContextValue = {
   rozWzorOplataTrwalaUtrata: AppResource<LegalActsTable>;
   rozProfesjonalnaRejestracja: AppResource<LegalActsTable>;
   rozProfesjonalnaRejestracjaDystrybucjaPtr: AppResource<LegalActsTable>;
-
+  //Obwieszczenia
+  obwProfesjonalnaRejestracja: AppResource<LegalActsTable>;
+  obwOplatyTrwalaUtrata: AppResource<LegalActsTable>;
+  // Tablica ostatnich aktów prawnych.
   recentPolishLaws: AppResource<LegalActsTable>[];
 
   // Tutaj możesz później dodać inne dane aplikacji.

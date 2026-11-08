@@ -1,5 +1,6 @@
-import axios, { type AxiosResponse } from "axios";
-import { polishActApiUrls, queryParametersSearchTitle, type LegalActDetails, type LegalActReference, type LegalActsResponseSearchTitle, type LegalActsTable, type TypesLegalAct } from "./apiPolishRegulationData"
+import axios from "axios";
+import { polishActApiUrls, queryParametersSearchTitle, typesLegalActs, type LegalActDetails, type LegalActReference, type LegalActsResponseSearchTitle, type LegalActsTable, } from "./apiPolishRegulationData"
+import { isNumberString, isValidDateString } from "../../globalFunctions/globalFunctions";
 
 export const apiClientSejm = axios.create({
   baseURL: "https://api.sejm.gov.pl/eli/",
@@ -39,14 +40,7 @@ export async function getDzUBySearchParams(
   return response.data;
 }
 
-export async function getTypesLegalAct(): Promise<AxiosResponse<TypesLegalAct>> {
-  const response: AxiosResponse<TypesLegalAct> = await apiClientSejm.get(`types`);
-  return response;
-}
-export async function getFirstDzUPoRD(): Promise<LegalActDetails> {
-  const response = await apiClientSejm.get("acts/DU/1997/602");
-  return response.data;
-}
+
 
 export async function getFirstDzU(idDzU: string, signal?: AbortSignal): Promise<LegalActDetails> {
   const response = await apiClientSejm.get<LegalActDetails>(
@@ -70,6 +64,81 @@ export const nameDzuTable = {
   RozProfesjonalnaRejestracja: { idDzU: "DU/2019/546", paramsSearchTitleText: "profesjonalnej rejestracji pojazdów, stosowanych oznaczeń oraz opłat związanych z profesjonalną rejestracją pojazdów" },
   RozProfesjonalnaRejestracjaDystrybucjaPtr: { idDzU: "DU/2019/547", paramsSearchTitleText: "warunków produkcji i sposobu dystrybucji profesjonalnych tablic rejestracyjnych i znaków legalizacyjnych oraz trybu legalizacji profesjonalnych tablic rejestracyjnych" },
 };
+
+export const nameDzuTableByTitle = {
+  ObwieszczenieProfesjonalnaRejestracja: {
+    paramsSearchTitleType: typesLegalActs.obwieszczenie,
+    paramsSearchTitleText: "stawek opłat za wydanie decyzji o profesjonalnej rejestracji pojazdów, blankietu profesjonalnego dowodu rejestracyjnego, profesjonalnych tablic rejestracyjnych oraz znaku legalizacyjnego",
+    paramsSearchDateFrom: "2025-01-01",
+    paramsSearchLimits: "20",
+  },
+  ObwieszczenieTrwalaUtrata: {
+    paramsSearchTitleType: typesLegalActs.obwieszczenie,
+    paramsSearchTitleText: "w sprawie wysokości stawek opłat za korzystanie ze środowiska na rok",
+    paramsSearchDateFrom: "2023-01-01",
+    paramsSearchLimits: "20",
+  },
+}
+
+export async function getDzUToTableByTitle(paramsSearchTitleType: string, paramsSearchDateFrom: string, paramsSearchTitleText: string, paramsSearchLimits: string, signal?: AbortSignal): Promise<LegalActsTable> {
+
+  const dzUTable: LegalActsTable = [];
+
+  //Sprawdzenie paramsSearchTitleText
+  const type = paramsSearchTitleType.trim();
+  const title = paramsSearchTitleText.trim();
+  const isValidDateFrom = isValidDateString(paramsSearchDateFrom);
+  const isLimitsValid = isNumberString(paramsSearchLimits);
+
+  if (!title || !type) {
+    throw new Error("[getDzUToTableByTitle] Tytuł wyszukiwania i typ aktu nie mogą być puste.");
+  }
+  if (!isValidDateFrom) {
+    throw new Error("[getDzUToTableByTitle] Data musi być prawidłowa.");
+  }
+  if (!isLimitsValid) {
+    throw new Error("[getDzUToTableByTitle] Limit musi być prawidłową liczbą.");
+  }
+
+  const searchParams = new URLSearchParams({
+    [queryParametersSearchTitle.type.text]: type,
+    [queryParametersSearchTitle.title.text]: title,
+    [queryParametersSearchTitle.dateFrom.text]: paramsSearchDateFrom,
+    [queryParametersSearchTitle.limit.text]: paramsSearchLimits,
+  });
+
+
+  //Pobranie tekstu podstawowego
+  const acts = await getDzUBySearchParams(
+    searchParams,
+    signal
+  )
+
+  if (acts) {
+    for (const item of acts.items) {
+      dzUTable.push({
+        ELI: item.ELI ?? "", //DU/1997/602
+        address: item.address ?? "", //WDU19970980602
+        announcementDate: item.announcementDate ?? "", //Data wydania - 1997-06-20
+        publisher: item.publisher ?? "", //Kod wydawcy - DU
+        year: item.year ?? 0, //1997
+        volume: item.volume ?? 0, //98
+        pos: item.pos ?? 0, //602
+        title: item.title ?? "", //Ustawa z dnia 20 czerwca 1997 r. - Prawo o ruchu drogowym.
+        displayAddress: item.displayAddress ?? "", //Dz.U. 1997 nr 98 poz. 602
+        promulgation: item.promulgation ?? "", //Data ogłoszenia - 1997-08-19
+        textPDF: item.textPDF && item.ELI ? polishActApiUrls.pdf(item.ELI) : "",
+        textHTML: item.textHTML && item.ELI ? polishActApiUrls.html(item.ELI) : "",
+        textDetails: item.address ? polishActApiUrls.details(item.address) : "",
+        changeDate: item.changeDate ?? "", //Data ostatniej zmiany - 2026-10-21T00:00:00
+        type: item.type ?? "", //Ustawa
+        status: item.status ?? "", //akt posiada tekst jednolity - obowiązujący
+      });
+    }
+  }
+
+  return dzUTable;
+}
 
 export async function getDzUToTable(idDzU: string, paramsSearchTitleText: string, signal?: AbortSignal): Promise<LegalActsTable> {
 
