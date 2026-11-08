@@ -25,6 +25,8 @@ export default function LawsPage() {
     rozWzorOplataTrwalaUtrata,
     rozProfesjonalnaRejestracja,
     rozProfesjonalnaRejestracjaDystrybucjaPtr,
+    rozStawkaOplatZaSrodowisko,
+    kpw,
     //Obwieszczenia
     obwProfesjonalnaRejestracja,
     obwOplatyTrwalaUtrata,
@@ -69,12 +71,16 @@ export default function LawsPage() {
         </FieldsetCustom>
         <FieldsetCustom legend={`Wyrejestrowanie - trwała utrata:`}>
           <LawPolish legalActs={rozWzorOplataTrwalaUtrata} />
+          <LawPolish legalActs={rozStawkaOplatZaSrodowisko} />
           <LawPolish
             legalActs={{
               ...obwOplatyTrwalaUtrata,
-              data: obwOplatyTrwalaUtrata.data?.slice(0, 1) ?? null,
+              data: obwOplatyTrwalaUtrata.data?.toReversed() ?? null,
             }}
           />
+        </FieldsetCustom>
+        <FieldsetCustom legend={`Kodeksy:`}>
+          <LawPolish legalActs={kpw} />
         </FieldsetCustom>
       </section>
     </>

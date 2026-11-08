@@ -1,40 +1,30 @@
-.permanentLossTheoryForCalculatorContainer {
-  margin: 1rem auto;
+.container {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   align-items: center;
+}
+
+.legalList {
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
-  padding: 10px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-medium);
-  color: var(--color-text);
-  background: var(--color-surface);
-  box-shadow: 0 0.125rem 0.5rem color-mix(in srgb, var(--color-text) 14%, transparent);
+  list-style: decimal inside;
+}
 
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.legalSublist {
+  list-style: none;
+  counter-reset: legal-letter;
+  padding-left: 1rem;
+}
 
-  .legalList {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    list-style: decimal inside;
-  }
+.legalSublistItem {
+  counter-increment: legal-letter;
+}
 
-  .legalSublist {
-    list-style: none;
-    counter-reset: legal-letter;
-    padding-left: 1rem;
-  }
+.legalSublistItem::before {
+  content: counter(legal-letter, lower-alpha) ") ";
+}
 
-  .legalSublistItem {
-    counter-increment: legal-letter;
-  }
-
-  .legalSublistItem::before {
-    content: counter(legal-letter, lower-alpha) ") ";
-  }
+.legalActsTitle {
+  font-size: x-small;
 }

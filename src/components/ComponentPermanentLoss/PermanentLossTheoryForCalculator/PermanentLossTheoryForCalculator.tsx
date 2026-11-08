@@ -1,8 +1,31 @@
+import { useAppContext } from "../../../hooks/useAppContext";
+import { FieldsetCustom } from "../../CustomControls/FieldsetCustom/FieldsetCustom";
 import styles from "./PermanentLossTheoryForCalculator.module.scss";
 
 export default function PermanentLossTheoryForCalculator() {
+  const {
+    rozWzorOplataTrwalaUtrata,
+    rozOplatyZaDrPcTr,
+    rozStawkaOplatZaSrodowisko,
+    obwOplatyTrwalaUtrata,
+    kpw,
+  } = useAppContext();
+
+  //Nazwy aktów prawnych do wyświetlenia.
+  const lastRozWzorOplataTrwalaUtrataTitle =
+    rozWzorOplataTrwalaUtrata.data?.at(-1)?.title;
+  const lastRozOplatyZaDrPcTrTitle = rozOplatyZaDrPcTr.data?.at(-1)?.title;
+  const lastRozStawkaOplatZaSrodowiskoTitle =
+    rozStawkaOplatZaSrodowisko.data?.at(-1)?.title;
+  const firstObwOplatyTrwalaUtrataTitle =
+    obwOplatyTrwalaUtrata.data?.at(0)?.title;
+  const lastKpwTitleActName = kpw.data?.at(-1)?.title;
+  const lastKpwTitle = lastKpwTitleActName
+    ?.replace("(tekst ujednolicony)", "")
+    .trim();
+
   return (
-    <article className={styles.permanentLossTheoryForCalculatorContainer}>
+    <FieldsetCustom legend={`Kalkulator:`}>
       <div className={styles.container}>
         <p>
           <b>Wzór:</b>
@@ -38,24 +61,60 @@ export default function PermanentLossTheoryForCalculator() {
                 3,5 tony,
               </li>
             </ol>
+            {lastRozWzorOplataTrwalaUtrataTitle && (
+              <p className={styles.legalActsTitle}>
+                § 1 pkt 2 {lastRozWzorOplataTrwalaUtrataTitle}
+              </p>
+            )}
           </li>
           <li>
             <b>R</b> - równowartość opłaty pobieranej za wydanie dowodu
             rejestracyjnego pojazdu, określonej na podstawie odrębnych
             przepisów,
+            {lastRozOplatyZaDrPcTrTitle && (
+              <p className={styles.legalActsTitle}>
+                § 2 {lastRozOplatyZaDrPcTrTitle}
+              </p>
+            )}
           </li>
           <li>
             <b>S (jednostkowa stawka opłaty x masa własna pojazdu w kg/1000)</b>{" "}
             - stawka opłaty za umieszczenie zużytego lub nienadającego się do
             użytkowania pojazdu na składowisku odpadów, określona na podstawie
             odrębnych przepisów,
+            {lastRozStawkaOplatZaSrodowiskoTitle && (
+              <>
+                <p className={styles.legalActsTitle}>
+                  § 3 ust.1 Jednostkowe stawki opłaty za umieszczenie odpadów na
+                  składowisku są określone w załączniku nr 2 do rozporządzenia.
+                </p>
+                <p className={styles.legalActsTitle}>
+                  Załącznik nr 2 Lp. 738; Kod odpadu: 16 01 04; Grupy, podgrupy
+                  i rodzaje odpadów: Zużyte lub nienadające się do użytkowania
+                  pojazdy.
+                </p>
+                <p className={styles.legalActsTitle}>
+                  {lastRozStawkaOplatZaSrodowiskoTitle}
+                </p>
+              </>
+            )}
+            {firstObwOplatyTrwalaUtrataTitle && (
+              <p className={styles.legalActsTitle}>
+                {firstObwOplatyTrwalaUtrataTitle}
+              </p>
+            )}
           </li>
           <li>
             <b>M</b> - maksymalna stawka grzywny w postępowaniu mandatowym,
             określona na podstawie odrębnych przepisów.
+            {lastKpwTitle && (
+              <p className={styles.legalActsTitle}>
+                Art. 96 § 1 {lastKpwTitle}
+              </p>
+            )}
           </li>
         </ol>
       </div>
-    </article>
+    </FieldsetCustom>
   );
 }

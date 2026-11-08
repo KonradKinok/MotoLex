@@ -11,6 +11,7 @@ export const parametersByYear: Readonly<Partial<Record<number, Readonly<TotalLos
   2024: { R: 54, S: 343.39, M: 500 },
   2025: { R: 54, S: 382.54, M: 500 },
   2026: { R: 54, S: 396.31, M: 500 },
+  2027: { R: 54, S: 410.58, M: 500 },
 };
 
 export function validateLossForm(values: LossFormValues): LossFormErrors {

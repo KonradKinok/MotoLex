@@ -63,6 +63,8 @@ export const nameDzuTable = {
   RozWzorOplataTrwalaUtrata: { idDzU: "DU/2002/419", paramsSearchTitleText: "opłaty będącej warunkiem wyrejestrowania pojazdu w przypadku udokumentowanej trwałej i zupełnej utraty pojazdu bez zmiany w zakresie prawa własności" },
   RozProfesjonalnaRejestracja: { idDzU: "DU/2019/546", paramsSearchTitleText: "profesjonalnej rejestracji pojazdów, stosowanych oznaczeń oraz opłat związanych z profesjonalną rejestracją pojazdów" },
   RozProfesjonalnaRejestracjaDystrybucjaPtr: { idDzU: "DU/2019/547", paramsSearchTitleText: "warunków produkcji i sposobu dystrybucji profesjonalnych tablic rejestracyjnych i znaków legalizacyjnych oraz trybu legalizacji profesjonalnych tablic rejestracyjnych" },
+  RozStawkaOplatZaSrodowisko: { idDzU: "DU/2017/2490", paramsSearchTitleText: "jednostkowych stawek opłat za korzystanie ze środowiska" },
+  Kpw: { idDzU: "DU/2001/1148", paramsSearchTitleText: "postępowania w sprawach o wykroczenia" },
 };
 
 export const nameDzuTableByTitle = {

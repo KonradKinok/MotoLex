@@ -22,9 +22,11 @@ export type AppContextValue = {
   rozProdukcjaDystrybucjaTr: AppResource<LegalActsTable>;
   rozCzasoweWycofanie: AppResource<LegalActsTable>;
   rozNadawanieCechIdentyfikacyjnych: AppResource<LegalActsTable>;
-  rozWzorOplataTrwalaUtrata: AppResource<LegalActsTable>;
   rozProfesjonalnaRejestracja: AppResource<LegalActsTable>;
   rozProfesjonalnaRejestracjaDystrybucjaPtr: AppResource<LegalActsTable>;
+  rozWzorOplataTrwalaUtrata: AppResource<LegalActsTable>;
+  rozStawkaOplatZaSrodowisko: AppResource<LegalActsTable>;
+  kpw: AppResource<LegalActsTable>;
   //Obwieszczenia
   obwProfesjonalnaRejestracja: AppResource<LegalActsTable>;
   obwOplatyTrwalaUtrata: AppResource<LegalActsTable>;

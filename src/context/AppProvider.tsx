@@ -42,7 +42,10 @@ export function AppProvider({ children }: PropsWithChildren) {
     useLegalActApiResourceContext(
       nameDzuTable.RozProfesjonalnaRejestracjaDystrybucjaPtr,
     );
-
+  const rozStawkaOplatZaSrodowisko = useLegalActApiResourceContext(
+    nameDzuTable.RozStawkaOplatZaSrodowisko,
+  );
+  const kpw = useLegalActApiResourceContext(nameDzuTable.Kpw);
   //Obwieszczenia
   const obwProfesjonalnaRejestracja = useLegalActApiResourceContextByTitle(
     nameDzuTableByTitle.ObwieszczenieProfesjonalnaRejestracja,
@@ -62,7 +65,8 @@ export function AppProvider({ children }: PropsWithChildren) {
     rozWzorOplataTrwalaUtrata,
     rozProfesjonalnaRejestracja,
     rozProfesjonalnaRejestracjaDystrybucjaPtr,
-
+    rozStawkaOplatZaSrodowisko,
+    kpw,
     //Obwieszczenia
     obwProfesjonalnaRejestracja,
     obwOplatyTrwalaUtrata,
