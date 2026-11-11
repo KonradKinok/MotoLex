@@ -18,7 +18,7 @@ function PrivacyPolicyPage() {
           </h1>
           <p className={styles.updated}>
             Ostatnia aktualizacja:{" "}
-            <time dateTime="2026-09-27">27 września 2026 r.</time>
+            <time dateTime="2026-11-11">11 listopada 2026 r.</time>
           </p>
           <p>
             Niniejsza polityka opisuje przetwarzanie danych związane z
@@ -105,7 +105,7 @@ function PrivacyPolicyPage() {
         </section>
 
         <section aria-labelledby="privacy-storage">
-          <h2 id="privacy-storage">5. Zapamiętywanie ustawień strony</h2>
+          <h2 id="privacy-storage">5. Pamięć przeglądarki</h2>
           <p>
             Serwis wykorzystuje pamięć przeglądarki localStorage do
             zapamiętywania wybranego motywu wyglądu i stanu rozwinięcia menu
@@ -113,9 +113,21 @@ function PrivacyPolicyPage() {
             profilowaniu reklamowemu.
           </p>
           <p>
+            W pamięci localStorage zapisywane są również pobrane informacje o
+            aktach prawnych oraz data i godzina ich ostatniego udanego pobrania.
+            Pozwala to ograniczyć liczbę zapytań do zewnętrznego API i
+            przyspieszyć wyświetlanie listy aktów. Zapisy te nie służą
+            identyfikowaniu użytkownika ani profilowaniu reklamowemu. Dane
+            aktów są zastępowane po udanym ponownym pobraniu, także po użyciu
+            przycisku „Odśwież”.
+          </p>
+          <p>
             Dane te nie mają ustawionego terminu wygaśnięcia. Możesz je usunąć
             przez wyczyszczenie danych witryny w przeglądarce. Spowoduje to
-            przywrócenie domyślnych ustawień wyglądu i menu.
+            przywrócenie domyślnych ustawień wyglądu i menu oraz usunięcie
+            zapisanych informacji o aktach prawnych. Przy kolejnym
+            uruchomieniu aplikacja podejmie próbę ponownego pobrania tych
+            informacji.
           </p>
         </section>
 

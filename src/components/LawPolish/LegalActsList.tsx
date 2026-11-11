@@ -13,10 +13,11 @@ export function LegalActsList({ acts }: LegalActsListProps) {
       {acts.map((act) => (
         <li key={act.id} className={styles.itemActsList}>
           <p className={styles.paragraph}>
-            {act.title} ({act.displayAddress}) [data ogłoszenia:{" "}
-            {act.promulgation}]
+            {act.title} ({act.displayAddress}){" "}
+            {!act.title?.includes("(tekst ujednolicony)") && (
+              <span>[data ogłoszenia: {act.promulgation}]</span>
+            )}
           </p>
-
           <div className={styles.linkContainer}>
             {act.pageDzU && (
               <a

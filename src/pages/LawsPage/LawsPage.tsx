@@ -1,12 +1,12 @@
 import { Link, useLocation } from "react-router";
 import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
+import { useAppContext } from "../../hooks/useAppContext";
 import { APPLICATION_NAME, ROUTES } from "../../config/routes";
 import { navigationItems } from "../../config/navigationMain";
 import { findNavigationItem } from "../../components/globalFunctions/globalFunctions";
-import { useAppContext } from "../../hooks/useAppContext";
-import styles from "../PageStyles.module.scss";
-import { LawPolish } from "../../components/LawPolish/LawPolish";
 import { FieldsetCustom } from "../../components/CustomControls/FieldsetCustom/FieldsetCustom";
+import { LawPolish } from "../../components/LawPolish/LawPolish";
+import styles from "../PageStyles.module.scss";
 
 export default function LawsPage() {
   const { pathname } = useLocation();
@@ -53,7 +53,17 @@ export default function LawsPage() {
       />
       <section className={styles.pageMainContainer}>
         <h1>{mainPage.fullLabel}</h1>
-        <p>{mainPage.description}</p>
+        <p>
+          {mainPage.description} Po rozwinięciu grupy zobaczysz dostępne
+          dokumenty, w tym akty podstawowe, ich zmiany oraz teksty jednolite i
+          ujednolicone. Przycisk "Rozwiń/Zwiń" pokazuje lub ukrywa listę
+          dokumentów. Przycisk "Odśwież" ponownie pobiera dane wybranej grupy i
+          rozwija jej zawartość. Data i godzina "Stan na" wskazują ostatnie
+          udane pobranie danych. Linki pod dokumentami prowadzą do strony aktu w
+          Dzienniku Ustaw ("Strona DzU"), dokumentu PDF, treści HTML lub strony
+          ze szczegółowymi informacjami ("Szczegóły"). Dostępność linków zależy
+          od dokumentu.
+        </p>
         <FieldsetCustom legend={`Przepisy podstawowe:`}>
           <LawPolish legalActs={pord} />
           <LawPolish legalActs={rozRejestracjaPojazdow} />

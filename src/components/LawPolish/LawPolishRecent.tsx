@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import type { AppResource } from "../../context/AppContext";
 import { useAppContext } from "../../hooks/useAppContext";
 import type { LegalActsTable } from "../Api/ApiPolishLaws/apiPolishRegulationData";
@@ -10,6 +11,7 @@ import {
 import { Loader } from "../Loader/Loader";
 import styles from "./LawPolishRecent.module.scss";
 import { LegalActsList } from "./LegalActsList";
+import { ROUTES } from "../../config/routes";
 
 export function LawPolishRecent() {
   const { recentPolishLaws } = useAppContext();
@@ -22,41 +24,70 @@ export function LawPolishRecent() {
 
   return (
     <section className={styles.lawPolishRecentContainer}>
-      <FieldsetCustom
-        legend={`Przepisy prawne. Stan na: ${legalActs.date ?? ""} ${legalActs.time ?? ""}`}
-      >
-        <div className={styles.utilityButtonContainer}>
-          {hasNoRecentActs && <p>W ostatnim tygodniu nic się nie działo.</p>}
-          <p>
-            Najnowsze przepisy znajdziesz na stronie Rządowego Centrum
-            Legislacji:{" "}
-            <a
-              className={styles.link}
-              href="https://dziennikustaw.gov.pl/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              https://dziennikustaw.gov.pl/
-            </a>
-          </p>
-          <ButtonRefresh
-            disabled={legalActs.loading}
-            onClick={() => {
-              void legalActs.refresh();
-            }}
-          />
-        </div>
-        {legalActs.loading ? (
-          <Loader />
-        ) : (
-          <>
-            {legalActs.error && (
-              <p role="alert">Nie udało się pobrać danych: {legalActs.error}</p>
-            )}
+      <FieldsetCustom legend={`Przepisy prawne`}>
+        <h2>
+          Ostatnio opublikowane akty prawne dotyczące rejestracji pojazdów.
+        </h2>
+        <p>
+          Poniżej znajdziesz wybrane akty prawne dotyczące rejestracji pojazdów,
+          ogłoszone w ciągu ostatnich 7 dni, licząc do daty ostatniej
+          aktualizacji danych. Przycisk "Odśwież" ponownie pobiera dane
+          monitorowanych aktów prawnych i aktualizuje listę. Lista codziennie
+          aktualizuje się automatycznie. Linki pod każdym aktem prowadzą do jego
+          strony w Dzienniku Ustaw ("Strona DzU"), dokumentu PDF, treści HTML
+          lub strony ze szczegółowymi informacjami ("Szczegóły"). Data i godzina
+          "Stan na" wskazują ostatnie udane pobranie danych. Dostępność linków
+          zależy od danego dokumentu. Lista obejmuje wybrane przepisy i nie
+          stanowi pełnego wykazu zmian w prawie.
+        </p>
+        <p>
+          Więcej aktów prawnych znajdziesz{" "}
+          <Link className={styles.link} to={ROUTES.laws}>
+            tutaj
+          </Link>
+          .
+        </p>
 
-            {legalActs.data !== null && <LegalActsList acts={legalActs.data} />}
-          </>
-        )}
+        <FieldsetCustom
+          legend={`Przepisy prawne. Stan na: ${legalActs.date ?? ""} ${legalActs.time ?? ""}`}
+        >
+          <div className={styles.utilityButtonContainer}>
+            {hasNoRecentActs && <p>W ostatnim tygodniu nic się nie działo.</p>}
+            <p>
+              Najnowsze przepisy znajdziesz na stronie Rządowego Centrum
+              Legislacji:{" "}
+              <a
+                className={styles.link}
+                href="https://dziennikustaw.gov.pl/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                https://dziennikustaw.gov.pl/
+              </a>
+            </p>
+            <ButtonRefresh
+              disabled={legalActs.loading}
+              onClick={() => {
+                void legalActs.refresh();
+              }}
+            />
+          </div>
+          {legalActs.loading ? (
+            <Loader />
+          ) : (
+            <>
+              {legalActs.error && (
+                <p role="alert">
+                  Nie udało się pobrać danych: {legalActs.error}
+                </p>
+              )}
+
+              {legalActs.data !== null && (
+                <LegalActsList acts={legalActs.data} />
+              )}
+            </>
+          )}
+        </FieldsetCustom>
       </FieldsetCustom>
     </section>
   );
