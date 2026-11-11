@@ -3,9 +3,13 @@ import { useAppContext } from "../../hooks/useAppContext";
 import type { LegalActsTable } from "../Api/ApiPolishLaws/apiPolishRegulationData";
 import { ButtonRefresh } from "../CustomControls/ButtonRefresh/ButtonRefresh";
 import { FieldsetCustom } from "../CustomControls/FieldsetCustom/FieldsetCustom";
-import { getTodayToString } from "../globalFunctions/globalFunctions";
+import {
+  getTodayToString,
+  isValidDateString,
+} from "../globalFunctions/globalFunctions";
 import { Loader } from "../Loader/Loader";
 import styles from "./LawPolishRecent.module.scss";
+import { LegalActsList } from "./LegalActsList";
 
 export function LawPolishRecent() {
   const { recentPolishLaws } = useAppContext();
@@ -23,6 +27,18 @@ export function LawPolishRecent() {
       >
         <div className={styles.utilityButtonContainer}>
           {hasNoRecentActs && <p>W ostatnim tygodniu nic się nie działo.</p>}
+          <p>
+            Najnowsze przepisy znajdziesz na stronie Rządowego Centrum
+            Legislacji:{" "}
+            <a
+              className={styles.link}
+              href="https://dziennikustaw.gov.pl/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              https://dziennikustaw.gov.pl/
+            </a>
+          </p>
           <ButtonRefresh
             disabled={legalActs.loading}
             onClick={() => {
@@ -37,56 +53,8 @@ export function LawPolishRecent() {
             {legalActs.error && (
               <p role="alert">Nie udało się pobrać danych: {legalActs.error}</p>
             )}
-            {legalActs.data !== null &&
-              (legalActs.data.length === 0 ? null : (
-                <ul className={styles.actsList}>
-                  {legalActs.data.map((act, index) => (
-                    <li
-                      key={`${act.ELI}-${index}`}
-                      className={styles.itemActsList}
-                    >
-                      <p className={styles.paragraph}>
-                        {act.title} ({act.displayAddress})
-                      </p>
 
-                      <div className={styles.linkContainer}>
-                        {act.textPDF && (
-                          <a
-                            href={act.textPDF}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.link}
-                          >
-                            PDF
-                          </a>
-                        )}
-
-                        {act.textHTML && (
-                          <a
-                            href={act.textHTML}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.link}
-                          >
-                            HTML
-                          </a>
-                        )}
-
-                        {act.textDetails && (
-                          <a
-                            href={act.textDetails}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.link}
-                          >
-                            Szczegóły
-                          </a>
-                        )}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              ))}
+            {legalActs.data !== null && <LegalActsList acts={legalActs.data} />}
           </>
         )}
       </FieldsetCustom>
@@ -110,7 +78,13 @@ function getRecentAct(
 
   const latest = resources.reduce<AppResource<LegalActsTable> | null>(
     (latest, resource) => {
-      if (resource.data === null || !resource.date) return latest;
+      if (
+        resource.data === null ||
+        !resource.date ||
+        !isValidDateString(resource.date)
+      ) {
+        return latest;
+      }
       if (!latest) return resource;
 
       const resourceStamp = `${resource.date}T${resource.time ?? "00:00:00"}`;
@@ -138,7 +112,7 @@ function getRecentAct(
     data = resources
       .flatMap((resource) => resource.data ?? [])
       .filter((act) => {
-        if (!/^\d{4}-\d{2}-\d{2}$/.test(act.promulgation)) {
+        if (!isValidDateString(act.promulgation)) {
           return false;
         }
 

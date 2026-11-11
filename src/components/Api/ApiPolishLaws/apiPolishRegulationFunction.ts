@@ -119,6 +119,7 @@ export async function getDzUToTableByTitle(paramsSearchTitleType: string, params
   if (acts) {
     for (const item of acts.items) {
       dzUTable.push({
+        id: `${item.ELI || item.address || `${item.publisher}/${item.year}/${item.pos}`}:original`,
         ELI: item.ELI ?? "", //DU/1997/602
         address: item.address ?? "", //WDU19970980602
         announcementDate: item.announcementDate ?? "", //Data wydania - 1997-06-20
@@ -131,7 +132,8 @@ export async function getDzUToTableByTitle(paramsSearchTitleType: string, params
         promulgation: item.promulgation ?? "", //Data ogłoszenia - 1997-08-19
         textPDF: item.textPDF && item.ELI ? polishActApiUrls.pdf(item.ELI) : "",
         textHTML: item.textHTML && item.ELI ? polishActApiUrls.html(item.ELI) : "",
-        textDetails: item.address ? polishActApiUrls.details(item.address) : "",
+        textDetails: item.address && item.ELI ? polishActApiUrls.details(item.address) : "",
+        pageDzU: item.ELI ? polishActApiUrls.pageDzU(item.ELI) : "",
         changeDate: item.changeDate ?? "", //Data ostatniej zmiany - 2026-10-21T00:00:00
         type: item.type ?? "", //Ustawa
         status: item.status ?? "", //akt posiada tekst jednolity - obowiązujący
@@ -202,6 +204,7 @@ export async function getDzUToTable(idDzU: string, paramsSearchTitleText: string
   if (afterTjActs) {
     for (const item of afterTjActs.items) {
       dzUTable.push({
+        id: `${item.ELI || item.address || `${item.publisher}/${item.year}/${item.pos}`}:original`,
         ELI: item.ELI ?? "", //DU/1997/602
         address: item.address ?? "", //WDU19970980602
         announcementDate: item.announcementDate ?? "", //Data wydania - 1997-06-20
@@ -214,7 +217,8 @@ export async function getDzUToTable(idDzU: string, paramsSearchTitleText: string
         promulgation: item.promulgation ?? "", //Data ogłoszenia - 1997-08-19
         textPDF: item.textPDF && item.ELI ? polishActApiUrls.pdf(item.ELI) : "",
         textHTML: item.textHTML && item.ELI ? polishActApiUrls.html(item.ELI) : "",
-        textDetails: item.address ? polishActApiUrls.details(item.address) : "",
+        textDetails: item.address && item.ELI ? polishActApiUrls.details(item.address) : "",
+        pageDzU: item.ELI ? polishActApiUrls.pageDzU(item.ELI) : "",
         changeDate: item.changeDate ?? "", //Data ostatniej zmiany - 2026-10-21T00:00:00
         type: item.type ?? "", //Ustawa
         status: item.status ?? "", //akt posiada tekst jednolity - obowiązujący
@@ -224,6 +228,7 @@ export async function getDzUToTable(idDzU: string, paramsSearchTitleText: string
 
   if (tjAct) {
     dzUTable.push({
+      id: `${tjAct.ELI || tjAct.address || tjId}:original`,
       ELI: tjAct.ELI ?? "",
       address: tjAct.address ?? "",
       announcementDate: tjAct.announcementDate ?? "",
@@ -236,7 +241,8 @@ export async function getDzUToTable(idDzU: string, paramsSearchTitleText: string
       promulgation: tjAct.promulgation ?? "",
       textPDF: tjAct.textPDF && tjAct.ELI ? polishActApiUrls.pdf(tjAct.ELI) : "",
       textHTML: tjAct.textHTML && tjAct.ELI ? polishActApiUrls.html(tjAct.ELI) : "",
-      textDetails: tjAct.address ? polishActApiUrls.details(tjAct.address) : "",
+      textDetails: tjAct.address && tjAct.ELI ? polishActApiUrls.details(tjAct.address) : "",
+      pageDzU: tjAct.ELI ? polishActApiUrls.pageDzU(tjAct.ELI) : "",
       changeDate: tjAct.changeDate ?? "",
       type: tjAct.type ?? "",
       status: tjAct.status ?? "",
@@ -246,6 +252,7 @@ export async function getDzUToTable(idDzU: string, paramsSearchTitleText: string
   //Dodanie pierwszego aktu do tablicy
   if (startAct) {
     dzUTable.push({
+      id: `${startAct.ELI || startAct.address || idDzU}:original`,
       ELI: startAct.ELI ?? "",
       address: startAct.address ?? "",
       announcementDate: startAct.announcementDate ?? "",
@@ -258,7 +265,8 @@ export async function getDzUToTable(idDzU: string, paramsSearchTitleText: string
       promulgation: startAct.promulgation ?? "",
       textPDF: startAct.textPDF && startAct.ELI ? polishActApiUrls.pdf(startAct.ELI) : "",
       textHTML: startAct.textHTML && startAct.ELI ? polishActApiUrls.html(startAct.ELI) : "",
-      textDetails: startAct.address ? polishActApiUrls.details(startAct.address) : "",
+      textDetails: startAct.address && startAct.ELI ? polishActApiUrls.details(startAct.address) : "",
+      pageDzU: startAct.ELI ? polishActApiUrls.pageDzU(startAct.ELI) : "",
       changeDate: startAct.changeDate ?? "",
       type: startAct.type ?? "",
       status: startAct.status ?? "",
@@ -268,6 +276,7 @@ export async function getDzUToTable(idDzU: string, paramsSearchTitleText: string
   //Dodanie tekstu ujednoliconego do tablicy
   if (startAct && tekstUjednolicony) {
     dzUTable.push({
+      id: `${startAct.ELI || startAct.address || idDzU}:unified:${tekstUjednolicony}`,
       ELI: startAct.ELI ?? "",
       address: startAct.address ?? "",
       announcementDate: startAct.announcementDate ?? "",
@@ -281,12 +290,23 @@ export async function getDzUToTable(idDzU: string, paramsSearchTitleText: string
       textPDF: startAct.ELI ? polishActApiUrls.unifiedPdf(startAct.ELI, tekstUjednolicony) : "",
       textHTML: startAct.textHTML && startAct.ELI ? polishActApiUrls.html(startAct.ELI) : "",
       textDetails: "",
+      pageDzU: startAct.ELI ? polishActApiUrls.pageDzU(startAct.ELI) : "",
       changeDate: startAct.changeDate ?? "",
       type: startAct.type ?? "",
       status: startAct.status ?? "",
     });
   }
-  return dzUTable;
+  const seen = new Set<string>();
+
+  return dzUTable
+    .toReversed()
+    .filter((act) => {
+      if (seen.has(act.id)) return false;
+
+      seen.add(act.id);
+      return true;
+    })
+    .toReversed();
 }
 
 function latestTjId(powiazaniaTJ: LegalActReference[]) {
@@ -313,6 +333,9 @@ function latestTjId(powiazaniaTJ: LegalActReference[]) {
 
   return latestTjId?.id;
 }
+
+
+
 // Pobiera akty w pętli
 // const obwieszczenia = await Promise.all(
 //   powiazaniaTJ.map(async ({ id }) => {

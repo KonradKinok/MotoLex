@@ -146,6 +146,7 @@ export type LegalActDetails = {
   references?: Partial<Record<string, LegalActReference[]>>;
 };
 export type LegalActsTable = {
+  id: string; /** Stabilny identyfikator dokumentu i jego wariantu. */
   ELI: string; /** Identyfikator ELI. */
   address: string; /** Identyfikator w systemie ISAP. */
   publisher: string; /** Symbol wydawnictwa. */
@@ -159,6 +160,7 @@ export type LegalActsTable = {
   textPDF: string; /** Link do PDF. */
   textHTML: string; /** Link do HTML. */
   textDetails: string;
+  pageDzU: string; /** Link do strony DzU. */
   changeDate: string; /** Data ostatniej zmiany. */
   type: string; /** Typ aktu, np. ustawa. */
   status: string; /** Status obowiązywania. */
@@ -247,6 +249,12 @@ export const temp = {
 export const polishActApiUrls = {
   pdf: (eli: string): string =>
     `https://api.sejm.gov.pl/eli/acts/${eli}/text.pdf`,
+
+  pdfDzU: (eli: string): string =>
+    `https://dziennikustaw.gov.pl/${eli}`,
+
+  pageDzU: (eli: string): string =>
+    `https://dziennikustaw.gov.pl/${eli}`,
 
   html: (eli: string): string =>
     `https://api.sejm.gov.pl/eli/acts/${eli}/text.html`,

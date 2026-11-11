@@ -30,57 +30,25 @@
     .headerText {
       font-size: var(--h1-font-size);
     }
-
-    .utilityButtonContainer {
-      display: flex;
-      align-items: flex-start;
-      justify-content: flex-start;
-      z-index: 1;
-    }
   }
 
-  .actsList {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-
-    .itemActsList {
-      display: flex;
-      flex-direction: column;
-
-      .paragraph {
-        font-size: var(--p-font-size);
-        transition: color .75s cubic-bezier(.4, 0, .2, 1);
-
-        &:hover {
-          color: var(--color-link-text-hover);
-        }
-      }
-    }
-  }
-
-  .linkContainer {
+  .utilityButtonContainer {
     display: flex;
     flex-direction: row;
-    gap: 1rem;
-    font-size: var(--p-font-size);
-
-    .link {
-      transition: color .75s cubic-bezier(.4, 0, .2, 1);
-      text-decoration-line: none;
-      color: var(--color-link);
-
-      &:hover {
-        color: var(--color-link-text-hover);
-      }
-    }
+    align-items: flex-start;
+    justify-content: flex-start;
+    z-index: 1;
   }
-
-
 }
 
 @media (prefers-reduced-motion: reduce) {
   .lawPolishMainContainer .expandableContent {
     transition: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .lawPolishMainContainer .utilityButtonContainer {
+    flex-direction: column;
   }
 }

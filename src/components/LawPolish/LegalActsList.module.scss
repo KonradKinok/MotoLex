@@ -1,0 +1,37 @@
+.actsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .itemActsList {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.paragraph {
+  font-size: var(--p-font-size);
+  transition: color .75s cubic-bezier(.4, 0, .2, 1);
+
+  &:hover {
+    color: var(--color-link-text-hover);
+  }
+}
+
+.linkContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  font-size: var(--p-font-size);
+  flex-wrap: wrap;
+
+  .link {
+    transition: color .75s cubic-bezier(.4, 0, .2, 1);
+    text-decoration-line: none;
+    color: var(--color-link);
+
+    &:hover {
+      color: var(--color-link-text-hover);
+    }
+  }
+}

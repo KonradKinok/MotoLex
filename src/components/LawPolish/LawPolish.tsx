@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import type { AppResource } from "../../context/AppContext";
 import type { LegalActsTable } from "../Api/ApiPolishLaws/apiPolishRegulationData";
 import { FieldsetCustom } from "../CustomControls/FieldsetCustom/FieldsetCustom";
@@ -8,12 +7,12 @@ import { ButtonExpand } from "../CustomControls/ButtonExpand/ButtonExpand";
 import { useToggle } from "../../hooks/useToggle";
 import { useId } from "react";
 import { ButtonRefresh } from "../CustomControls/ButtonRefresh/ButtonRefresh";
+import { LegalActsList } from "./LegalActsList";
 type LawsPageProps = {
   legalActs: AppResource<LegalActsTable>;
 };
 
 export function LawPolish({ legalActs }: LawsPageProps) {
-  const articleRef = useRef<HTMLElement>(null);
   const {
     value: isExpandedArticle,
     toggle: toggleExpandArticle,
@@ -28,7 +27,6 @@ export function LawPolish({ legalActs }: LawsPageProps) {
   return (
     <article
       className={styles.lawPolishMainContainer}
-      ref={articleRef}
       aria-labelledby={titleId}
     >
       <FieldsetCustom
@@ -68,50 +66,7 @@ export function LawPolish({ legalActs }: LawsPageProps) {
               (legalActs.data.length === 0 ? (
                 <p>Brak aktów prawnych.</p>
               ) : (
-                <ul className={styles.actsList}>
-                  {legalActs.data.map((act, index) => (
-                    <li
-                      key={`${act.ELI}-${index}`}
-                      className={styles.itemActsList}
-                    >
-                      <p className={styles.paragraph}>
-                        {act.title} ({act.displayAddress})
-                      </p>
-                      <div className={styles.linkContainer}>
-                        {act.textPDF && (
-                          <a
-                            href={act.textPDF}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.link}
-                          >
-                            PDF
-                          </a>
-                        )}
-                        {act.textHTML && (
-                          <a
-                            href={act.textHTML}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.link}
-                          >
-                            HTML
-                          </a>
-                        )}
-                        {act.textDetails && (
-                          <a
-                            href={act.textDetails}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.link}
-                          >
-                            Szczegóły
-                          </a>
-                        )}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+                <LegalActsList acts={legalActs.data} />
               ))
             )}
 
