@@ -30,15 +30,14 @@ export function LawPolishRecent() {
         </h2>
         <p>
           Poniżej znajdziesz wybrane akty prawne dotyczące rejestracji pojazdów,
-          ogłoszone w ciągu ostatnich 7 dni, licząc do daty ostatniej
-          aktualizacji danych. Przycisk "Odśwież" ponownie pobiera dane
-          monitorowanych aktów prawnych i aktualizuje listę. Lista codziennie
-          aktualizuje się automatycznie. Linki pod każdym aktem prowadzą do jego
-          strony w Dzienniku Ustaw ("Strona DzU"), dokumentu PDF, treści HTML
-          lub strony ze szczegółowymi informacjami ("Szczegóły"). Data i godzina
-          "Stan na" wskazują ostatnie udane pobranie danych. Dostępność linków
-          zależy od danego dokumentu. Lista obejmuje wybrane przepisy i nie
-          stanowi pełnego wykazu zmian w prawie.
+          ogłoszone w ciągu ostatnich 7 dni. Przycisk "Odśwież" ponownie pobiera
+          dane monitorowanych aktów prawnych i aktualizuje listę. Lista
+          codziennie aktualizuje się automatycznie. Linki pod każdym aktem
+          prowadzą do jego strony w Dzienniku Ustaw ("Strona DzU"), dokumentu
+          PDF, treści HTML lub strony ze szczegółowymi informacjami
+          ("Szczegóły"). Data i godzina "Stan na" wskazują ostatnie udane
+          pobranie danych. Dostępność linków zależy od danego dokumentu. Lista
+          obejmuje wybrane przepisy i nie stanowi pełnego wykazu zmian w prawie.
         </p>
         <p>
           Więcej aktów prawnych znajdziesz{" "}
