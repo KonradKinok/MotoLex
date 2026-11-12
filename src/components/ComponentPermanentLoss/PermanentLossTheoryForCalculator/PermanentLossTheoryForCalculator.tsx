@@ -38,7 +38,7 @@ export default function PermanentLossTheoryForCalculator() {
         <p>
           <b>Wzór:</b>
         </p>
-        <p>O = W x R + 2 x S + 0,5 x M</p>
+        <p>O = W × R + 2 × S + 0,5 × M</p>
       </div>
       <div className={styles.container}>
         <p>
@@ -153,13 +153,10 @@ export default function PermanentLossTheoryForCalculator() {
             odrębnych przepisów.
           </p>
           <p>
-            Biorąc pod uwagę zapisy przedmiotowego rozporządzenia wskazać
-            należy, iż ustawodawca w zakresie symboli R, S i M nie wskazał
-            konkretnych liczb a odniósł się do pewnych materii uregulowanych w
-            odrębnych regulacjach prawnych. A zatem, w celu określenia wysokości
-            poszczególnych symboli należy odnieść się do przepisów regulujących
-            poszczególne materie.
+            Wartości R, S i M ustala się na podstawie odrębnych przepisów
+            właściwych dla daty przyjętej do obliczeń.
           </p>
+
           <div className={styles.enumerationOfDefinitionsMainContainer}>
             <div>
               <p className={styles.enumerationOfDefinitionsTitle}>
@@ -207,16 +204,16 @@ export default function PermanentLossTheoryForCalculator() {
                 aktualizowanym przez obwieszczenie wskazano jednostkową stawkę
                 opłaty za megagram (tonę). Zwrócić należy uwagę, iż w w/w
                 rozporządzeniu, prawodawca posłużył się pojęciem "stawki
-                jednostkowej" wyrażonej w postaci zł/Mg, gdy tymczasem w{" "}
-                {lastRozOplatyZaDrPcTrTitle} prawodawca wskazuje, iż wartość S
+                jednostkowej" wyrażonej w postaci zł/Mg, gdy tymczasem{" "}
+                {lastRozWzorOplataTrwalaUtrataTitle} wskazuje, iż wartość S
                 oznacza stawkę opłaty. Według słownika języka polskiego stawka
                 jednostkowa to określona jednostkowa wartość, służąca do
                 obliczenia wysokości świadczenia. Zatem w celu wskazania stawki
-                opłaty (wartość S) za użytkowanie pojazdu na składowisku odpadów
-                konieczne jest pomnożenie jednostkowej stawki określonej w
-                {lastRozStawkaOplatZaSrodowiskoTitle} aktualizowanym przez
-                obwieszczenie przez masę własną pojazdu w tonach (megagramach -
-                Mg). Zatem wartość S stanowić będzie wielokrotność stawki
+                opłaty (wartość S) za umieszczenie pojazdu na składowisku
+                odpadów konieczne jest pomnożenie jednostkowej stawki określonej
+                przez {lastRozStawkaOplatZaSrodowiskoTitle}, (aktualizowane
+                obwieszczeniem) przez masę własną pojazdu w tonach (megagramach
+                - Mg). Zatem wartość S stanowić będzie wielokrotność stawki
                 jednostkowej uzależnionej od masy pojazdu.
               </p>
             </div>
@@ -232,13 +229,13 @@ export default function PermanentLossTheoryForCalculator() {
                 konieczności kierowania sprawy do sądu. Zgodnie z art. 96 § 1
                 Kodeksu, w postępowaniu mandatowym można nałożyć grzywnę w
                 wysokości do 500,00 zł, a w przypadku, o którym mowa w art. 9 §
-                1 Kodeksu - do 1 000,00 zł. Powyższa kwota 1000,00 zł dotyczy
-                zbiegu przepisów ustawy. Zatem przyjąć należałoby, iż maksymalna
-                stawka grzywny w postępowaniu mandatowym wynosi 500,00 zł.
-                Pozostałe przypadki przewidujące nałożenie grzywny w wysokości
-                2000,00 zł i 5000,00 zł (art. 97 § 1a, § 1aa i § 1b Kodeksu)
-                stanowią wyjątki od ogólnej zasady wyrażonej w art. 96 § 1
-                Kodeksu.
+                1 Kodeksu wykroczeń - do 1000,00 zł. Powyższa kwota 1000,00 zł
+                dotyczy zbiegu przepisów ustawy. Zatem przyjąć należy, iż
+                maksymalna stawka grzywny w postępowaniu mandatowym wynosi
+                500,00 zł. Pozostałe przypadki przewidujące nałożenie grzywny w
+                wysokości 2000,00 zł i 5000,00 zł (art. 97 § 1a, § 1aa i § 1b
+                Kodeksu) stanowią wyjątki od ogólnej zasady wyrażonej w art. 96
+                § 1 Kodeksu.
               </p>
             </div>
           </div>
