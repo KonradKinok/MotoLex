@@ -36,7 +36,7 @@ export default function ComponentDateRange({
   const [selectedValueCbTimeUnit, setSelectedValueCbTimeUnit] =
     useState<string>(timeUnits[0].en);
   const [selectedValueInputTimeAmount, setSelectedValueInputTimeAmount] =
-    useState<number>(1);
+    useState<string>("1");
 
   //DateTimePickers
   const datePickerAdministrativeId = useId();
@@ -93,8 +93,7 @@ export default function ComponentDateRange({
 
   //KindTime - change
   const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.currentTarget.valueAsNumber;
-    if (!Number.isInteger(value) || value <= 0) return;
+    const value = event.currentTarget.value;
     setSelectedValueInputTimeAmount(value);
     setResultCalculationKindTimeDates(null);
     return;
@@ -125,7 +124,15 @@ export default function ComponentDateRange({
   const handleSubmitKindTimeForm = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const timeAmount = selectedValueInputTimeAmount;
+      const timeAmount = Number(selectedValueInputTimeAmount);
+      if (
+        selectedValueInputTimeAmount.trim() === "" ||
+        !Number.isSafeInteger(timeAmount) ||
+        timeAmount <= 0
+      ) {
+        throw new Error("Wprowadź dodatnią liczbę całkowitą jednostek czasu.");
+      }
+
       const timeUnit = timeUnits.find(
         (unit) => unit.en === selectedValueCbTimeUnit,
       );

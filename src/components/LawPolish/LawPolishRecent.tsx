@@ -15,7 +15,8 @@ import { ROUTES } from "../../config/routes";
 
 export function LawPolishRecent() {
   const { recentPolishLaws } = useAppContext();
-  const legalActs = getRecentAct(recentPolishLaws);
+  const numberOfDays = 30; // Liczba dni do wyświetlenia ostatnich aktów prawnych
+  const legalActs = getRecentAct(recentPolishLaws, numberOfDays);
   const hasNoRecentActs =
     !legalActs.loading &&
     !legalActs.error &&
@@ -30,11 +31,11 @@ export function LawPolishRecent() {
         </h2>
         <p>
           Poniżej znajdziesz wybrane akty prawne dotyczące rejestracji pojazdów,
-          ogłoszone w ciągu ostatnich 7 dni. Przycisk "Odśwież" ponownie pobiera
-          dane monitorowanych aktów prawnych i aktualizuje listę. Lista
-          codziennie aktualizuje się automatycznie. Linki pod każdym aktem
-          prowadzą do jego strony w Dzienniku Ustaw ("Strona DzU"), dokumentu
-          PDF, treści HTML lub strony ze szczegółowymi informacjami
+          ogłoszone w ciągu ostatnich {numberOfDays} dni. Przycisk "Odśwież"
+          ponownie pobiera dane monitorowanych aktów prawnych i aktualizuje
+          listę. Lista codziennie aktualizuje się automatycznie. Linki pod
+          każdym aktem prowadzą do jego strony w Dzienniku Ustaw ("Strona DzU"),
+          dokumentu PDF, treści HTML lub strony ze szczegółowymi informacjami
           ("Szczegóły"). Data i godzina "Stan na" wskazują ostatnie udane
           pobranie danych. Dostępność linków zależy od danego dokumentu. Lista
           obejmuje wybrane przepisy i nie stanowi pełnego wykazu zmian w prawie.
@@ -51,19 +52,23 @@ export function LawPolishRecent() {
           legend={`Przepisy prawne. Stan na: ${legalActs.date ?? ""} ${legalActs.time ?? ""}`}
         >
           <div className={styles.utilityButtonContainer}>
-            {hasNoRecentActs && <p>W ostatnim tygodniu nic się nie działo.</p>}
-            <p>
-              Najnowsze przepisy znajdziesz na stronie Rządowego Centrum
-              Legislacji:{" "}
-              <a
-                className={styles.link}
-                href="https://dziennikustaw.gov.pl/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                https://dziennikustaw.gov.pl/
-              </a>
-            </p>
+            <div>
+              {hasNoRecentActs && (
+                <p>W ostatnich {numberOfDays} dniach nic się nie działo.</p>
+              )}
+              <p>
+                Najnowsze przepisy znajdziesz na stronie Rządowego Centrum
+                Legislacji:{" "}
+                <a
+                  className={styles.link}
+                  href="https://dziennikustaw.gov.pl/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  https://dziennikustaw.gov.pl/
+                </a>
+              </p>
+            </div>
             <ButtonRefresh
               disabled={legalActs.loading}
               onClick={() => {
@@ -94,6 +99,7 @@ export function LawPolishRecent() {
 
 function getRecentAct(
   resources: readonly AppResource<LegalActsTable>[],
+  numberOfDays: number = 30,
 ): AppResource<LegalActsTable> {
   const loading = resources.some((resource) => resource.loading);
 
@@ -133,7 +139,7 @@ function getRecentAct(
     const startDate = new Date(year, month - 1, day);
 
     // Dzień ostatniego zapisu i sześć wcześniejszych dni.
-    startDate.setDate(startDate.getDate() - 6);
+    startDate.setDate(startDate.getDate() - numberOfDays);
 
     const from = getTodayToString(startDate);
     const to = latest.date;
