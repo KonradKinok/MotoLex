@@ -28,16 +28,20 @@ import styles from "./FormPermanentLossCalculator.module.scss";
 
 const comboBoxStylesW = createComboBoxStyles<VehicleFactor>();
 const comboBoxOptionsW: ComboBoxOption<VehicleFactor>[] = [
-  { label: "motorowery", value: 1.5, icon: <Scooter size={20} /> },
-  { label: "motocykle i przyczepy", value: 2, icon: <Motorbike size={20} /> },
+  { label: "motorowery [1,5]", value: 1.5, icon: <Scooter size={20} /> },
+  {
+    label: "motocykle i przyczepy [2,0]",
+    value: 2,
+    icon: <Motorbike size={20} />,
+  },
   {
     label:
-      "ciągniki rolnicze i pojazdy samochodowe o masie własnej nie przekraczającej 3,5 tony",
+      "ciągniki rolnicze i pojazdy samochodowe o masie własnej nie przekraczającej 3,5 tony [4,0]",
     value: 4,
     icon: <Car size={20} />,
   },
   {
-    label: "pojazdy samochodowe o masie własnej przekraczającej 3,5 tony",
+    label: "pojazdy samochodowe o masie własnej przekraczającej 3,5 tony [6,0]",
     value: 6,
     icon: <Van size={20} />,
   },
