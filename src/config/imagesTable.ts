@@ -4,6 +4,7 @@ import EmployeesImg from "../assets/images/home/EmployeesVertical.jpg";
 import CalculatorImg from "../assets/images/home/CalculatorVertical.jpg";
 //VehicleOwners page images
 import SprawdzDokumentyVertical from "../assets/images/vehicleOwnersPage/SprawdzDokumentyVertical.webp";
+import Oplaty from "../assets/images/vehicleOwnersPage/Oplaty.webp";
 //Employees page images
 import HomologacjaVertical from "../assets/images/employeeZonePage/HomologacjaVertical.webp";
 import PrzepisyPrawne from "../assets/images/employeeZonePage/PrzepisyPrawne.webp";
@@ -28,7 +29,8 @@ export const imagesPageCollection = {
     administrativeDeadlinesCalculator: KalkulatorTerminowAdministracyjnych
   },
   vehicleOwners: {
-    documents: SprawdzDokumentyVertical
+    documents: SprawdzDokumentyVertical,
+    pays: Oplaty
   },
   employees: {
     homologation: HomologacjaVertical,

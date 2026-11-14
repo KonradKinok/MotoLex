@@ -14,6 +14,7 @@ const DocumentsPage = lazy(
   () => import("../pages/DocumentsPage/DocumentsPage"),
 );
 
+const PaysPage = lazy(() => import("../pages/PaysPage/PaysPage"));
 //EmployeePage
 const EmployeeZonePage = lazy(
   () => import("../pages/EmployeeZonePage/EmployeeZonePage"),
@@ -62,10 +63,12 @@ function App() {
         <Route path={ROUTES.vehicleOwners}>
           <Route index element={<VehicleOwnersPage />} />
           <Route path="dokumenty" element={<DocumentsPage />} />
+          <Route path="oplaty" element={<PaysPage />} />
         </Route>
         <Route path={ROUTES.employees}>
           <Route index element={<EmployeeZonePage />} />
           <Route path="przepisy-prawne" element={<LawsPage />} />
+
           <Route path="homologacja">
             <Route index element={<HomologationPage />} />
             <Route path="kategorie-pojazdow">

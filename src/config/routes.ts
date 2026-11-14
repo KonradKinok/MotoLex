@@ -6,6 +6,7 @@ export const ROUTES = {
 
   vehicleOwners: "/dla-wlascicieli",
   documents: "/dla-wlascicieli/dokumenty",
+  pays: "/dla-wlascicieli/oplaty",
 
   employees: "/dla-pracownikow",
   laws: "/dla-pracownikow/przepisy-prawne",

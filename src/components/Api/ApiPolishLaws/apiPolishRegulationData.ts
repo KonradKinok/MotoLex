@@ -245,7 +245,6 @@ export const temp = {
   "list_changed_acts": "https://api.sejm.gov.pl/eli/changes/acts?since={date}&limit={limit}&offset={offset}"
 };
 
-
 export const polishActApiUrls = {
   pdf: (eli: string): string =>
     `https://api.sejm.gov.pl/eli/acts/${eli}/text.pdf`,
@@ -265,10 +264,3 @@ export const polishActApiUrls = {
   details: (address: string): string =>
     `https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=${encodeURIComponent(address)}`,
 };
-
-
-export const searchParamsObwieszczenieTrwalaUtrata = {
-  [queryParametersSearchTitle.title.text]: "w sprawie wysokości stawek opłat za korzystanie ze środowiska na rok",
-  [queryParametersSearchTitle.dateFrom.text]: "2023-01-01",
-  [queryParametersSearchTitle.limit.text]: "10",
-}

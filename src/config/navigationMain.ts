@@ -77,6 +77,19 @@ const vehicleOwnersItems: NavigationItem[] = [
       height: 800,
     },
   },
+  {
+    label: "Opłaty",
+    fullLabel: "Opłaty",
+    to: ROUTES.pays,
+    icon: CircleDollarSign,
+    description: "Tutaj znajdziesz informacje na temat opłat związanych z rejestracją pojazdów.",
+    image: {
+      src: imagesPageCollection.vehicleOwners.pays,
+      alt: "",
+      width: 600,
+      height: 800,
+    },
+  },
 ];
 
 const employeesItems: NavigationItem[] = [
