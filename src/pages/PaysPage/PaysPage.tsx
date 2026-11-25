@@ -4,6 +4,7 @@ import { APPLICATION_NAME, ROUTES } from "../../config/routes";
 import { navigationItems } from "../../config/navigationMain";
 import { findNavigationItem } from "../../components/globalFunctions/globalFunctions";
 import styles from "../PageStyles.module.scss";
+import { ComponentPays } from "../../components/ComponentPays/ComponentPays";
 
 export default function PaysPage() {
   const { pathname } = useLocation();
@@ -51,7 +52,7 @@ export default function PaysPage() {
       <section className={styles.pageMainContainer}>
         <h1>{mainPage.fullLabel}</h1>
         <p>{mainPage.description}</p>
-
+        <ComponentPays />
         {/* <FieldsetCustom legend={`Kodeksy:`}>
           <LawPolish legalActs={kpw} />
         </FieldsetCustom> */}

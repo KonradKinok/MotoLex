@@ -2,8 +2,8 @@ import { PageMetadata } from "../../components/PageMetaData/PageMetaData";
 import { ROUTES, APPLICATION_NAME } from "../../config/routes";
 import { navigationItems } from "../../config/navigationMain";
 import LinkImgPageCustom from "../../components/CustomControls/LinkImgPageCustom/LinkImgPageCustom";
-import styles from "../PageStyles.module.scss";
 import { LawPolishRecent } from "../../components/LawPolish/LawPolishRecent";
+import styles from "../PageStyles.module.scss";
 
 export default function HomePage() {
   const columnsCount = 3; // Liczba kolumn obrazków

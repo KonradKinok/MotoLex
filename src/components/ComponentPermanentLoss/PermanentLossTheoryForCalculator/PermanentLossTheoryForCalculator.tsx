@@ -31,19 +31,19 @@ export default function PermanentLossTheoryForCalculator() {
         <p>
           <b>Wzór:</b>
         </p>
-        <p>O = W × R + 2 × S + 0,5 × M</p>
+        <p className={styles.listItem}>O = W × R + 2 × S + 0,5 × M</p>
       </div>
       <div className={styles.container}>
         <p>
           <b>Opis:</b>
         </p>
         <ol className={styles.legalList}>
-          <li>
+          <li className={styles.listItem}>
             <b>O</b> - łączna kwota opłaty będąca warunkiem wyrejestrowania
             pojazdu w przypadku udokumentowanej trwałej i zupełnej utraty
             pojazdu bez zmiany w zakresie prawa własności,
           </li>
-          <li>
+          <li className={styles.listItem}>
             <b>W</b> - współczynnik będący mnożnikiem opłaty za wydanie dowodu
             rejestracyjnego, uzależniony od rodzaju pojazdu i wynoszący:
             <ol className={styles.legalSublist}>
@@ -68,7 +68,7 @@ export default function PermanentLossTheoryForCalculator() {
               </p>
             )}
           </li>
-          <li>
+          <li className={styles.listItem}>
             <b>R</b> - równowartość opłaty pobieranej za wydanie dowodu
             rejestracyjnego pojazdu, określonej na podstawie odrębnych
             przepisów,
@@ -78,7 +78,7 @@ export default function PermanentLossTheoryForCalculator() {
               </p>
             )}
           </li>
-          <li>
+          <li className={styles.listItem}>
             <b>S (jednostkowa stawka opłaty × masa własna pojazdu w kg/1000)</b>{" "}
             - stawka opłaty za umieszczenie zużytego lub nienadającego się do
             użytkowania pojazdu na składowisku odpadów, określona na podstawie
@@ -106,7 +106,7 @@ export default function PermanentLossTheoryForCalculator() {
               </p>
             )}
           </li>
-          <li>
+          <li className={styles.listItem}>
             <b>M</b> - maksymalna stawka grzywny w postępowaniu mandatowym,
             określona na podstawie odrębnych przepisów.
             {lastKpwTitle && (
@@ -116,42 +116,46 @@ export default function PermanentLossTheoryForCalculator() {
             )}
           </li>
         </ol>
+
         <div className={styles.containerExplanation}>
-          <p>
-            Zgodnie z art. 79 ustawy z dnia 20 czerwca 1997 r. - Prawo o ruchu
-            drogowym warunkiem wyrejestrowania pojazdu w przypadku,
-            udokumentowanej trwałej i zupełnej utraty posiadania pojazdu bez
-            zmiany w zakresie prawa własności, jest wniesienie przez właściciela
-            pojazdu opłaty na rzecz gminy na realizację zadań związanych z
-            utrzymaniem czystości i porządku w gminach. Wyrejestrowania pojazdu
-            dokonuje organ właściwy ze względu na miejsce ostatniej rejestracji
-            pojazdu. Wysokość opłaty będącej warunkiem wyrejestrowania pojazdu
-            została określona w Rozporządzeniu Ministra Spraw Wewnętrznych i
-            Administracji z dnia 3 kwietnia 2002 r. w sprawie wysokości opłaty
-            będącej warunkiem wyrejestrowania pojazdu w przypadku
-            udokumentowanej trwałej i zupełnej utraty pojazdu bez zmiany w
-            zakresie prawa własności zwanym dalej "rozporządzeniem w sprawie
-            wysokości opłaty", przy uwzględnieniu kosztów ponoszonych przez
-            gminy związanych z usuwaniem negatywnych skutków utraty pojazdu oraz
-            kosztów związanych z usuwaniem wraków.
-          </p>
-          <p>
-            Zgodnie z § 1 ww. rozporządzenia opłatę będącą warunkiem
-            wyrejestrowania pojazdu, w przypadku udokumentowanej trwałej i
-            zupełnej utraty pojazdu bez zmiany w zakresie prawa własności,
-            ustala się według wyżej wskazanego wzoru algorytmu.
-          </p>
-          <p>
-            Algorytm ten odnosi się do różnego rodzaju opłat związanych z
-            użytkowaniem pojazdu, tj. opłaty za wydanie dowodu rejestracyjnego,
-            opłaty za umieszczenie zużytego lub nienadającego się do użytkowania
-            pojazdu na składowisku odpadów, maksymalnej stawki grzywny w
-            postępowaniu mandatowym. Istotnym przy tym pozostaje, iż opłaty te,
-            w oparciu o które ustala się dany algorytm są określane na podstawie
-            odrębnych przepisów.
-          </p>
+          <div className={styles.listItem}>
+            <p>
+              Zgodnie z art. 79 ustawy z dnia 20 czerwca 1997 r. - Prawo o ruchu
+              drogowym warunkiem wyrejestrowania pojazdu w przypadku,
+              udokumentowanej trwałej i zupełnej utraty posiadania pojazdu bez
+              zmiany w zakresie prawa własności, jest wniesienie przez
+              właściciela pojazdu opłaty na rzecz gminy na realizację zadań
+              związanych z utrzymaniem czystości i porządku w gminach.
+              Wyrejestrowania pojazdu dokonuje organ właściwy ze względu na
+              miejsce ostatniej rejestracji pojazdu. Wysokość opłaty będącej
+              warunkiem wyrejestrowania pojazdu została określona w
+              Rozporządzeniu Ministra Spraw Wewnętrznych i Administracji z dnia
+              3 kwietnia 2002 r. w sprawie wysokości opłaty będącej warunkiem
+              wyrejestrowania pojazdu w przypadku udokumentowanej trwałej i
+              zupełnej utraty pojazdu bez zmiany w zakresie prawa własności
+              zwanym dalej "rozporządzeniem w sprawie wysokości opłaty", przy
+              uwzględnieniu kosztów ponoszonych przez gminy związanych z
+              usuwaniem negatywnych skutków utraty pojazdu oraz kosztów
+              związanych z usuwaniem wraków.
+            </p>
+            <p>
+              Zgodnie z § 1 ww. rozporządzenia opłatę będącą warunkiem
+              wyrejestrowania pojazdu, w przypadku udokumentowanej trwałej i
+              zupełnej utraty pojazdu bez zmiany w zakresie prawa własności,
+              ustala się według wyżej wskazanego wzoru algorytmu.
+            </p>
+            <p>
+              Algorytm ten odnosi się do różnego rodzaju opłat związanych z
+              użytkowaniem pojazdu, tj. opłaty za wydanie dowodu
+              rejestracyjnego, opłaty za umieszczenie zużytego lub nienadającego
+              się do użytkowania pojazdu na składowisku odpadów, maksymalnej
+              stawki grzywny w postępowaniu mandatowym. Istotnym przy tym
+              pozostaje, iż opłaty te, w oparciu o które ustala się dany
+              algorytm są określane na podstawie odrębnych przepisów.
+            </p>
+          </div>
           <div className={styles.enumerationOfDefinitionsMainContainer}>
-            <div>
+            <div className={styles.listItem}>
               <p className={styles.enumerationOfDefinitionsTitle}>
                 R - równowartość opłaty pobranej za wydanie dowodu
                 rejestracyjnego pojazdu, określonej w odrębnych przepisach.
@@ -194,7 +198,7 @@ export default function PermanentLossTheoryForCalculator() {
                 rejestracyjnego pojazdu - tj. kwocie 54,00 zł.
               </p>
             </div>
-            <div>
+            <div className={styles.listItem}>
               <p className={styles.enumerationOfDefinitionsTitle}>
                 S - stawka opłaty za umieszczenie zużytego lub nienadającego się
                 do użytkowania pojazdu na składowisku odpadów, określona na
@@ -227,7 +231,7 @@ export default function PermanentLossTheoryForCalculator() {
                 wielokrotność stawki jednostkowej uzależnionej od masy pojazdu.
               </p>
             </div>
-            <div>
+            <div className={styles.listItem}>
               <p className={styles.enumerationOfDefinitionsTitle}>
                 M - maksymalna stawka grzywny w postępowaniu mandatowym,
                 określona na podstawie odrębnych przepisów.

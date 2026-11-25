@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  --text-font-size: 1rem;
 }
 
 .legalList {
@@ -15,6 +16,15 @@
   list-style: none;
   counter-reset: legal-letter;
   padding-left: 1rem;
+}
+
+.listItem {
+  font-size: var(--text-font-size);
+  transition: color .75s cubic-bezier(.4, 0, .2, 1);
+
+  &:hover {
+    color: var(--color-link-text-hover);
+  }
 }
 
 .legalSublistItem {
@@ -33,6 +43,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
+  border-top: 1px solid var(--color-border);
 }
 
 
