@@ -18,10 +18,10 @@ export function ComponentPays() {
         <ul className={styles.list}>
           {registrationDocumentsNewest.map((item) => (
             <li
-              key={item.kind.name}
+              key={item.id}
               className={`${styles.listItem} ${styles.textHover}`}
             >
-              <span>{item.kind.displayName}:</span>
+              <span>{item.displayName}:</span>
               <span>{currencyFormater(item.value.amount)}</span>
             </li>
           ))}
@@ -31,10 +31,10 @@ export function ComponentPays() {
         <ul className={styles.list}>
           {profesionalRegistrationDocumentsNewest.map((item) => (
             <li
-              key={item.kind.name}
+              key={item.id}
               className={`${styles.listItem} ${styles.textHover}`}
             >
-              <span>{item.kind.displayName}:</span>
+              <span>{item.displayName}:</span>
               <span>{currencyFormater(item.value.amount)}</span>
             </li>
           ))}
