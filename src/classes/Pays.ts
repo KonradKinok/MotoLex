@@ -150,8 +150,9 @@ export class Pays {
 
   public getDocumentNewest(
     id: keyof Pays["documents"],
+    referenceDate: Date = new Date(),
   ): CurrentFeeDocument | undefined {
-    return this.getDocumentsByTypeNewest(this.documents[id].type)
+    return this.getDocumentsByTypeNewest(this.documents[id].type, referenceDate)
       .find((document) => document.id === id);
   }
 
