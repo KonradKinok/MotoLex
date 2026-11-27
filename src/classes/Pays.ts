@@ -148,6 +148,13 @@ export class Pays {
     };
   }
 
+  public getDocumentNewest(
+    id: keyof Pays["documents"],
+  ): CurrentFeeDocument | undefined {
+    return this.getDocumentsByTypeNewest(this.documents[id].type)
+      .find((document) => document.id === id);
+  }
+
   public getDocumentsByTypeAllValue(documentType: DocumentType): FeeDocumentWithHistory[] {
     return Object.entries(this.documents)
       .filter(([, document]) => document.type === documentType)
