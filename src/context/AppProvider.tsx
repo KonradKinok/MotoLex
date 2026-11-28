@@ -53,6 +53,7 @@ export function AppProvider({ children }: PropsWithChildren) {
   const obwOplatyTrwalaUtrata = useLegalActApiResourceContextByTitle(
     nameDzuTableByTitle.ObwieszczenieTrwalaUtrata,
   );
+
   const resources = {
     pord,
     rozRejestracjaPojazdow,
